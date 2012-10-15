@@ -8,9 +8,6 @@ Simulation for the following game:
 
 __author__ = 'mikemeko@mit.edu (Michael Mekonnen)'
 
-# maximum number of iterations considered for termination test
-MAX_ITERATIONS = 10000
-
 class Simulator:
   def __init__(self, start):
     self.state = start
@@ -31,23 +28,24 @@ class Simulator:
   def terminates(self):
     '''
     Returns True if the simulation eventually terminates,
-    False otherwise (probably).
+    False otherwise.
+    TODO(jven): This method should be idempotent.
     '''
     visited = set()
-    for i in xrange(MAX_ITERATIONS):
+    # This loop is guaranteed to terminate: it is impossible to loop
+    # indefinitely without repeating.
+    while not self.done():
       self.step()
-      if self.done():
-        # might be interesting to consider the termination step i
-        return True
-      elif self.state in visited:
+      if self.state in visited:
         return False
       visited.add(self.state)
-    # max number of iterations reached, probably won't terminate
-    return False
+    return True
   def __str__(self):
     return str(self.state)
 
 if __name__ == '__main__':
   # interesting case: one value (x) followed by n-1 0's
   x = 1
-  print [n for n in xrange(50) if Simulator([x] + [0]*(n-1)).terminates()]
+  for n in xrange(50):
+    print '%d: %s' % (n, 'WIN' if Simulator([x] + [0] * (n - 1)).terminates()
+        else 'LOSE')
