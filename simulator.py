@@ -29,8 +29,9 @@ class Simulator:
     '''
     Returns True if the simulation eventually terminates,
     False otherwise.
-    TODO(jven): This method should be idempotent.
     '''
+    return self._save_state(self._terminates)
+  def _terminates(self):
     visited = set()
     # This loop is guaranteed to terminate: it is impossible to loop
     # indefinitely without repeating.
@@ -40,6 +41,15 @@ class Simulator:
         return False
       visited.add(self.state)
     return True
+  def _save_state(self, f, *args, **kwargs):
+    '''
+    Returns the result of calling the function |f|, but ensures that the state
+    of this simulator before the function call is preserved.
+    '''
+    current_state = self.state
+    out = f(*args, **kwargs)
+    self.state = current_state
+    return out
   def __str__(self):
     return str(self.state)
 
