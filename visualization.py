@@ -27,6 +27,9 @@ class Visualization(Tk):
     self.initialize()
 
   def initialize(self):
+    """
+    Setup work for UI.
+    """
     self.title('Number Squares')
     # Set window size. Don't allow resizing.
     self.minsize(width = self.diameter + 2 * self.margin,
@@ -38,8 +41,9 @@ class Visualization(Tk):
         self.diameter + self.margin, self.diameter + self.margin,
         outline = 'black', fill = 'white', width = 2)
     self.canvas.pack(fill = BOTH, expand = 1)
-    # Bind enter key to step forward through simulation.
-    self.bind('<Return>', self.on_press_enter)
+    # Bind arrow keys to step through simulation.
+    self.bind('<Left>', lambda event: self.step_backward())
+    self.bind('<Right>', lambda event: self.step_forward())
     # Draw initial state.
     self.draw_state()
 
@@ -63,12 +67,18 @@ class Visualization(Tk):
           fill = 'red' if number == 0 else 'blue')
       self.text_labels.append(text_label)
 
-  def on_press_enter(self, event):
+  def step_backward(self):
     """
-    Listener to be called when the user presses enter.
+    Steps the simulation backward and refreshes the UI.
     """
-    if not self.simulator.done():
-      self.simulator.step()
+    self.simulator.step_backward()
+    self.draw_state()
+
+  def step_forward(self):
+    """
+    Steps the simulation forward and refreshes the UI.
+    """
+    self.simulator.step_forward()
     self.draw_state()
 
   def _get_text_loc(self, num_points, idx):
