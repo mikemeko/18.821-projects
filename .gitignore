@@ -1,10 +1,13 @@
 # Files to ignore from source control.
 
 *.aux*
+*.db
 *.log*
 *.nav*
 *.out*
 *.pdf*
+*.project
+*.pydevproject
 *.pyc*
 *.snm*
 *.swp*

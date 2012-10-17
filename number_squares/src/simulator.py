@@ -1,3 +1,5 @@
+import math
+import random
 '''
 Simulation for the following game:
   - Start with a state of n integers.
@@ -49,13 +51,32 @@ class Simulator:
     '''
     return self._save_state(self._run)
 
-  def _run(self):
+  def is_key_order(self):
+      if len(self.state) != 4:
+          return False
+      theState = self.state
+      a = theState[0]
+      b = theState[1]
+      c = theState[2]
+      d = theState[3]
+      if (a <= d and d <= b and b <= c) or (d <= b and b <= c and c <= a) or (b <= c and c <= a and a <= d) or (c <= a and a <= d and d <= b)\
+      or (a <= c and c <= b and b <= d) or (c <= b and b <= d and d <= a) or (b <= d and d <= a and a <= c) or (d <= a and a <= c and c <= b):
+        return True
+      
+  
+  def _run(self, sayIfClose = False):
     visited = set()
     # This loop is guaranteed to terminate: it is impossible to loop
     # indefinitely without repeating.
     num_steps = 0
+    print self.state
+    if self.is_key_order() and sayIfClose:
+      print 'Almost There'
     while not self.done():
+      if self.is_key_order() and sayIfClose:
+          print 'Almost There'
       self.step_forward()
+      print self.state
       num_steps += 1
       if self.state in visited:
         return None
@@ -72,14 +93,22 @@ class Simulator:
     out = f(*args, **kwargs)
     self.state = current_state
     self.history = current_history
-    return out
+    return out  
 
   def __str__(self):
     return str(self.state)
 
 if __name__ == '__main__':
   # interesting case: one value (x) followed by n-1 0's
+  w = .0419471094
+  x = .1513124413
+  y = .2432144123
+  z = .3123524232
+  
+  #Simulator([random.random() for i in range(5)])._run(False)
+  #Simulator([random.randint(0,1000) for i in range(3)])._run(False)
+  Simulator((.43, .21, .122, .131))._run()
   x = 1
-  for n in xrange(50):
-    print '%d: %s' % (n, 'WIN' if
-        Simulator([x] + [0] * (n - 1)).get_game_length() != None else 'LOSE')
+#  for n in xrange(50):
+#    print '%d: %s' % (n, 'WIN' if
+#        Simulator([x] + [0] * (n - 1)).get_game_length() != None else 'LOSE')

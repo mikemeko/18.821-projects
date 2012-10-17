@@ -176,6 +176,71 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games For Other $k$-tuples}
 
+This paper is primarily concerned with games of 4-tuples, but it is worth exploring the behavior of games of other sizes. We will show that given a an integer $n$, every game of size $n$ terminates if and only if $n$ is an integer power of 2.
+
+First, we prove a useful Lemma:
+
+\begin {lemma}
+Consider the game $(a_0, a_1, a_2, \ldots, a_n)$ where n is even (so the number of elements is odd) and the elements are not all equal. Let the game include a non-zero even number of odd elements. Then the game never terminates.
+\label{lem:evenodds}
+\end{lemma}
+
+\begin{proof}
+\emph{Notice that the difference of any tuple must include an even number of odd elements} (1). The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
+
+Let $G_0$ be the initial game state described in the statement of the lemma and let $G_{i+1}, i \geq 0$ be the difference of $G_i$. We show by induction on $i$ that the game never terminates:
+
+$G_0$ includes an even number of odd elements, by construction. Assume that $G_i$ includes a non-zero even number of odd elements. So $G_i$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $G_{i+1}$ must include a non-zero number of odd elements, and that number must be even, by (1). So $G_{i+1}$ cannot be the tuple of all $0$'s. This concludes the proof of the lemma.
+\end{proof}
+
+Lemma \ref{lem:evenodds} shows that for every odd $n > 1$ there are games of size $n$ that do not terminate. For example, (1,1, 0 \ldots, 0), with an odd number of 0's, does not terminate. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
+
+We need one more lemma to prove our claim:
+
+\begin{lemma}
+\label{lem:doubles}
+If $(a_0, a_1, \ldots, a_{n})$ is a game that does not terminate, then $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ also does not terminate.
+\end{lemma}
+
+\begin{proof}
+
+The difference of $(a_0, a_1, \ldots, a_{n})$ is:
+
+\noindent
+ $(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|)$.
+
+\vspace{.2cm}
+
+The difference of $(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_n)$ is:
+
+\noindent
+$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|$,
+
+\noindent
+$|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|)$.
+
+Since this is true for general values of $a_0$, \ldots, $a_n$, the $i$th sequence in the game beginning with $(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_n)$ is simply
+
+\noindent
+two appended copies of the $i$th sequence in the game beginning with $(a_0, a_1, \ldots, a_{n})$. So if $(a_0, a_1, \ldots, a_{n})$ doesn't terminate, then 
+
+\noindent
+$(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_{n})$ doesn't terminate.
+
+\end{proof}
+
+\begin{theorem}
+\label{theorem:notPowersOfTwo}
+If $n$ is an integer that is not an integer power of 2, then there is a game of size $n$ that does not terminate.
+\end{theorem}
+
+\begin{proof}
+
+Given an integer $k > 2$ that is not an integer power of 2, $k$ can be written in the form $p \times 2^{m}$ where $p$ is an odd prime and $m$ is an integer. By Lemma \ref{lem:evenodds}, there is a game of size $p$ that does not terminate (e.g. $(1,1,0, \ldots, 0)$) By applying Lemma \ref{lem:doubles} $m$ times, we obtain a game of size $m$ that does not terminate. 
+\end{proof}
+
+TODO (Daniel) Prove that games of size $k = 2^n$ always terminate.
+
 
 
 \section{Games Over Non-Integers}
@@ -191,6 +256,14 @@ The proof of this follows very easily from the fact that game length is invarian
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
 A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$.
+
+\section{Games Over the Real Numbers}
+
+Our results regarding games over the real numbers are not as thorough as our results on games over the integers, but we did make some interesting discoveries. Note that in this section, \emph{all games are games of 4-tuples}.
+
+We discovered a large class of terminating games over the reals. We also discovered examples of games over the reals which do not terminate. This contrasts with games over the integers, which always terminate.
+
+
 
 TODO(jven,dgrazian): Solve me! :D
 
