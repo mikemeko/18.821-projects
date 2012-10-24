@@ -1,0 +1,410 @@
+% Graphing fleas paper for 18.821 Fall 2012 project 1.
+% Authors: Daniel Grazian, Michael Mekonnen, Agustin O Venezuela III
+
+\documentclass[12pt]{amsart}
+
+% Keep everything here in alphabetical order, please! :) -jven
+
+% Packages
+
+\usepackage{amssymb}
+
+% Enumeration
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{remark}[theorem]{Remark}
+
+% Utility commands
+
+% Set of all binary sequences
+\newcommand{\binseq}{\{0,1\}^*}
+% Set of first n non-negative numbers
+\newcommand{\firstn}[1]{\ensuremath{\{0, \ldots, #1 - 1\}}}
+% Left arrow accent (the negative hspace is required because
+% the over arrows are massive)
+\newcommand{\laa}[1]{\hspace{-0.11cm}\overleftarrow{#1}}
+% Right arrow accent 
+\newcommand{\raa}[1]{\hspace{-0.11cm}\overrightarrow{#1}}
+% 2-complete rule
+\newcommand{\rtwo}{\mathring{r}_2}
+% World column (e.g. ...[0]0|00...)
+\newcommand{\wc}{p{0cm}}
+% Evolution of initial world under rtwo
+\newcommand{\wtwo}{\mathring{W}_2}
+% Integers
+\newcommand{\z}{\mathbb{Z}}
+% Non-negative integers
+\newcommand{\znn}{\mathbb{N}}
+% Positive integers
+\newcommand{\zp}{\mathbb{Z}^+}
+
+\title{Graphing Fleas}
+\author{Daniel Grazian, Michael Mekonnen, Agustin O Venezuela III}
+\date{September 24, 2012}
+
+\begin{document}
+
+\begin{abstract}
+We examine the evolution of a one-dimensinal lattice of labeled points. The points' labels change over time according to a rule. We prove that under our formulation of the problem every finite sequence of two distinct labels can be reached by a single rule. We then derive the amount of time required to reach every such sequence of a given length.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction\label{sec:intro}}
+
+In this paper, we examine patterns on a one-dimensional lattice, on which each point has a state associated with it. A flea travels along the lattice, and the state of a point may change when the flea visits it.  Consider the following starting configuration:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc c}
+W_0: & \ldots & 4 & 0 & $|$ & $\raa{3}$ & 1 & \ldots
+\end{array}$$
+
+We number the points $\ldots, -2, -1, 0, 1, 2, \ldots$. A vertical bar ($|$) separates points $-1$ and $0$. The numbers at each point represent the state of that point. Here, points $-1$, $0$, and $1$ begin in states $0$, $3$, and $1$ respectively. The flea, represented by an arrow,
+begins at the origin, pointed in the positive direction.
+
+
+The state of the point on which the flea is located at time $t$ determines both the state of that point at time $t+1$ and whether the flea moves forward or reverses direction to arrive at its new location at time $t+1$. The precise behavior will be determined by a rule associated with the setting. For example, the rule may specify that if the flea, at a given time step, is on a point in state $3$, then that point will be in state $2$ at the next time step, and the flea will reverse direction. In this case, the following configuration would succeed the one shown above:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc c}
+W_1: & \ldots & 4 &$ \laa{0}$ & $|$ & 2 & 1 & \ldots
+\end{array}$$
+
+
+We begin by precisely defining the terminology that we will use in the rest of the paper. We then present the main result of the paper, our finding that in a universe with three states, a single rule can generate every possible finite sequence of two of those states. Finally, we derive the number of time steps required to reach every sequence of a given length.
+
+\section{Definitions and Notation\label{sec:notation}}
+
+Before we prove our main result, we need to define several terms. Throughout this paper, all indices are zero-indexed (so if $k$ is a sequence of elements, then $k\left[0\right]$ is the first element in the sequence. $\znn$ refers to the set of non-negative integers, and $S^*$ refers to the set of all (possibly empty) finite sequences whose elements are in the set $S$.
+
+\begin{definition}
+A \underline{world} $W$ is a tuple $W = (t, \ell, d)$, $t : \z \to \znn$, $\ell \in \z$, $d \in \{-1, 1\}$.
+\end{definition}
+
+Here, $t$ maps each point on the lattice to a state. We use the nonnegative integers $\znn$ to name the states. This is an arbitrary choice, but it is notationally simple. $l$ specifies the location of the flea on the lattice, and $d$ specifies the direction of the flea. The following is an example of a world:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W: & \ldots & 1 & 3 & 2 & $|$ & $\laa{2}$ & 0 & 1 & \ldots
+\end{array}$$
+
+As suggested in the introduction, the larger space is between points $-1$ and $0$. Here, the flea is at point $0$, so $\ell = 0$. The flea is pointed to the left, so $d = -1$. $t$ maps each point to a state, so $t\left(-1\right) = 2$, $t\left(0\right) = 2$, and $t\left(1\right) = 0$, etc.
+
+\begin{definition}
+For $s\in \znn$, an \underline{$s$-rule} $r$ is a function $r : \firstn{s} \to \firstn{s} \times \{-1, 1\}$.
+\end{definition}
+
+$r$ describes the change in worlds between time steps. The first element of the output of $r$ describes the new state of the point $\ell$ where the flea existed. The second element of the output specifies whether or not the flea switches direction before stepping forward. 
+
+Consider the effect on the world $W = \left(t,\ell,d\right)$, described under Definition 2.1, of the 4-rule $r: r\left(0\right) = \left(2,1\right), r\left(1\right) = \left(0,-1\right), r\left(2\right) = \left(1,-1\right), r\left(3\right) = \left(0,1\right)$. The new world would look like this:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W'=\left(t',\ell',d'\right) : & \ldots & 1 & 3 & 2 & $|$ & 1 & $\raa{0}$ & 1 & \ldots
+\end{array}$$
+
+In $W$, $\ell = 0$ (that is, the flea is on point $0$), and point $0$ is in state 2. Because $r\left(2\right)\left[0\right] = 1$, point $0$ is in state $1$  in $W'$. That is, $t'\left(0\right) = 1$. All other points' states are unchanged. Because $r\left(2\right)\left[1\right] = -1$, the flea reverses direction before stepping forward. So $d' = -d = 1$ and $\ell'$ = $\ell + d \times -1 = 1$.
+
+If $r$ were applied again, this time to $W'$, then we would get the world:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W''=\left(t'',\ell'',d''\right) : & \ldots & 1 & 3 & 2 & $|$ & 1 & 2 & $\raa{1}$ & \ldots
+\end{array}$$
+
+
+
+\begin{definition}
+The \underline{evolution} $W^r$ of a world $W$ under a rule $r$ is the sequence $(W_i)_{i = 0}^{\infty}$ of worlds obtained by iteratively applying $r$ to $W$.:
+
+%\begin{enumerate}
+%\item $W_0 = W$
+%\item Suppose $i \geq 0, W_i = \left(t_i, l_i, d_i\right)$. Then $W_{i+1} = \left(t_{i+1},l_{i+1},d_{i+1}\right)$, where:
+%\begin{enumerate}
+%\item $t_{i+1}\left(l_i\right)= r\left(t_i\left(l_i\right)\right)\left[0\right]$, and $\forall n \neq l_i, t_{i+1}\left(n\right) = t\left(n\right)$.
+%\item $l_{i+1} = l_{i} + \left(d_{i} \times r\left(t_i\left(l_i\right)\right)\left[1\right]\right)$
+%\item $d_{i+1} = d_{i} \times r\left(t_i\left(l_i\right)\right)\left[1\right]$.
+%\end{enumerate}
+%\end{enumerate}
+
+\end{definition}
+
+For example, the evolution of $\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W: & \ldots & 1 & 3 & 2 & & $\laa{2}$ & 0 & 1 & \ldots
+\end{array}$ under the rule, $r: r\left(0\right) = \left(2,1\right), r\left(1\right) = \left(0,-1\right), r\left(2\right) = \left(1,-1\right), r\left(3\right) = \left(0,1\right)$, begins as:
+
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W_0: & \ldots 1& 3 & 2 & $|$ & $\laa{2}$& 0 & 1 & \ldots \\
+W_1: & \ldots 1& 3 & 2 & $|$ & 1 & $\raa{0}$ & 1 & \ldots \\
+W_2: & \ldots 1& 3 & 2 & $|$ & 1& 2 & $\raa{1}$ & \ldots
+\end{array}$$
+
+This is just the sequence of worlds $W, W', W'', \ldots$ described below Definition 2.3. Each world in the sequence is obtained by applying $r$ to the world before it.
+
+
+
+\begin{definition}
+Let $b = (b_i)_{i = 0}^{|b| - 1}\in (\znn)^*$ be a finite sequence of positive integers. We say that world $W = (t, \ell, d)$ \underline{contains} $b$ if $t(i) = b_i$ $\forall 0 \leq i \leq |b| - 1$.
+\end{definition}
+
+For example, $W_0$, described below Definition 2.3, contains the sequences $\left(2\right)$, $\left(2,0\right)$, and $\left(2,0,1\right)$.
+
+
+
+\begin{definition}
+We say that an evolution $W^r$ \underline{accepts} $b\in (\znn)^*$ if $\exists W_i\in W^r$ such that $W$ contains $b$.
+\end{definition}
+
+For example, the evolution $W^r$, described below Definition 2.3, accepts $\left(1,0,1\right)$, because $W_{1} \in W^r$ contains $\left(1,0,1\right)$.
+
+\begin{definition}
+For $k\in \znn$, we say that a rule $r$ is \underline{$k$-complete} if the evolution $(t_0: n \mapsto 0, 0, 1)^r$ accepts every element of $\firstn{k}^*$.
+\end{definition}
+
+In the following section, the main part of this paper, we show the existence of a 2-complete rule.
+
+\section{A 2-Complete Rule\label{sec:proof}}
+
+Given our above notion of $k$-completeness, we now demonstrate by construction the existence of a $2$-complete rule. Let $\rtwo$ be the following $3$-rule:
+
+$$\rtwo : 0 \mapsto (1, -1),\ 1 \mapsto (2, 1),\ 2 \mapsto (0, 1)$$
+
+We will also write $\wtwo$ to denote the evolution of the initial world under $\rtwo$. With these definitions, we can now present our main result.
+
+\begin{theorem}
+$\rtwo$ is $2$-complete.
+\end{theorem}
+
+Before we embark on a formal proof of the theorem, let's look at the worlds in $\wtwo$. Consider only the first few worlds $(t, \ell, d)$ in which $-1\leq \ell \leq 0$, as shown in Figure \ref{fig:rtwotwocols}. The next world $W_3$ has $\ell > 0$, so we stop. The key observation is that, given any world $W_i$ in the evolution containing $0 \raa{0}$, $W_{i+2}$ will be the same world with $0 \raa{0}$ replaced by $1 \raa{1}$. Figure $\ref{fig:subexample}$ shows an example.
+
+\begin{figure}
+$$\begin{array}{cc\wc\wc\wc c}
+W_0: & \ldots & 0 & $|$ & $\raa{0}$ & \ldots \\
+W_1: & \ldots & $\laa{0}$ & $|$ & 1 & \ldots \\
+W_2: & \ldots & 1 & $|$ & $\raa{1}$ & \ldots
+\end{array}$$
+\caption{$\wtwo$ in the first $2$ columns. \label{fig:rtwotwocols}}
+\end{figure}
+
+\begin{figure}
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W_i: & \ldots & 5 & 9 & 3 & \textbf{0} & $\raa{\textbf{0}}$ & 7 & 0 & \ldots \\
+\downarrow & & & & & & & & \\
+W_{i + 2}: & \ldots & 5 & 9 & 3 & \textbf{1} & $\raa{\textbf{1}}$ & 7 & 0 & \ldots
+\end{array}$$
+\caption{Example substitution of $00$ with $11$. \label{fig:subexample}}
+\end{figure}
+
+Let's use this to list the first few worlds $(t, \ell, d)$ in which $-2\leq \ell \leq 1$, as shown in Figure $\ref{fig:rtwofourcols}$. The next world $W_{12}$ has $\ell > 1$ so we stop. Note how we were able to use the worlds $W_0$ to $W_2$ to determine worlds $W_8$ to $W_{10}$. We will perform one more iteration and list the first few worlds $(t, \ell, d)$ in which $-3\leq \ell \leq 2$, as shown in Figure $\ref{fig:rtwosixcols}$.
+
+\begin{figure}
+$$\begin{array}{cc\wc\wc\wc\wc\wc c}
+W_0: & \ldots & 0 & \textbf{0} & $|$ & $\raa{\textbf{0}}$ & 0 & \ldots \\
+\downarrow & & & & & & & \\
+W_2: & \ldots & 0 & \textbf{1} & $|$ & $\raa{\textbf{1}}$ & 0 & \ldots \\
+W_3: & \ldots & 0 & 1 & $|$ & 2 & $\raa{0}$ & \ldots \\
+W_4: & \ldots & 0 & 1 & $|$ & $\laa{2}$ & 1 & \ldots \\
+W_5: & \ldots & 0 & $\laa{1}$ & $|$ & 0 & 1 & \ldots \\
+W_6: & \ldots & $\laa{0}$ & 2 & $|$ & 0 & 1 & \ldots \\
+W_7: & \ldots & 1 & $\raa{2}$ & $|$ & 0 & 1 & \ldots \\
+W_8: & \ldots & 1 & \textbf{0} & $|$ & $\raa{\textbf{0}}$ & 1 & \ldots \\
+\downarrow & & & & & & & \\
+W_{10} & \ldots & 1 & \textbf{1} & $|$ & $\raa{\textbf{1}}$ & 1 & \ldots \\
+W_{11} & \ldots & 1 & 1 & $|$ & 2 & $\raa{1}$ & \ldots
+\end{array}$$
+\caption{$\wtwo$ in the first $4$ columns. \label{fig:rtwofourcols}}
+\end{figure}
+
+\begin{figure}
+$$\begin{array}{cc\wc\wc\wc\wc\wc\wc\wc c}
+W_0: & \ldots & 0 & \textbf{0} & \textbf{0} & $|$ & $\raa{\textbf{0}}$ & \textbf{0} & 0 & \ldots \\
+\downarrow & & & & & & & \\
+W_{11}: & \ldots & 0 & \textbf{1} & \textbf{1} & $|$ & \textbf{2} & $\raa{\textbf{1}}$ & 0 & \ldots \\
+W_{12}: & \ldots & 0 & 1 & 1 & $|$ & 2 & 2 & $\raa{0}$ & \ldots \\
+W_{13}: & \ldots & 0 & 1 & 1 & $|$ & 2 & $\laa{2}$ & 1 & \ldots \\
+W_{14}: & \ldots & 0 & 1 & 1 & $|$ & $\laa{2}$ & 0 & 1 & \ldots \\
+W_{15}: & \ldots & 0 & 1 & $\laa{1}$ & $|$ & 0 & 0 & 1 & \ldots \\
+W_{16}: & \ldots & 0 & $\laa{1}$ & 2 & $|$ & 0 & 0 & 1 & \ldots \\
+W_{17}: & \ldots & $\laa{0}$ & 2 & 2 & $|$ & 0 & 0 & 1 & \ldots \\
+W_{18}: & \ldots & 1 & $\raa{2}$ & 2 & $|$ & 0 & 0 & 1 & \ldots \\
+W_{19}: & \ldots & 1 & 0 & $\raa{2}$ & $|$ & 0 & 0 & 1 & \ldots \\
+W_{20}: & \ldots & 1 & \textbf{0} & \textbf{0} & $|$ & $\raa{\textbf{0}}$ & \textbf{0} & 1 & \ldots \\
+\downarrow & & & & & & & \\
+W_{31}: & \ldots & 1 & \textbf{1} & \textbf{1} & $|$ & \textbf{2} & $\raa{\textbf{1}}$ & 1 & \ldots \\
+W_{32}: & \ldots & 1 & 1 & 1 & $|$ & 2 & 2 & $\raa{1}$ & \ldots
+\end{array}$$
+\caption{$\wtwo$ in the first $6$ columns. \label{fig:rtwosixcols}}
+\end{figure}
+
+The next world has $\ell > 2$ so we stop. There is a very noticeable pattern: if we write $0^k$ and $1^k$ to mean a sequence of $k$ zeroes and ones, respectively, we have that, after some number of steps, $0^k \raa{0} 0^{k-1}$ turns into $1^k 2^{k-1} \raa{1}$. In fact, we can strengthen this hypothesis and prove the resulting statement by induction:
+
+\begin{lemma}
+For every $k\in \zp$, there exists $i_k\in \zp$ such that:
+
+\begin{enumerate}
+\item $W_{i_k - 1}=(t_{i_k}, k - 1, 1)$, where
+
+\begin{displaymath}
+t_{i_k - 1}(n) = \left\{
+\begin{array}{ll}
+0 & ,\ n < -k \text{ or } k \leq n \\
+1 & ,\ -k \leq n < 0 \text{ or } n = k - 1 \\
+2 & ,\ 0 \leq n < k - 2
+\end{array}
+\right.
+\end{displaymath}
+
+\item For each world $W_i = (t_i, \ell_i, d_i)$ in the first $i_k$ worlds of $\wtwo$, $-k \leq \ell < k$.
+
+\item For every finite sequence $b\in \{0, 1\}^k$ of length $k$, some world $W_i$ in the first $i_k$ worlds of $\wtwo$ contains $b$.
+\end{enumerate}
+\end{lemma}
+
+\textit{Proof:} We proceed by induction on $k$. The truth of this statement for the base case $k = 1$ was demonstrated in Figure $\ref{fig:rtwotwocols}$ with $i_1=3$. Note that $W_2 = (t_2, 0, 1)$, where $t_2$ satisfies the properties in (1) in the statement of the lemma. Furthermore, $W_0$ contains $0$, $W_1$ contains $1$, and for all of $W_0$, $W_1$, $W_2$, we have $-1\leq \ell < 1$. It follows that (2) and (3) are also satisfied.
+
+Now suppose the statement holds for some $k = k'\in \zp$. We first show that property (1) holds for $k = k' + 1$. By our induction hypothesis, property (1) gives that $W_{i_{k'}}$ can be written as $01^{k'}2^{k'-1}\raa{1}0$. Using $\rtwo$, we find that the subsequent worlds in $\wtwo$ are:
+
+$$01^{k'}2^{k'-1}\raa{1}0 \implies 01^{k'}2^{k'}\raa{0} \implies \ldots \implies \laa{0}2^{k'}0^{k'}1 \implies \ldots$$
+$$\implies 1\textbf{0}^{k'}\raa{\textbf{0}}\textbf{0}^{k'-1}1$$
+
+Note that we have $\textbf{0}^{k'}\raa{\textbf{0}}\textbf{0}^{k'-1}$ in the latter world. Using property (2), we have that we can use property (1) again, as exemplified in Figure $\ref{fig:subexample}$:
+
+$$1\textbf{0}^{k'}\raa{\textbf{0}}\textbf{0}^{k'-1}1 \implies \ldots \implies 1\textbf{1}^{k'}\textbf{2}^{k'-1}\raa{\textbf{1}}1 = 1^{k'+1}2^{k'-1}\raa{1}1$$
+$$\implies 1^{k'+1}2^{k'}\raa{1}$$
+
+This proves that (1) holds for $k = k' + 1$, taking $i_{k' + 1}$ to be one more than the index of the world $1^{k'+1}2^{k'}\raa{1}$. Also, it is clear that $-(k' + 1) \leq \ell < k' + 1$ in the above steps so that (2) also holds.
+
+It suffices to show that (3) holds. That is, that every sequence in $\{0, 1\}^{k' + 1}$ is contained by some world in the first $i_{k'+1}$ worlds of $\wtwo$. By our induction hypothesis, every sequence in $\{0, 1\}^{k'}$ is contained by some world in the first $i_{k'}$ worlds of $\wtwo$. Since $\ell_i < k'$ for each such world, we must have that $t_i(k') = 0$ for these worlds, so that every sequence in $\{0, 1\}^{k'} \times \{0\}$ is also contained by these worlds. It remains to show that the sequences in $\{0, 1\}^{k'} \times \{1\}$ are also so contained. But this follows from our proof of (1): we had that the world $10^{k'}\raa{0}0^{k'-1}1$ occurs in the first $i_{k'+1}$ worlds of $\wtwo$, $i_{k'}$ steps after which we have the world $11^{k'}2^{k'-1}\raa{1}1$. In between these worlds, however, we clearly have worlds that contain each sequence in $\{0, 1\}^{k'} \times \{1\}$.
+
+Thus our induction is complete and we conclude that the result holds for all $k\in \zp$. $\square$
+
+This lemma immediately gives us the $2$-completeness of $\rtwo$: given any sequence $b\in \{0, 1\}^*$, it is clear that $\wtwo$ accepts it. In particular, there exists a world in the first $i_{|b|}$ worlds of $\wtwo$ that contains it. This completes the proof. $\blacksquare$
+
+Our analysis of $\wtwo$ has thus far been confined to the non-negative axis. For completeness, it is worth considering how $\wtwo$ behaves on the negative axis. In fact, $\rtwo$ generates each sequence symmetrically on the negative axis. We will make a brief digression and make this claim more precise:
+
+\begin{definition}
+We will say a sequence \underline{negatively contains} a sequence if the string appears in reverse on the negative axis, starting at location $-1$. We will say an evolution \underline{negatively accepts} a sequence if some world in it negatively contains it. For fear of obscuring what is a quite natural definition, we will omit formulating these definitions with our notation from Section $\ref{sec:notation}$.
+\end{definition}
+
+Our previous claim can now be written as follows:
+
+\begin{theorem}
+If $\wtwo$ accepts $b\in \{0,1,2\}^*$, then $\wtwo$ negatively accepts $b$.
+\end{theorem}
+
+As noted in Definition $3.3$, we will avoid going into the same level of detail as we did in the proof of Theorem $3.1$. A sketch of the proof is as follows.
+
+\textit{Proof:} For each world $(t,\ell,d)$, consider whether $\ell$ is non-negative or negative. Now consider splitting $\wtwo$ into contiguous subsequences where $\ell$ is either always non-negative or always negative. Finally pair the first two such subsequences, then the next two, and so on, ad infinitum.
+
+For example, making reference to Figures $\ref{fig:rtwofourcols}$ and $\ref{fig:rtwosixcols}$, we have that $\ell$ is non-negative in $W_0$, negative in $W_1$, non-negative from $W_2$ to $W_4$, negative from $W_5$ to $W_7$, etc., giving the following sequence:
+
+$$((W_0),(W_1)),((W_2,W_3,W_4),(W_5,W_6,W_7)),((W_8),(W_9)),\ldots$$
+
+Again, note that each element in this sequence is a pair of contiguous subsequences of $\wtwo$. It can be shown by induction that for each pair $((W_j),(W_k))$ of subsequences in this sequence, the following properties are satisfied:
+
+\begin{enumerate}
+\item The length of $(W_j)$ is equal to the length of $(W_k)$.
+\item The $r^{th}$ world in $(W_k)$ can be derived as follows: the non-negative axis is the same as the non-negative axis of the last element of $(W_j)$ and the negative axis is the same as the reverse of the non-negative axis of the $r^{th}$ world in $(W_j)$.
+\end{enumerate}
+
+This immediately gives the desired result: if $\wtwo$ accepts some sequence $b$, then there exists a world with non-negative $\ell$ that contains $b$. Thus the world must be an element of the second subsequence in some element of the above sequence. Suppose this world is the $r^{th}$ world of $(W_k)$ in the pair $((W_j),(W_k))$. By the second property above, the $r^{th}$ world of $(W_j)$ must negatively contain $b$. $\square$
+
+\section{``Efficiency'' of Completeness\label{sec:efficiency}}
+
+In the previous section, we showed that $\rtwo$ is 2-complete, i.e. the evolution $\wtwo$ accepts every sequence in $\binseq$. We also showed that $\wtwo$ negatively accepts every sequence in $\binseq$. Next, we look at the number of steps it takes $\rtwo$ to generate all sequences in $\binseq$ of length at most $n$, both starting from $0$ forwards and starting from $-1$ backwards. Since there are $2^n$ binary sequences of length $n$, we expect $\rtwo$ to take time at least on the order of $2^n$ to generate all these sequences. It turns out that $\rtwo$ takes time exactly on the order of $2^n$, and we shall develop this result below.
+
+\begin{definition}
+For a positive integer $n \in \zp$, let $T_n$ denote the number of steps it takes $\rtwo$ to generate all binary sequences of length at most $n$. That is, let $T_n$ be the minimum integer $i \in \znn$ such that for every non-empty binary sequence $b \in \binseq$ of length at most $n$, there exist integers $j$ and $k$ such that $0 \leq j,k \leq i$, the world $W_j \in \wtwo$ contains $b$, and the world $W_k \in \wtwo$ negatively contains $b$.
+\end{definition}
+
+The following Lemma describes the progression from $W_0$ to $W_{T_n}$ in $\wtwo$. While developing the form of $W_{T_n}$, we shall come up with a recurrence describing $T_n$.
+
+\begin{lemma}
+For any $n \in \zp$, the world $W_{T_n} \in \wtwo$ has the form
+$$\begin{array}{cccc|cccc}
+W_{T_n}: & \ldots & 0 & 1^{n} & \raa{1} & 1^{n-1} & 0 & \ldots
+\end{array}$$
+and the progression from $W_0$ to $W_{T_n}$ does not step outside of the locations between $-n$ and $n-1$, inclusive.
+\label{lemma:T_n_form}
+\end{lemma}
+
+\textit{Proof:} We prove this by induction on $n$.
+
+The result can be easily seen for the base case, $n = 1$, where we have $T_1 = 2$. There are exactly two non-empty binary sequences of length at most 1, namely 0 and 1. As shown in Figure \ref{fig:rtwotwocols}, $W_0$ contains and negatively contains 0, $W_1$ contains 1, and $W_2$ negatively contains 1. Note that the world $W_2$ has exactly the desired form, and the progression from $W_0$ to $W_2$ does not step outside of locations $-1$ and $0$.
+
+Now for $n > 1$, suppose that the world $W_{T_{n-1}}$ has the form
+$$\begin{array}{cccc|ccccc}
+W_{T_{n-1}}: & \ldots & 0 & 1^{n-1} & & \raa{1} & 1^{n-2} & 0 & \ldots
+\end{array}$$
+and that the progression from $W_0$ to $W_{T_{n-1}}$ does not step outside of the locations between $-(n-1)$ and $n-2$, inclusive. Let us use this inductive assumption to step through the evolution $\wtwo$ until we reach the world $W_{T_n}$. The progression from $W_0$ to $W_{T_n}$ is shown in Figure \ref{fig:T_n_demo}. Based on our assumption, between worlds $W_0$ and $W_{T_{n-1}}$, we generate all binary sequences of length $n$ \textit{ending in a 0}. Next, between worlds $W_{T_{n-1} + 4n - 2}$ and $W_{2T_{n-1} + 4n - 2}$, we generate all the remaining sequences of length $n$, namely the ones \textit{ending in a 1}. Therefore, the last world in the sequence, $W_{2T_{n-1} + 4n - 2}$, is indeed $W_{T_n}$. It has the desired form, and the progression to it from $W_0$ does not step outside of the locations between $-n$ and $n-1$, inclusive. This completes the induction.
+
+\begin{figure}
+$$\begin{array}{ccccc|ccccc}
+W_0: & \ldots & 0 & 0 & 0^{n-1} & \raa{0} & 0^{n-2} & 0 & 0 & \ldots \\
+\downarrow \\
+W_{T_{n-1}}: & \ldots & 0 & 0 & 1^{n-1} & \raa{1} & 1^{n-2} & 0 & 0 & \ldots \\
+\downarrow \\
+W_{T_{n-1} + n - 1}: & \ldots & 0 & 0 & 1^{n-1} & 2 & 2^{n-2} & \raa{0} & 0 & \ldots \\
+\downarrow \\
+W_{T_{n-1} + 3n - 2}: & \ldots & 0 & \laa{0} & 2^{n-1} & 0 & 0^{n-2} & 1 & 0 & \ldots \\
+\downarrow \\
+W_{T_{n-1} + 4n - 2}: & \ldots & 0 & 1 & 0^{n-1} & \raa{0} & 0^{n-2} & 1 & 0 & \ldots \\
+\downarrow \\
+W_{2T_{n-1} + 4n - 2}: & \ldots & 0 & 1 & 1^{n-1} & \raa{1} & 1^{n-2} & 1 & 0 & \ldots \\
+\end{array}$$
+\caption{Progression from $W_0$ to $W_{T_n} = W_{2T_{n-1} + 4n - 2}$. \label{fig:T_n_demo}}
+\end{figure}
+
+\qed
+
+The following Corollary gives us a recurrence for $T_n$, which we shall solve to get a closed form expression.
+
+\begin{corollary}
+For any $n \in \zp$, we have
+$$T_{n} = 2 \cdot T_{n-1} + 4n - 2.$$
+\label{cor:T_n_recurrence}
+\end{corollary}
+
+\textit{Proof:} This recurrence follows directly from the conclusion in Lemma \ref{lemma:T_n_form} that
+$$W_{T_n} = W_{2T_{n-1} + 4n - 2}.$$
+\qed
+
+Finally, we state $T_n$ in closed form by solving the recurrence.
+
+\begin{theorem}
+$T_n = 6 \cdot 2^n - 4n - 6.$
+\end{theorem}
+
+\textit{Proof:} 
+We can prove this equality by induction.
+First we check the base case, $n=1$:
+$$T_1=6 \cdot 2^1 - 4 \cdot 1 - 6 = 2.$$
+
+Next, for $n > 1$, let us assume that $T_{n-1}=6 \cdot 2^{n-1} - 4(n-1) - 6$. With this inductive assumption and the recurrence from Corollary \ref{cor:T_n_recurrence}, we can solve for $T_n$:
+\begin{align*}
+  T_n &  = 2T_{n-1} + 4n - 2 \\
+  & = 2(6 \cdot 2^{n-1} - 4(n-1) - 6) + 4n - 2 \\
+  & =  6 \cdot 2^n - 4n - 6.
+\end{align*}
+This completes the induction.
+
+\qed
+
+\begin{corollary}
+$T_n$ grows on the order of $2^n$.
+\end{corollary}
+
+\textit{Proof:} This follows directly from the expression for $T_n$.
+\qed
+
+\section{Further Work\label{sec:furtherwork}}
+
+In this paper, we have discussed in detail a $3$-rule $\rtwo$ that is $2$-complete. It is easy to show that there does not exist a $2$-rule that is $2$-complete by looking at all $16$ $2$-rules. An interesting question to ask is whether there exists an $s$-rule that is $s$-complete for some integer $s > 2$.
+
+Another unrelated question we considered is identifying the conditions on an $s$-rule $r$ that would result in the flea being bounded between two locations in $\z$. There are some very simple conditions we can develop such as if $r(0)=(\sigma, 1)$ for any $\sigma \in \{0,\dots,s-1\}$, then, starting from the world $W_0 = (t(n)=0 \forall n, 0, 1)$, the flea will always step to the right, which means that it would be unbounded. It would be interesting to develop an algorithm that can check the boundedness of a flea under any given rule.
+
+\end{document}

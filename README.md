@@ -1,4 +1,5 @@
-Number Squares
-==============
+18.821: Project Lab in Math
+=====================
 
-Simulation code for our 18.821 project 2.
+Code, papers, and presentations for projects in 18.821.
+Fall, 2012.

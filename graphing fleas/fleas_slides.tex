@@ -1,0 +1,713 @@
+% beamer_template
+% Created by Christopher Schommer-Pries on 2012-02-16.
+% Copyright (c) 2012. All rights reserved.
+
+% Graphing fleas slides for 18.821 Fall 2012 project 1.
+% Authors: Daniel Grazian, Michael Mekonnen, Agustin O Venezuela III
+
+\documentclass{beamer}		%% The Beamer document class formats for slides. 
+
+\usetheme{CambridgeUS} 		%% Formats the slides with a red and gray theme, which seems appropriate for MIT.  
+
+% Keep everything here in alphabetical order, please! :) -jven
+
+% Packages
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}	
+
+% Enumeration
+
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+% Utility commands
+
+% Set of all binary sequences
+\newcommand{\binseq}{\{0,1\}^*}
+% Set of first n non-negative numbers
+\newcommand{\firstn}[1]{\ensuremath{\{0, \ldots, #1 - 1\}}}
+% Left arrow accent (the negative hspace is required because
+% the over arrows are massive)
+\newcommand{\laa}[1]{\hspace{-0.11cm}\overleftarrow{#1}}
+% Right arrow accent 
+\newcommand{\raa}[1]{\hspace{-0.11cm}\overrightarrow{#1}}
+% 2-complete rule
+\newcommand{\rtwo}{R}
+% World column (e.g. ...[0]0|00...)
+\newcommand{\wc}{p{0cm}}
+% World column with negative numbers
+\newcommand{\wcc}{p{.3cm}}
+% Evolution of initial world under rtwo
+\newcommand{\wtwo}{E(R)}
+% Integers
+\newcommand{\z}{\mathbb{Z}}
+% Non-negative integers
+\newcommand{\znn}{\mathbb{N}}
+% Positive integers
+\newcommand{\zp}{\mathbb{Z}^+}
+
+\title{Graphing Fleas}
+\author[Grazian, Mekonnen, Venezuela]{Daniel Grazian, Michael Mekonnen, Justin Venezuela}
+\institute[MIT]{Massachusetts Institute of Technology}
+\date{October $22^\text{nd}$, 2012}
+
+\begin{document}
+
+% Daniel
+
+\frame{
+\titlepage
+}
+
+\frame{
+\frametitle{Discrete Number Line With States and Flea}
+$$\begin{array}{c|c|c|c|c|c|c|c|c}
+\ldots & \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} & \phantom{0} & \ldots
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{Discrete Number Line With States and Flea}
+$$\begin{array}{c|c|c|c|c|c|c|c|c}
+\ldots & 1 & 0 & 2 & 1 & 0 & 0 & 1 & \ldots
+\end{array}$$
+}
+
+\frame{
+\frametitle{Discrete Number Line With States and Flea}
+$$\begin{array}{r|r|r|r|r|r|r|r|r}
+\ldots & 1 & 0 & 2 & \raa{1} & 0 & 0 & 1 & \ldots
+\end{array}$$
+}
+
+\frame{
+\frametitle{Discrete Number Line With States and Flea}
+$$\begin{array}{r|r|r|r|r|r|r|r|r}
+\ldots & 1 & 0 & 2 & 1 & \raa{0} & 0 & 1 & \ldots
+\end{array}$$
+}
+
+
+
+
+
+\frame{
+\frametitle{Rule determines behavior}
+\pause
+State of point where flea is located determines:
+\pause
+\begin{enumerate}
+\item what state the point changes to when the flea steps off.
+\item whether the flea changes direction before stepping off.
+
+\pause
+
+\end{enumerate}
+
+\begin{itemize}
+\item Many possible rules
+
+\item We focus on particularly interesting ones.
+
+\item Can a rule produce every sequence of states?
+\end{itemize}
+}
+
+\frame{
+\frametitle{Rule determines behavior}
+\begin{itemize}
+\item A rule consists of a series of statements of the form:
+
+\emph{`When the flea steps off a point in state $X$, the point changes to state $Y$, and the flea does/doesn't reverse direction before stepping off.'}
+\pause
+
+\item One such statement for every possible state.
+\pause
+\item $(2k)^{k}$ possible rules, where $k$ is the number of allowed states.
+\end{itemize}
+}
+
+\frame{
+\frametitle{Rule determines behavior}
+$$\begin{array}{c|c|c|c|c|c|c|c|c}
+\ldots & 1 & 0 & 1 & \raa{1} & 0 & 0 & 1 & \ldots
+\end{array}$$
+\pause
+$$\begin{array}{c|c|c|c|c|c|c|c|c}
+\ldots & 1 & 0 & 1 & 1 & \raa{0} & 0 & 1 & \ldots
+\end{array}$$
+
+`When the flea steps off a point in state $1$, the point changes to state 1, and the flea doesn't reverse direction before stepping off.'
+
+\pause
+
+$$\begin{array}{c|c|c|c|c|c|c|c|c}
+\ldots & 1 & 0 & 1 & \laa{1} & 1 & 0 & 1 & \ldots
+\end{array}$$
+
+`When the flea steps off a point in state $0$, the point changes to state 1, and the flea reverses direction before stepping off.'
+
+}
+
+\frame{
+\frametitle{Rule determines behavior}
+Formally, a rule is a function from state to state and direction change
+\pause
+
+\vspace{.3cm}
+
+$r: \{0,\ldots,k-1\} \to \left(\{0,\ldots,k-1\}, \{-1,1\}\right)$
+\vspace{.3cm}
+
+where $k$ is the number of allowed states.
+
+\pause
+\vspace{.3cm}
+
+\begin {example}
+$$
+r: \begin{array}{ccc}
+0 & \to & (1,-1)\\
+1 & \to & (1, 1)\\
+\end{array}
+$$
+\end{example}
+}
+
+\frame{
+\frametitle{Definitions and Notation}
+\pause
+
+\begin {itemize}
+\item A \emph{world} describes the state at every point and gives the location and direction of the flea.
+
+$$\begin{array}{llrrrrllllll}
+W_0: & \ldots & 0 & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & 0 & \dots
+\pause
+\end{array}$$
+
+\vspace{.2cm}
+
+\item The \emph{evolution} $E\left(r\right)$ of a rule $r$ is the infinite sequence $\left(W_0, W_1, W_2, \ldots\right)$ of worlds produced by iteratively applying $r$ to $W_0$:
+\pause
+
+\vspace{.2cm}
+
+\item A world \emph{contains} a finite sequence $\left(s_0, s_1, \ldots, s_{n-1}\right)$ of states if points $0, 1, \ldots, n-1$ are in states $s_0, s_1, \ldots, s_{n-1}$ respectively.
+\pause
+
+\vspace{.2cm}
+
+\item An evolution E(r) \emph{accepts} a sequence of states if any world in E(r) contains the sequence.
+
+\end{itemize}
+}
+
+\frame{
+\frametitle{Example}
+\begin{example}
+
+$$
+r: \begin{array}{ccc}
+0 & \to & (1,-1)\\
+1 & \to & (1, 1)\\
+\end{array}
+$$
+
+\pause
+
+$$\begin{array}{llrrrrllllll}
+W_0 & \ldots & 0 & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & 0 & \dots\\
+W_ 1 & \ldots & 0 & 0 & 0 & \laa{0} & | & 1 & 0 & 0 & 0 &\ldots\\
+\pause
+W_ 2 & \ldots & 0 & 0 & 0 & 1 & | & \raa{1} & 0 & 0 & 0 &\ldots\\
+W_ 3 & \ldots & 0 & 0 & 0 & 1 & | & 1 & \raa{0} & 0 & 0 &\ldots
+\pause
+\end{array}$$
+\end{example}
+\begin{itemize}
+\item The first four worlds of the \emph{evolution} E(r) of $r$ are shown above.
+\item $W_2$ \emph{contains} $(1,0)$ and $(1,0,0)$
+\item Therefore E(r) \emph{accepts} $(1,0)$ and $(1,0,0)$.
+\end{itemize}
+
+}
+
+\frame{
+\frametitle{A $k$-complete Rule}
+\pause
+
+A rule $r$ is \emph{k-complete} if the evolution of $r$ accepts every finite sequence of the states $0, \ldots, k-1$.
+\pause
+
+\vspace{.5cm}
+
+For example, a 2-complete rule must accept:
+\pause
+
+\vspace{.5cm}
+
+$(0)$
+
+$(1)$
+
+\pause
+
+$(0,1)$
+
+$(1,0)$
+
+$(0,1)$
+
+$(1,1)$
+
+\pause
+
+$(0,0,0)$
+
+\ldots
+
+$(1,1,1)$
+
+\ldots
+
+}
+
+
+
+\frame{
+\frametitle{Our Main Result}
+
+\pause
+
+\begin{theorem}
+We can construct a $k$-complete rule over $k+1$ states for all $k\in \zp$.
+\end{theorem}
+
+\pause
+
+In this talk, we'll give a $2$-complete rule over $3$ states.
+
+\pause
+
+\vspace{.7cm}
+
+We will then show how `fast' this rule is in generating every possible sequence of 0's and 1's.
+}
+
+% Justin
+
+\frame{
+\frametitle{Example of a $2$-complete rule}
+
+\pause
+
+$$\rtwo: \begin{array}{ccc}
+0 & \to & (1, -1) \\
+1 & \to & (2, 1) \\
+2 & \to & (0, 1)
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{First few worlds of $\wtwo$}
+
+$$\rtwo: \begin{array}{ccc}
+0 & \to & (1, -1) \\
+1 & \to & (2, 1) \\
+2 & \to & (0, 1)
+\end{array}$$
+
+\pause
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{0} & | & 1 & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & \raa{1} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & 2 & \raa{0} & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & \laa{2} & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{1} & | & 0 & 1 & 0 & \ldots
+\end{array}$$
+}
+
+\frame{
+\frametitle{Demo!}
+}
+
+\frame{
+\frametitle{Claim}
+
+\pause
+
+\begin{theorem}
+$\rtwo$ is $2$-complete.
+\end{theorem}
+
+\pause
+
+Key observation:
+
+\alert{$\wtwo$ accepts all sequences of length $n$ before the flea leaves $[-n,n-1]$.}
+
+}
+
+\frame{
+\frametitle{$\wtwo$ in $[-1,0]$}
+
+\pause
+
+$$\begin{array}{ccccc}
+\ldots & 0 & | & \raa{0} & \ldots \\ \pause
+\ldots & \laa{0} & | & 1 & \ldots \\ \pause
+\ldots & 1 & | & \raa{1} & \ldots
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{$\wtwo$ in $[-2,1]$}
+
+\pause
+
+$$\begin{array}{ccccccc}
+\ldots & 0 & \textbf{0} & | & \raa{\textbf{0}} & 0 & \ldots \\ \pause
+\downarrow & & & & & & \\
+\ldots & 0 & \textbf{1} & | & \raa{\textbf{1}} & 0 & \ldots \\ \pause
+\ldots & 0 & 1 & | & 2 & \raa{0} & \ldots \\ \pause
+\ldots & 0 & 1 & | & \laa{2} & 1 & \ldots \\ \pause
+\ldots & 0 & \laa{1} & | & 0 & 1 & \ldots \\ \pause
+\ldots & \laa{0} & 2 & | & 0 & 1 & \ldots \\ \pause
+\ldots & 1 & \raa{2} & | & 0 & 1 & \ldots \\ \pause
+\ldots & 1 & \textbf{0} & | & \raa{\textbf{0}} & 1 & \ldots \\ \pause
+\downarrow & & & & & & \\
+\ldots & 1 & \textbf{1} & | & \raa{\textbf{1}} & 1 & \ldots \\ \pause
+\ldots & 1 & 1 & | & 2 & \raa{1} & \ldots
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{$\wtwo$ in $[-3,2]$}
+
+\pause
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & \textbf{0} & \textbf{0} & | & \raa{\textbf{0}} & \textbf{0} & 0 & \ldots \\ \pause
+\downarrow & & & & & & & & \\
+\ldots & 0 & \textbf{1} & \textbf{1} & | & \textbf{2} & \raa{\textbf{1}} & 0 & \ldots \\ \pause
+\ldots & 0 & 1 & 1 & | & 2 & 2 & \raa{0} & \ldots \\ \pause
+\downarrow & & & & & & & & \\
+\ldots & \laa{0} & 2 & 2 & | & 0 & 0 & 1 & \ldots \\ \pause
+\downarrow & & & & & & & & \\
+\ldots & 1 & \textbf{0} & \textbf{0} & | & \raa{\textbf{0}} & \textbf{0} & 1 & \ldots \\ \pause
+\downarrow & & & & & & & & \\
+\ldots & 1 & \textbf{1} & \textbf{1} & | & \textbf{2} & \raa{\textbf{1}} & 1 & \ldots \\ \pause
+\ldots & 1 & 1 & 1 & | & 2 & 2 & \raa{1} & \ldots
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{Proof of $2$-completeness}
+
+\pause
+
+By induction. \pause Induction hypothesis:
+
+\begin{itemize}
+\item $0^n \raa{0}0^{n-1} \to 1^n2^{n-1}\raa{1}$ \pause
+\item ... while staying within these columns \pause
+\item ... while accepting all sequences of length $n$ \pause $\qed$
+\end{itemize}
+
+\pause
+
+\begin{corollary}
+We can similarly define the notions of \underline{negative containment} and \underline{negative acceptance}.
+
+\vspace{0.2in}
+\pause
+
+Every sequence accepted by $\wtwo$ is also negatively contained.
+\end{corollary}
+
+}
+
+% Michael
+
+\frame{
+\frametitle{$\rtwo$ is 2-complete}
+
+$E(\rtwo)$ accepts and negatively accepts every finite binary sequence.
+
+}
+
+\frame{
+\frametitle{$\rtwo$ is 2-complete}
+\begin{example}
+
+$b = 01$ \pause
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{0} & | & 1 & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & \raa{1} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & 2 & \raa{0} & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & \laa{2} & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{1} & | & \alert{\textbf{0}} & \alert{\textbf{1}} & 0 & \ldots \\ \pause
+\ldots & 0 & \laa{0} & 2 & | & 0 & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 1 & \raa{2} & | & 0 & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & \alert{\textbf{1}} & \alert{\textbf{0}} & | & \raa{0} & 1 & 0 & \ldots
+\end{array}$$
+
+\end{example}
+}
+
+\frame{
+\frametitle{How fast is $\rtwo$?}
+After how many worlds do we see all binary sequences of length $n$?
+
+\pause
+\vspace{.5in}
+
+Surely \textbf{$\Omega(2^n)$}.
+}
+
+\frame{
+\frametitle{How fast is $\rtwo$?}
+\begin{definition}
+\alert{$T_n$}: minimum number worlds to see all finite binary sequences of length $n$.
+\end{definition}
+
+}
+
+\frame{
+\frametitle{$T_1$}
+\begin{example}
+
+$T_1 =$ ?
+
+Looking for $0$ and $1$.
+
+\end{example}
+}
+
+\frame{
+\frametitle{$T_1$}
+
+\begin{example}
+
+\begin{columns}
+\column{.85\textwidth}
+$$\begin{array}{ccccccccc}
+\ldots & 0 & 0 & \alert{\textbf{0}} & | & \raa{\alert{\textbf{0}}} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{0} & | & \alert{\textbf{1}} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \alert{\textbf{1}} & | & \raa{1} & 0 & 0 & \ldots
+\end{array}$$
+
+\column{.15\textwidth}
+\alert{$T_1 = 2$}
+\end{columns}
+
+\end{example}
+
+}
+
+\frame{
+\frametitle{$T_2$}
+\begin{example}
+
+$T_2 =$ ?
+
+Looking for $00$, $01$, $10$, and $11$.
+
+\end{example}
+}
+
+\frame{
+\frametitle{$T_2$}
+
+\begin{example}
+
+\begin{columns}
+\column{.85\textwidth}
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & \alert{\textbf{0}} & \alert{\textbf{0}} & | & \raa{\alert{\textbf{0}}} & \alert{\textbf{0}} & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{0} & | & \alert{\textbf{1}} & \alert{\textbf{0}} & 0 & \ldots \\ \pause
+\ldots & 0 & \alert{\textbf{0}} & \alert{\textbf{1}} & | & \raa{1} & 0 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & 2 & \raa{0} & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & 1 & | & \laa{2} & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 0 & \laa{1} & | & \alert{\textbf{0}} & \alert{\textbf{1}} & 0 & \ldots \\ \pause
+\ldots & 0 & \laa{0} & 2 & | & 0 & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 1 & \raa{2} & | & 0 & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & \alert{\textbf{1}} & \alert{\textbf{0}} & | & \raa{0} & 1 & 0 & \ldots \\ \pause
+\ldots & 0 & 1 & \laa{0} & | & \alert{\textbf{1}} & \alert{\textbf{1}} & 0 & \ldots \\ \pause
+\ldots & 0 & \alert{\textbf{1}} & \alert{\textbf{1}} & | & \raa{1} & 1 & 0 & \ldots
+\end{array}$$
+
+\column{.15\textwidth}
+\alert{$T_2 = 10$}
+\end{columns}
+
+\end{example}
+
+}
+
+\frame{
+\frametitle{$T_n$}
+
+\textbf{Goal:} a recurrence for $T_n$.
+
+\pause
+\vspace{.5in}
+
+\textbf{Method:} study the progression from $W_0$ to $W_{T_n}$ in $\wtwo$.
+
+}
+
+\frame{
+\frametitle{Describing $W_{T_n}$}
+
+\begin{lemma}
+\begin{enumerate}
+\item The world $W_{T_n}$ has the form: $\ldots 0 1^{n} | \raa{1} 1^{n-1} 0 \ldots$ \pause
+\item The progression from $W_0$ to $W_{T_n}$ does not step outside of the locations between $-n$ and $n-1$.
+\end{enumerate}
+\end{lemma}
+}
+
+\frame{
+\frametitle{$W_{T_1}$}
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & \ldots \\
+\ldots & 0 & 0 & \laa{0} & | & 1 & 0 & 0 & \ldots \\
+\alert{\ldots} & \alert{0} & \alert{0} & \alert{1} & \alert{|} & \raa{\alert{1}} & \alert{0} & \alert{0} & \alert{\ldots}
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{$W_{T_2}$}
+
+$$\begin{array}{ccccccccc}
+\ldots & 0 & 0 & 0 & | & \raa{0} & 0 & 0 & \ldots \\
+\ldots & 0 & 0 & \laa{0} & | & 1 & 0 & 0 & \ldots \\
+\ldots & 0 & 0 & 1 & | & \raa{1} & 0 & 0 & \ldots \\
+\ldots & 0 & 0 & 1 & | & 2 & \raa{0} & 0 & \ldots \\
+\ldots & 0 & 0 & 1 & | & \laa{2} & 1 & 0 & \ldots \\
+\ldots & 0 & 0 & \laa{1} & | & 0 & 1 & 0 & \ldots \\
+\ldots & 0 & \laa{0} & 2 & | & 0 & 1 & 0 & \ldots \\
+\ldots & 0 & 1 & \raa{2} & | & 0 & 1 & 0 & \ldots \\
+\ldots & 0 & 1 & 0 & | & \raa{0} & 1 & 0 & \ldots \\
+\ldots & 0 & 1 & \laa{0} & | & 1 & 1 & 0 & \ldots \\
+\alert{\ldots} & \alert{0} & \alert{1} & \alert{1} & | & \raa{\alert{1}} & \alert{1} & \alert{0} & \alert{\ldots}
+\end{array}$$
+
+}
+
+\frame{
+\frametitle{Proof of Lemma: Base Case}
+
+\begin{proof}
+By induction on $n$.
+
+\pause
+
+Base case: we have already seen $W_{T_1}$ (and $W_{T_2}$).
+\end{proof}
+}
+
+\frame{
+\frametitle{Proof of Lemma: Inductive Step}
+
+Assume:
+\begin{enumerate}
+\item The world $W_{T_{n-1}}$ has the form: $\ldots 0 1^{n-1} | \raa{1} 1^{n-2} 0 \ldots$
+\item The progression from $W_0$ to $W_{T_{n-1}}$ does not step outside of the locations between $-(n-1)$ and $n-2$.
+\end{enumerate}
+
+}
+
+\frame{
+\frametitle{Proof of Lemma: Inductive Step (cont.)}
+
+\begin{proof}
+
+$$\begin{array}{ccccc|ccccc}
+W_0: & \ldots & 0 & 0 & 0^{n-1} & \raa{0} & 0^{n-2} & 0 & 0 & \ldots \\ \pause
+\downarrow \\
+W_{T_{n-1}}: & \ldots & 0 & 0 & 1^{n-1} & \raa{1} & 1^{n-2} & 0 & 0 & \ldots \\ \pause
+\downarrow \\
+W_{T_{n-1} + n - 1}: & \ldots & 0 & 0 & 1^{n-1} & 2 & 2^{n-2} & \raa{0} & 0 & \ldots \\ \pause
+\downarrow \\
+W_{T_{n-1} + 3n - 2}: & \ldots & 0 & \laa{0} & 2^{n-1} & 0 & 0^{n-2} & 1 & 0 & \ldots \\ \pause
+\downarrow \\
+W_{T_{n-1} + 4n - 2}: & \ldots & 0 & 1 & 0^{n-1} & \raa{0} & 0^{n-2} & 1 & 0 & \ldots \\ \pause
+\downarrow \\
+W_{2T_{n-1} + 4n - 2}: & \ldots & 0 & 1 & 1^{n-1} & \raa{1} & 1^{n-2} & 1 & 0 & \ldots \\ \pause
+\alert{=W_{T_n}}
+\end{array}$$
+
+\end{proof}
+}
+
+\frame{
+\frametitle{Recurrence for $T_n$}
+
+\begin{corollary}
+$T_n = 2T_{n-1}+4n-2$.
+\end{corollary}
+
+}
+
+\frame{
+\frametitle{Solving the Recurrence}
+
+$T_n = 2T_{n-1}+4n-2$
+
+\pause
+\vspace{.25in}
+
+Assume $T_n = x \cdot 2^n+yn+z$ for some $x,y,z$ and solve.
+
+\pause
+
+\alert{
+\begin{align*}
+T_n &= 6 \cdot 2^n - 4n - 6 \\
+T_n &= \Theta(2^n).
+\end{align*}
+}
+
+}
+
+\frame {
+\frametitle{Further work}
+
+\begin{columns}
+\column{0.65\textwidth}
+\begin{itemize}
+\item Other complete rules
+\pause
+\begin{itemize}
+\item $k$-complete $k$-rule?
+\end{itemize}
+\pause
+\item Boundedness
+\pause
+\end{itemize}
+\column{0.35\textwidth}
+\includegraphics{flea.jpg}
+\end{columns}
+
+}
+
+\end{document} 

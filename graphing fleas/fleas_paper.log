@@ -1,0 +1,1350 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.10.17)  23 OCT 2012 20:03
+entering extended mode
+**fleas_paper.tex
+
+("C:\Users\Michael\Documents\MIT\18.821\18.821 repo\graphing fleas\fleas_paper.
+tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\classes\amsart.cls"
+Document Class: amsart 2009/07/02 v2.20.1
+\linespacing=\dimen102
+\normalparindent=\dimen103
+\normaltopskip=\skip41
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsmath.sty"
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip42
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks14
+\ex@=\dimen104
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen105
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ams\math\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count79
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count80
+\leftroot@=\count81
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count82
+\DOTSCASE@=\count83
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen106
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count84
+\c@MaxMatrixCols=\count85
+\dotsspace@=\muskip10
+\c@parentequation=\count86
+\dspbrk@lvl=\count87
+\tag@help=\toks15
+\row@=\count88
+\column@=\count89
+\maxfields@=\count90
+\andhelp@=\toks16
+\eqnshift@=\dimen107
+\alignsep@=\dimen108
+\tagshift@=\dimen109
+\tagwidth@=\dimen110
+\totwidth@=\dimen111
+\lineht@=\dimen112
+\@envbody=\toks17
+\multlinegap=\skip43
+\multlinetaggap=\skip44
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 388.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)
+\copyins=\insert233
+\abstractbox=\box28
+\listisep=\skip45
+\c@part=\count91
+\c@section=\count92
+\c@subsection=\count93
+\c@subsubsection=\count94
+\c@paragraph=\count95
+\c@subparagraph=\count96
+\c@figure=\count97
+\c@table=\count98
+\abovecaptionskip=\skip46
+\belowcaptionskip=\skip47
+\captionindent=\dimen113
+\thm@style=\toks19
+\thm@bodyfont=\toks20
+\thm@headfont=\toks21
+\thm@notefont=\toks22
+\thm@headpunct=\toks23
+\thm@preskip=\skip48
+\thm@postskip=\skip49
+\thm@headsep=\skip50
+\dth@everypar=\toks24
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2009/06/22 v3.00
+)
+\c@theorem=\count99
+
+No file fleas_paper.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 54.
+LaTeX Font Info:    ... okay on input line 54.
+LaTeX Font Info:    Try loading font information for U+msa on input line 54.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 54.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 67--67
+[]\OT1/cmr/m/n/12 4| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 67--67
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 67--67
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 67--67
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 67--67
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 77--77
+[]\OT1/cmr/m/n/12 4| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 77--77
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 77--77
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 77--77
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 77--77
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+[1{C:/Users/Michael/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 94--94
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 94--94
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 94--94
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 94--94
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 94--94
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 94--94
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 94--94
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 108--108
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 108--108
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 108--108
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 108--108
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 108--108
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 108--108
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 108--108
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 116--116
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 116--116
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 116--116
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 116--116
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 116--116
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 116--116
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 116--116
+[]$ []$| 
+ []
+
+[2]
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 137--137
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 137--137
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 141--141
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 141--141
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 141--141
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 141--141
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 141--141
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 141--141
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (15.6665pt too wide) in paragraph at lines 141--142
+[]\OT1/cmr/m/n/12 ...$[]$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 142--142
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 142--142
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 142--142
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 142--142
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 142--142
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 142--142
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (15.6665pt too wide) in paragraph at lines 142--143
+[]\OT1/cmr/m/n/12 ...$[]$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 143--143
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 143--143
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 143--143
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 143--143
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 143--143
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 143--143
+[]$ []$| 
+ []
+
+
+Overfull \hbox (15.6665pt too wide) in paragraph at lines 143--144
+[]\OT1/cmr/m/n/12 ...| 
+ []
+
+
+LaTeX Warning: Reference `fig:rtwotwocols' on page 3 undefined on input line 18
+2.
+
+
+LaTeX Warning: Reference `fig:subexample' on page 3 undefined on input line 182
+.
+
+[3]
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 186--186
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 186--186
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 186--186
+[]$ []$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 187--187
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 187--187
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 187--187
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 188--188
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 188--188
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 188--188
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/m/n/12 5| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/m/n/12 9| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 195--195
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/m/n/12 7| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 195--195
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/m/n/12 5| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/m/n/12 9| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/m/n/12 3| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 197--197
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/m/n/12 7| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 197--197
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+LaTeX Warning: Reference `fig:rtwofourcols' on page 4 undefined on input line 2
+02.
+
+
+LaTeX Warning: Reference `fig:rtwosixcols' on page 4 undefined on input line 20
+2.
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 206--206
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 206--206
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 206--206
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 206--206
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 206--206
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 208--208
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 208--208
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 208--208
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 208--208
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 208--208
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 209--209
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 209--209
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 209--209
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 209--209
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 209--209
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 210--210
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 210--210
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 210--210
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 210--210
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 210--210
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 211--211
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 211--211
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 211--211
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 211--211
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 211--211
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 212--212
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 212--212
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 212--212
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 212--212
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 212--212
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 213--213
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 213--213
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 213--213
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 213--213
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 213--213
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 214--214
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 214--214
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 214--214
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 214--214
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 214--214
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 216--216
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 216--216
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 216--216
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 216--216
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 216--216
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 217--217
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 217--217
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 217--217
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 217--217
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 217--217
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 224--224
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 224--224
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 224--224
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 224--224
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 224--224
+[]$ []$| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 224--224
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 224--224
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 226--226
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 226--226
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 226--226
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 226--226
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 226--226
+[]\OT1/cmr/bx/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 226--226
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 226--226
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 227--227
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 227--227
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 227--227
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 227--227
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 227--227
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 227--227
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 227--227
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 228--228
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 228--228
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 228--228
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 228--228
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 228--228
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 228--228
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 228--228
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 229--229
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 229--229
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 229--229
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 229--229
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 229--229
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 229--229
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 229--229
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 230--230
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 230--230
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 230--230
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 230--230
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 230--230
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 230--230
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 230--230
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 231--231
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 231--231
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 231--231
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 231--231
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 231--231
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 231--231
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 231--231
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 232--232
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 232--232
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 232--232
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 232--232
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 232--232
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 232--232
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 232--232
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--233
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 233--233
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--233
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 233--233
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--233
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--233
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 233--233
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 234--234
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 234--234
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 234--234
+[]$ []$| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 234--234
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 234--234
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 234--234
+[]\OT1/cmr/m/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 234--234
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 235--235
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 235--235
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 235--235
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 235--235
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 235--235
+[]$ []$| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 235--235
+[]\OT1/cmr/bx/n/12 0| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 235--235
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 237--237
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 237--237
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 237--237
+[]\OT1/cmr/bx/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 237--237
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (6.75pt too wide) in paragraph at lines 237--237
+[]\OT1/cmr/bx/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 237--237
+[]$ []$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 237--237
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 238--238
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 238--238
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 238--238
+[]\OT1/cmr/m/n/12 1| 
+ []
+
+
+Overfull \hbox (3.33334pt too wide) in paragraph at lines 238--238
+[]$\OMS/cmsy/m/n/12 j$| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 238--238
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (5.87494pt too wide) in paragraph at lines 238--238
+[]\OT1/cmr/m/n/12 2| 
+ []
+
+
+Overfull \hbox (8.87039pt too wide) in paragraph at lines 238--238
+[]$ []$| 
+ []
+
+[4]
+
+LaTeX Warning: Reference `fig:rtwotwocols' on page 5 undefined on input line 26
+7.
+
+[5]
+
+LaTeX Warning: Reference `fig:subexample' on page 6 undefined on input line 274
+.
+
+[6]
+
+LaTeX Warning: Reference `sec:notation' on page 7 undefined on input line 290.
+
+
+LaTeX Warning: Reference `fig:rtwofourcols' on page 7 undefined on input line 3
+03.
+
+
+LaTeX Warning: Reference `fig:rtwosixcols' on page 7 undefined on input line 30
+3.
+
+[7]
+
+LaTeX Warning: Reference `fig:rtwotwocols' on page 8 undefined on input line 33
+7.
+
+
+LaTeX Warning: Reference `fig:T_n_demo' on page 8 undefined on input line 343.
+
+[8]
+
+LaTeX Warning: Reference `lemma:T_n_form' on page 9 undefined on input line 372
+.
+
+[9]
+
+LaTeX Warning: Reference `cor:T_n_recurrence' on page 10 undefined on input lin
+e 387.
+
+[10]
+("C:\Users\Michael\Documents\MIT\18.821\18.821 repo\graphing fleas\fleas_paper.
+aux")
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 1654 strings out of 494045
+ 18321 string characters out of 3145962
+ 103670 words of memory out of 3000000
+ 4819 multiletter control sequences out of 15000+200000
+ 13207 words of font info for 50 fonts, out of 3000000 for 9000
+ 876 hyphenation exceptions out of 8191
+ 34i,21n,31p,913b,318s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><
+C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:
+/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/P
+rogram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Prog
+ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Fi
+les (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Program Files (x8
+6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 
+2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Program Files (x86)/MiKTeX 2.9
+/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/
+type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on fleas_paper.pdf (10 pages, 236286 bytes).
+PDF statistics:
+ 107 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
