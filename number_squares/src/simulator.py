@@ -42,22 +42,25 @@ class Simulator:
     '''
     return not any(self.state)
 
-  def terminates(self):
+  def get_game_length(self):
     '''
-    Returns True if the simulation eventually terminates,
-    False otherwise.
+    Returns the number of steps until the simulation terminates, or None
+    if the simulation does not terminate.
     '''
-    return self._save_state(self._terminates)
-  def _terminates(self):
+    return self._save_state(self._run)
+
+  def _run(self):
     visited = set()
     # This loop is guaranteed to terminate: it is impossible to loop
     # indefinitely without repeating.
+    num_steps = 0
     while not self.done():
       self.step_forward()
+      num_steps += 1
       if self.state in visited:
-        return False
+        return None
       visited.add(self.state)
-    return True
+    return num_steps
 
   def _save_state(self, f, *args, **kwargs):
     '''
@@ -78,5 +81,5 @@ if __name__ == '__main__':
   # interesting case: one value (x) followed by n-1 0's
   x = 1
   for n in xrange(50):
-    print '%d: %s' % (n, 'WIN' if Simulator([x] + [0] * (n - 1)).terminates()
-        else 'LOSE')
+    print '%d: %s' % (n, 'WIN' if
+        Simulator([x] + [0] * (n - 1)).get_game_length() != None else 'LOSE')
