@@ -1,11 +1,12 @@
 # Files to ignore from source control.
 
-*.swp*
-*.pyc*
 *.aux*
 *.log*
-*.synctex.gz*
 *.nav*
-*.snm*
-*.toc*
 *.out*
+*.pdf*
+*.pyc*
+*.snm*
+*.swp*
+*.synctex.gz*
+*.toc*
