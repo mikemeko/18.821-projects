@@ -91,23 +91,26 @@ For all $n\in \zp$, there exists a game of length $n$.
 
 For $n < 5$, it is very easy to construct such a game. Indeed, for $n=1,2,3,4$ we have the games $(0, 0, 0, 0)$, $(1, 1, 1, 1)$, $(1, 0, 1, 0)$, and $(1, 1, 0, 0)$, respectively.
 
-Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this niceness property. The result is that this construction can be repeated indefinitely until a game of the desired length is reached. First, we need the following lemma:
+Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this form. The result is that this construction can be repeated indefinitely until a game of the desired length is reached. First, we need the following lemma:
 
 \begin{lemma}
-Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(2a, 2b, 2c, 2d)$ and $(a + k, b + k, c + k, d + k)$ for any $k\in \mathbb{Z}$ also have length $n$.
+Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(ua, ub, uc, ud)$ and $(a + v, b + v, c + v, d + v)$ for any $u, v\in \mathbb{Z}$, $u\neq 0$, also have length $n$.
 \end{lemma}
 
-\textit{Proof:} Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that the $(2a, 2b, 2c, 2d)$ game is $\Big((2a_i, 2b_i, 2c_i, 2d_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + k, b + k, c + k, d + k)$ is the same as that of $(a, b, c, d)$. The result follows.
+\textit{Proof:} Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that for $u\neq 0$, the $(ua, ub, uc, ud)$ game is $\Big((ua_i, ub_i, uc_i, ud_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + v, b + v, c + v, d + v)$ is the same as that of $(a, b, c, d)$. The result follows.
 
 Returning to the original proof, consider a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
 
-$$(c - b - a, 2a + (c - b - a), 2b + (c - b - a), 2c + (c - b - a))$$
+$$\begin{array}{cl}
+& (c - b - a, 2a + (c - b - a), 2b + (c - b - a), 2c + (c - b - a)) \\
+= & (-a - b + c, a - b + c, -a + b + c, -a - b + 3c)
+\end{array}$$
 
-By the lemma above, this game also has length $n$. Furthermore, since each element of this tuple is non-negative, it is the difference of the following sequence:
+By the lemma above, this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the difference of the following sequence:
 
-$$(0, c - b - a, 2a + 2(c - b - a), 2a + 2b + 3(c - b - a))$$
+$$(0, -a - b + c, -2b + 2c, -a - b + 3c)$$
 
-This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = 2a + 3(c - b - a) < 2a + 2b + 3(c - b - a) = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
+This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
 
 It thus remains to provide a game of the desired form of length $5$. The game $(0, 1, 1, 3)$ works, and we're done. $\qed$
 
@@ -129,7 +132,7 @@ We will return from our investigation of $k$-tuples in the previous section and 
 All games of $4$-tuples over $\mathbb{Q}$ are finite.
 \end{theorem}
 
-The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$.
+The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$. (Note that the lemma in that section dealt only with integers but the argument is easily extended to any reals.)
 
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
