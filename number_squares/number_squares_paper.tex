@@ -123,6 +123,18 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games Over Non-Integers}
 
+We will return from our investigation of $k$-tuples in the previous section and again focus on $4$-tuples. To begin, we will extend our notion of a game to allow for $4$-tuples of rational numbers.
 
+\begin{theorem}
+All games of $4$-tuples over $\mathbb{Q}$ are finite.
+\end{theorem}
+
+The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$.
+
+Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
+
+A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$.
+
+TODO(jven,dgrazian): Solve me! :D
 
 \end{document}
