@@ -95,5 +95,5 @@ class Visualization(Tk):
     return [int(center[i] + displacement[i]) for i in range(2)]
 
 if __name__ == '__main__':
-  s = Simulator([69, 93, 49, 56])
+  s = Simulator([n ** 12 for n in range(1, 5)])
   Visualization(s).mainloop()

@@ -6,31 +6,33 @@ __author__ = 'Justin Venezuela (jven@mit.edu)'
 
 from simulator import Simulator
 
-import random
-
-def find_long_game():
-  n = 0
-  longest_length = -1
-  longest_game = None
-  upper_bound = 100
-  time_at_bound = 0
-  while True:
-    n += 1
-    time_at_bound += 1
-    if time_at_bound > upper_bound:
-      upper_bound *= 10
-      time_at_bound = 0
-    game = [int(upper_bound * random.random()) for i in range(4)]
-    sim = Simulator(game)
-    length = sim.get_game_length()
-    assert length is not None, 'All length 4 games must terminate!'
-    if length > longest_length:
-      longest_length = length
-      longest_game = game
-      print 'Found length %d game: %s' % (length, game)
+def find_long_game(length):
+  assert length >= 0, 'Game length must be non-negative.'
+  if length == 0:
+    ans = [0, 0, 0, 0]
+  elif length == 1:
+    ans = [1, 1, 1, 1]
+  elif length == 2:
+    ans = [1, 0, 1, 0]
+  elif length == 3:
+    ans = [1, 1, 0, 0]
+  else:
+    g = [0, 1, 1, 3]
+    cur_length = 4
+    while cur_length < length:
+      d = g[3] - g[2] - g[1]
+      assert d > 0, 'Last element must be at least the sum of the other 3.'
+      g = [0, d, 2 * g[1] + 2 * d, 2 * g[1] + 2 * g[2] + 3 * d]
+      cur_length += 1
+    ans = g
+  l = Simulator(ans).get_game_length()
+  assert l == length, 'Invalid answer %s. Expected length %d, got %d.' % (
+      ans, length, l)
+  return ans
 
 def main():
-  find_long_game()
+  length = int(raw_input('Desired game length?\n>>> '))
+  print find_long_game(length)
 
 if __name__ == '__main__':
   main()
