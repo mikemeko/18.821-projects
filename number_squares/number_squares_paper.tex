@@ -45,4 +45,84 @@
 
 \section{Introduction\label{sec:intro}}
 
+In this paper, we present an operation that acts on $4$-tuples of integers in a very simple way. Our aim is to completely understand the behavior of this operation under various starting $4$-tuples.
+
+Our analysis has resulted in a number of observations (and of course corresponding proofs). First, we will show that for any choice of the initial $4$-tuple, continual application of the operation eventually yields the $4$-tuple of all zeroes after finitely many steps. We also provide an upper bound on the number of applications of the operation that are necessary to reach this zero state, given any starting $4$-tuple. Second, we will show that given any non-negative integer $n$, we can construct a starting $4$-tuple such that exactly $n$ applications of the operation yield the zero state. Finally, we look at interesting generalizations of this problem, such as tuples of different lengths and tuples of elements of non-integers.
+
+\section{Definitions and Notation\label{sec:defs}}
+
+We will now define the operation that was introduced in the previous section. Herein, we will use $\znn$ to denote the non-negative integers and $\zp$ to denote the positive integers.
+
+\begin{definition}
+Given a $4$-tuple $(a, b, c, d)\in \mathbb{Z}^4$, the \underline{difference} of $(a, b, c, d)$ is the $4$-tuple $(|a - b|, |b - c|, |c - d|, |d - a|)$.
+\end{definition}
+
+As motivated in the introduction, we are interested in repeatedly applying the difference to a $4$-tuple until we reach the tuple consisting of all zeroes. In particular, we have the following definition:
+
+\begin{definition}
+Given a $4$-tuple $(a, b, c, d)\in \mathbb{Z}^4$, the \underline{(a, b, c, d) game} is the (possibly infinite) sequence of $4$-tuples $\big((a_i, b_i, c_i, d_i)\big)$, generated as follows:
+
+\begin{enumerate}
+\item $(a_0, b_0, c_0, d_0) = (a, b, c, d)$
+\item $\forall i\in \znn$, if $(a_i, b_i, c_i, d_i) = (0, 0, 0, 0)$, then the $(a, b, c, d)$ game is a finite sequence ending at $(a_i, b_i, c_i, d_i)$. Otherwise, $(a_{i+1}, b_{i+1}, c_{i+1}, d_{i+1})$ is the difference of $(a_i, b_i, c_i, d_i)$.
+\end{enumerate}
+
+We will often refer to a $4$-tuple as a game itself, where it is understood that we mean the game whose first element is this $4$-tuple.
+
+\end{definition}
+
+Note that by this definition, the game of a $4$-tuple is either finite ending in $(0, 0, 0, 0)$ or infinite and never containing $(0, 0, 0, 0)$. Naturally, we will refer to the length of a game, meaning the (possibly infinite) length of the sequence.
+
+\section{Finiteness of All Games\label{sec:convergence}}
+
+
+
+\section{Upper Bound on Game Length\label{sec:lengthbound}}
+
+
+
+\section{Existence of Arbitrarily Long Games\label{sec:longgames}}
+
+The previous section argued that all games are of finite length. However, we will show in this section that games may be of any arbitrarily long finite length. We state this more precisely in the following theorem:
+
+\begin{theorem}
+For all $n\in \zp$, there exists a game of length $n$.
+\end{theorem}
+
+For $n < 5$, it is very easy to construct such a game. Indeed, for $n=1,2,3,4$ we have the games $(0, 0, 0, 0)$, $(1, 1, 1, 1)$, $(1, 0, 1, 0)$, and $(1, 1, 0, 0)$, respectively.
+
+Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this niceness property. The result is that this construction can be repeated indefinitely until a game of the desired length is reached. First, we need the following lemma:
+
+\begin{lemma}
+Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(2a, 2b, 2c, 2d)$ and $(a + k, b + k, c + k, d + k)$ for any $k\in \mathbb{Z}$ also have length $n$.
+\end{lemma}
+
+\textit{Proof:} Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that the $(2a, 2b, 2c, 2d)$ game is $\Big((2a_i, 2b_i, 2c_i, 2d_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + k, b + k, c + k, d + k)$ is the same as that of $(a, b, c, d)$. The result follows.
+
+Returning to the original proof, consider a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
+
+$$(c - b - a, 2a + (c - b - a), 2b + (c - b - a), 2c + (c - b - a))$$
+
+By the lemma above, this game also has length $n$. Furthermore, since each element of this tuple is non-negative, it is the difference of the following sequence:
+
+$$(0, c - b - a, 2a + 2(c - b - a), 2a + 2b + 3(c - b - a))$$
+
+This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = 2a + 3(c - b - a) < 2a + 2b + 3(c - b - a) = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
+
+It thus remains to provide a game of the desired form of length $5$. The game $(0, 1, 1, 3)$ works, and we're done. $\qed$
+
+Note that our proof is constructive: given any $n\in \zp$, the proof gives an algorithm (and an efficient one at that) to find a length $n$ game. As an example, starting with the length $5$ game $(0, 1, 1, 3)$, we find that a length $50$ game is:
+
+$$(0, 103502633381134336, 293873656088494080, 644020556730990592)$$
+
+TODO(jven): Should I motivate this proof a little bit? Could be a little long-winded.
+
+\section{Games For Other $k$-tuples}
+
+
+
+\section{Games Over Non-Integers}
+
+
+
 \end{document}
