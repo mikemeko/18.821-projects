@@ -8,6 +8,7 @@
 % Packages
 
 \usepackage{amssymb}
+\usepackage{graphicx}
 
 % Enumeration
 
@@ -75,11 +76,64 @@ Note that by this definition, the game of a $4$-tuple is either finite ending in
 
 \section{Finiteness of All Games\label{sec:convergence}}
 
+We will now show that any game $(a,b,c,d)$ starting with four integers $a$, $b$, $c$, and $d$ is finite, i.e. the game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
 
+Before proving this claim, let us make two simplifying observation.
 
-\section{Upper Bound on Game Length\label{sec:lengthbound}}
+First, regardless of the elements in the first $4$-tuple of a game, by definition of the difference operation, the second $4$-tuple in the game will have non-negative elements. Thus, for simplicity, henceforth we will assume that all the elements in the starting $4$-tuple of a game are non-negative, for if they are not, we can just consider the game starting from the difference of the $4$-tuple.
 
+Second, note that the games $(a,b,c,d)$ and $(b,c,d,a)$ have exactly the same length. That is, rotating a $4$-tuple does not alter the properties of the game other than changing the order of numbers as they appear in the $4$-tuples in the game. The reason for this is the cyclic nature of the difference operation: the difference of $(b,c,d,a)$ contains the same elements that are in the difference of $(a,b,c,d)$, but rotated left by $1$. Thus, the lengths of the two games are equal.
 
+Equipped with these simplifications, we can now embark upon a proof of our claim. Let us first prove a much simpler, yet very useful, statement of the claim.
+
+\begin{lemma}
+All games starting with $4$-tuples only containing $0$'s and $1$'s have length at most $4$.
+\label{lem:zerosones}
+\end{lemma}
+
+\begin{proof}
+Indeed there are $16$ $4$-tuples that contain only $0$'s and $1$'s. However, we only need to consider $6$ of them, namely $(0,0,0,0)$, $(1,0,0,0)$, $(1,1,0,0)$, $(1,0,1,0)$, $(1,1,1,0)$, $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate rotation of one of these $6$. Based on our observation above that a rotation does not affect the length of a game, studying these $6$ $4$-tuples is sufficient.
+
+\begin{figure}
+\includegraphics{number_squares_0s_and_1s.png}
+\caption{All games starting with just $0$'s and $1$'s have length at most $4$.}
+\label{fig:zerosones}
+\end{figure}
+
+Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the $4$-tuples have finite length. Furthermore, the length is at most $4$ (length $4$ is achieved by $(1,0,0,0)$).
+
+\end{proof}
+
+We can use Lemma \ref{lem:zerosones} to make a stronger claim.
+
+\begin{lemma}
+For any $n \in \znn$, if four integer $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, then the $4$-tuple $(a_4, b_4, c_4, d_4)$ in the $(a,b,c,d)$ game will have elements that are congruent to $0$ modulo $2^{n+1}$.
+\label{lem:evenodd}
+\end{lemma}
+
+\begin{proof}
+Since $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, each is congruent to either $0$ or $2^n$ modulo $2^{n+1}$. Now define $\hat{a}$ to be $0$ if $a$ is congruent to $0$ modulo $2^{n+1}$ or $1$ otherwise. Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to $0$ or $2^n$ modulo $2^{n+1}$. By Lemma \ref{lem:evenodd}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $4$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0$ modulo $2^{n+1}$ after at most $4$ steps.
+\end{proof}
+
+We can use this to make two conclusions that will prove our main result and also give an upper bound on the length of a game.
+
+\begin{corollary}
+For any $n \in \znn$, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$.
+\label{cor:pow2}
+\end{corollary}
+
+\begin{proof}
+We prove this by induction on $n$.
+Both the base case and inductive step of this inductive proof follow directly from Lemma \ref{lem:evenodd}.
+\end{proof}
+
+\begin{corollary}
+Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ has length at most $4\lceil\log_2{M}\rceil$.
+\end{corollary}
+
+\begin{proof}
+Let $n = \lceil\log_2{M}\rceil$. By Corollary \ref {cor:pow2}, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$. However, since $M\leq2^n$, this implies that $a_{4n}=b_{4n}=c_{4n}=d_{4n}=0$.
+\end{proof}
 
 \section{Existence of Arbitrarily Long Games\label{sec:longgames}}
 
