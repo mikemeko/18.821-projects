@@ -87,7 +87,7 @@ Second, note that the games $(a,b,c,d)$ and $(b,c,d,a)$ have exactly the same le
 Equipped with these simplifications, we can now embark upon a proof of our claim. Let us first prove a much simpler, yet very useful, statement of the claim.
 
 \begin{lemma}
-All games starting with $4$-tuples only containing $0$'s and $1$'s have length at most $4$.
+All games starting with $4$-tuples only containing $0$'s and $1$'s have length at most $5$.
 \label{lem:zerosones}
 \end{lemma}
 
@@ -96,11 +96,11 @@ Indeed there are $16$ $4$-tuples that contain only $0$'s and $1$'s. However, we 
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
-\caption{All games starting with just $0$'s and $1$'s have length at most $4$.}
+\caption{All games starting with just $0$'s and $1$'s have length at most $5$.}
 \label{fig:zerosones}
 \end{figure}
 
-Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum length of such a game is $4$ (length $4$ is achieved by $(0,1,1,1)$ and $(1,0,0,0)$).
+Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum length of such a game is $5$ (length $5$ is achieved by $(0,1,1,1)$ and $(1,0,0,0)$).
 
 \end{proof}
 
@@ -116,7 +116,7 @@ Since $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, each is congruen
 $$
 \hat{a} = \frac{a \bmod{2^{n+1}}}{2^n}
 $$
-Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to $0$ or $2^n$ modulo $2^{n+1}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $4$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0$ modulo $2^{n+1}$ after at most $4$ steps.
+Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to $0$ or $2^n$ modulo $2^{n+1}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $5$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0$ modulo $2^{n+1}$ after at most $5$ steps.
 \end{proof}
 
 We can use this to make two conclusions that will prove our main result and also give an upper bound on the length of any game.
@@ -132,7 +132,7 @@ Both the base case and inductive step of this inductive proof follow directly fr
 \end{proof}
 
 \begin{corollary}
-Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ has length at most $4\lceil\log_2{M}\rceil$.
+Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ has length at most $4\lceil\log_2{M}\rceil + 1$.
 \end{corollary}
 
 \begin{proof}
