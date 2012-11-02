@@ -117,6 +117,8 @@ Since $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, each is congruen
 
 We can use this to make two conclusions that will prove our main result and also give an upper bound on the length of a game.
 
+TODO(jven,mikemeko): I think this corollary should be the only lemma here as its probably the most important... the two lemmas above are just steps to proving this and marking this as a corollary kinda de-emphasizes it?
+
 \begin{corollary}
 For any $n \in \znn$, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$.
 \label{cor:pow2}
@@ -128,7 +130,7 @@ Both the base case and inductive step of this inductive proof follow directly fr
 \end{proof}
 
 \begin{corollary}
-Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ has length at most $4\lceil\log_2{M}\rceil$.
+Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at most $4\lceil\log_2{M}\rceil$.
 \end{corollary}
 
 \begin{proof}
@@ -186,6 +188,8 @@ We will first show that for tuple sizes not of the form $2^k$, there exist games
 Consider the game $(a_0, a_1, a_2, \ldots, a_n)$ where n is even (so the number of elements is odd) and the elements are not all equal. Let the game include a non-zero even number of odd elements. Then the game never terminates.
 \label{lem:evenodds}
 \end{lemma}
+
+TODO(jven,dgrazian): I think this is phrased a bit awkwardly... can we just say that the game $(1,0,0,...,0)$ has infinite length for any odd size, then state that doubling these give all of the non-$2^k$ sizes? I think all of the generality is losing sight of the goal.
 
 \begin{proof}
 \emph{Notice that the difference of any tuple must include an even number of odd elements} (1). The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
@@ -311,8 +315,5 @@ The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result al
 \end{proof}
 
 Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met during the course of a game, then that game will terminate in four more steps.
-
-
-TODO(jven,dgrazian): Solve me! :D
 
 \end{document}
