@@ -271,4 +271,20 @@ We discovered a large class of terminating games over the reals. We also discove
 
 TODO(jven,dgrazian): Solve me! :D
 
+\section{Non-terminating $4$-tuple Games\label{sec:nonterminating}}
+
+TODO(mikemeko) naming this section might not be necessary.
+
+We have shown that $4$-tuple games that start with $4$ rational numbers always terminate. Now we will demonstrate, by example, that there exist $4$-tuple games that actually do not terminate.
+
+Consider the game
+$$
+(1,x,x^2,x^3)
+$$
+where $x$ is a real number greater than $1$ that we will define shortly. Note that the difference of this $4$-tuple is
+\begin{align*}
+& (x-1, x^2 - x, x^3 - x^2, x^3 - 1)\\
+= & (x-1) (1, x, x^2, x^2 + x + 1).
+\end{align*}
+If we choose $x$ such that $x^2 + x + 1 = x^3$, then we see that the difference of $(1,x,x^2,x^3)$ is a multiple of itself, which shows us that the game will never terminate. The only real (and irrational) solution to $x^2 + x + 1 = x^3$, which is approximately $1.839$, satisfies the condition of being greater than $1$, so we have indeed constructed a non-terminating $4$-tuple game.
 \end{document}
