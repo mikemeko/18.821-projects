@@ -322,7 +322,7 @@ This lemma, together with the proof as outlined previously in this section, allo
 
 \subsection{Existence of Infinitely Long Games}
 
-We now show that if $k > 2$ is not an integer power of 2, then there exist $k$-games of infinite length. First, we prove a useful lemma:
+We now show that if $k > 2$ is not an integer power of 2, then there exist $k$- tuple games of infinite length. First, we prove a useful lemma:
 
 \begin{lemma}
 The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number of 0's, never terminates.
@@ -330,13 +330,13 @@ The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number
 \end{lemma}
 
 \begin{proof}
-\emph{Notice that given a tuple} $(a_0, \ldots, a_{k-1})$,  $\diff ((a_0, \ldots, a_{k-1}))$ \emph{must include an even number of odd elements}. The number of odd elements in $\diff ((a_0, \ldots, a_{k-1}))$ is precisely the number of pairs of adjacent elements in  $(a_0, \ldots, a_{k-1})$, with the initial and final elements considered adjacent, consisting of numbers of different parity. Walking along the tuple from $a_0$ to $a_{k-1}$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in  $\diff((a_0, \ldots, a_{k-1}))$.
+\emph{Notice that given a tuple} $(a_0, \ldots, a_{k-1})$,  $\diff ((a_0, \ldots, a_{k-1}))$ \emph{must include an even number of odd elements}. The number of odd elements in $\diff ((a_0, \ldots, a_{k-1}))$ is precisely the number of pairs of cyclically adjacent elements in  $(a_0, \ldots, a_{k-1})$ consisting of numbers of different parity. Walking along the tuple from $a_0$ to $a_{k-1}$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in  $\diff((a_0, \ldots, a_{k-1}))$.
 
 Let $(1, 1, 0, \ldots, 0)$ be a tuple of odd size consisting of two 1's followed by all 0's. We show that for all $i \geq 0$, $\diff^{i}((1, 1, 0, \ldots, 0)) \neq (0, 0, \ldots, 0)$:
 
 $(1, 1, 0, \ldots, 0)$ includes a non-zero even number of odd elements, by construction. Assume that $\diff^i((1, 1, 0, \ldots, 0))$ includes a non-zero even number of odd elements. So $\diff^i((1, 1, 0, \ldots, 0))$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $\diff^{i+1}((1, 1, 0, \ldots, 0))$ must include a non-zero even number of odd elements. So  $\diff^{i+1}((1, 1, 0, \ldots, 0))$ cannot be the tuple of all $0$'s.
 
-Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game never terminates.
+Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game, where $(1, 1, 0, \ldots, 0)$ has an odd number of zeros, never terminates.
 \end{proof}
 
 For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
@@ -345,21 +345,21 @@ We need one more lemma to prove our claim:
 
 \begin{lemma}
 \label{lem:doubles}
-If the game for an $n$-tuple $(a_0, a_1, \ldots, a_{n-1})$ has infinite length, then so does the game for the $2n$-tuple $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$.
+If the game $(a_0, a_1, \ldots, a_{k-1})$ has infinite length, then so does the game $(a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})$.
 \end{lemma}
 
 \begin{proof}
 
-The difference of $(a_0, a_1, \ldots, a_{n-1})$ is:
 
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
+\begin{align*}
+&\diff((a_0, a_1, \ldots, a_{k-1})) \\
+= \hspace{.1cm} & (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|), \\
+& \mathrm{and}\\ 
+& \diff((a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})) \\
+= \hspace{.1cm} & (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|),
+\end{align*}
 
-\breathe
-
-The difference of $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$ is:
-
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|),$$
-which is just two concatenated copies of the difference of $(a_0, a_1, \ldots, a_{n-1})$.
+which is just two concatenated copies of $\diff((a_0, a_1, \ldots, a_{k-1}))$. In other words, the property that one tuple is two concatenated copies of another tuple is invariant under the application of $\diff$ to both tuples. So if the $(a_0, a_1, \ldots, a_{k-1})$ game does not terminate, then the $(a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})$ game does not terminate.
 
 By repeating this process, it is clear that the game $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ has finite length only if the game $(a_0, a_1, \ldots, a_n)$ has finite length. So $(a_0, a_1, \ldots, a_{n-1}, a_n, a_{n+1}, \ldots, a_{2n-1}) = (1, 1, 0, \ldots, 0, 1, 1, 0, \ldots, 0)$, where $n$ is odd, never terminates. 
 
