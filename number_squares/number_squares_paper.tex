@@ -61,7 +61,7 @@ For example:
 
 $$\diff((2, 6, 1, 9)) = (4, 5, 8, 7).$$
 
-In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached. We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$  the $(a, b, c, d)$ \textit{game} or, where the context is clear, simply $(a, b, c, d)$.
+In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached (if it is ever reached at all.) We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$ until (0, 0, 0, 0) is reached  the $(a, b, c, d)$ \textit{game} or, where the context is clear, simply $(a, b, c, d)$.
 
 For example, the  $(3, 7, 2, 5)$ game is:
 \begin{align*}
@@ -354,7 +354,7 @@ If $n > 2$ is not of the form $2^k$, then there exists an $n$-tuple game of infi
 
 \begin{proof}
 
-If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a $p$-tuple game of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain an $n$-tuple game of infinite length. 
+If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = m \cdot 2^k$ where $m$ is an odd number. By Lemma \ref{lem:evenodds}, there is an $m$-tuple game of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain an $n$-tuple game of infinite length. 
 \end{proof}
 
 
