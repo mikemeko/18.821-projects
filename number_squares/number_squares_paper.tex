@@ -121,6 +121,8 @@ Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game
 
 We can use this to make two conclusions that will prove our main result and also give an upper bound on the length of any game.
 
+TODO(jven,mikemeko): I think this corollary should be the only lemma here as its probably the most important... the two lemmas above are just steps to proving this and marking this as a corollary kinda de-emphasizes it?
+
 \begin{corollary}
 For any $n \in \znn$, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$.
 \label{cor:pow2}
@@ -132,7 +134,7 @@ Both the base case and inductive step of this inductive proof follow directly fr
 \end{proof}
 
 \begin{corollary}
-Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ has length at most $4\lceil\log_2{M}\rceil + 1$.
+Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at most $4\lceil\log_2{M}\rceil + 1$.
 \end{corollary}
 
 \begin{proof}
@@ -180,14 +182,18 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games For Other $k$-tuples}
 
-This paper is primarily concerned with games of 4-tuples, but it is worth exploring the behavior of games of other sizes. We will show that given a an integer $n$, every game of size $n$ terminates if and only if $n$ is an integer power of 2.
+We have thus far defined games over $4$-tuples and showed that all such games are of finite length. We can generalize the notion of a game for tuples of different lengths. In fact, the property that all games are of finite length holds for all tuple sizes of the form $2^k$. For tuple sizes not of this form, there exist games that are of infinite length.
 
-First, we prove a useful Lemma:
+\subsection{Existence of Infinitely Long Games}
 
-\begin {lemma}
+We will first show that for tuple sizes not of the form $2^k$, there exist games of infinite length. First, we prove a useful lemma:
+
+\begin{lemma}
 Consider the game $(a_0, a_1, a_2, \ldots, a_n)$ where n is even (so the number of elements is odd) and the elements are not all equal. Let the game include a non-zero even number of odd elements. Then the game never terminates.
 \label{lem:evenodds}
 \end{lemma}
+
+TODO(jven,dgrazian): I think this is phrased a bit awkwardly... can we just say that the game $(1,0,0,...,0)$ has infinite length for any odd size, then state that doubling these give all of the non-$2^k$ sizes? I think all of the generality is losing sight of the goal.
 
 \begin{proof}
 \emph{Notice that the difference of any tuple must include an even number of odd elements} (1). The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
@@ -243,9 +249,33 @@ If $n$ is an integer that is not an integer power of 2, then there is a game of 
 Given an integer $k > 2$ that is not an integer power of 2, $k$ can be written in the form $p \times 2^{m}$ where $p$ is an odd prime and $m$ is an integer. By Lemma \ref{lem:evenodds}, there is a game of size $p$ that does not terminate (e.g. $(1,1,0, \ldots, 0)$) By applying Lemma \ref{lem:doubles} $m$ times, we obtain a game of size $m$ that does not terminate. 
 \end{proof}
 
-TODO (Daniel) Prove that games of size $k = 2^n$ always terminate.
+\subsection{Finiteness of All $2^k$-tuple Games}
 
+We now show that all games of $2^k$-tuples are of finite length.
 
+\begin{theorem}
+For $k\in \znn$, all games of $2^k$-tuples are finite.
+\end{theorem}
+
+Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $2^ke$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
+
+The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k$. It thus suffices to prove this statement.
+
+\begin{lemma}
+The game for the $2^k$-tuple $(1,0,0,\ldots,0)$ is finite and of length $2^k$.
+\end{lemma}
+
+\textit{Proof}: sup $\qed$
+
+xor stuff
+
+\begin{lemma}
+xor and difference commute
+\end{lemma}
+
+\textit{Proof:} yo $\qed$
+
+finish
 
 \section{Games Over Non-Integers}
 
@@ -265,11 +295,30 @@ A more interesting question arises when we instead consider game of $4$-tuples o
 
 Our results regarding games over the real numbers are not as thorough as our results on games over the integers, but we did make some interesting discoveries. Note that in this section, \emph{all games are games of 4-tuples}.
 
-We discovered a large class of terminating games over the reals. We also discovered examples of games over the reals which do not terminate. This contrasts with games over the integers, which always terminate.
+Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
 
+\begin {theorem}
+\label{thm:inequalities}
+Given a game $G_0 =  (a, b, c, d)$, if $a \leq c \leq b \leq d$, or if $a \leq d \leq c \leq b$, then $G_0$ terminates in 4 steps. 
+\end{theorem}
 
+\begin{proof}
+Consider a game $(a,b,c,d)$ and assume $a \leq c \leq b \leq d$. The difference of $G_0 =  (a, b, c, d)$ is:
 
-TODO(jven,dgrazian): Solve me! :D
+\begin{align*}
+G_1 &= (|a-b|, |b-c|, |c-d|, |d-a|) \\
+&=(b-a, b-c, d-c, d-a)\\
+Then, \\
+G_2 &= (|(b-a) - (b-c)|, |(b-c) - (d-c)|, |(d-c) - (d-a)|, |(d-a) - (b-a)| \\
+&= (c-a, d-b, c-a, d-b)\\
+G_3 &= (|c + b - a - d|, |a + d - c - b|, |c + b - a - d|, |a + d - c - b|)\\
+G_4 &= (0,0,0,0)
+\end{align*}
+
+The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result also holds for any cyclic rotation of the inequalities (e.g., such as if $c \leq b \leq d \leq a$.)
+\end{proof}
+
+Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met during the course of a game, then that game will terminate in four more steps.
 
 \section{Non-terminating $4$-tuple Games\label{sec:nonterminating}}
 
