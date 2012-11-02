@@ -85,15 +85,21 @@ Note that by this definition, the game of a $4$-tuple is either finite ending in
 
 \section{Finiteness of All Games\label{sec:convergence}}
 
-We will now show that any game $(a,b,c,d)$ is finite, i.e. the game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
+We will now show that every integer game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
 
-Before proving this claim, let us make two simplifying observations.
+The main result we shall use to prove this claim is the following.
+\begin{theorem}
+For any $n \in \znn$, the $4$-tuple $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
+\label{thm:pow2}
+\end{theorem}
+
+Before proving this theorem, let us first make a few useful observations.
 
 First, regardless of the elements in the first $4$-tuple of a game, by definition of the difference operation, the second $4$-tuple in the game will have non-negative elements. Thus, for simplicity, henceforth we will assume that all the elements in the starting $4$-tuple of a game are non-negative, for if they are not, we can just consider the game starting from the difference of the $4$-tuple.
 
 Second, note that the games $(a,b,c,d)$ and $(b,c,d,a)$ have exactly the same length. That is, rotating a $4$-tuple does not alter the properties of the game other than changing the order of numbers as they appear in the $4$-tuples in the game. The reason for this is the cyclic nature of the difference operation: the difference of $(b,c,d,a)$ contains the same elements that are in the difference of $(a,b,c,d)$, but rotated left by $1$. Thus, the lengths of the two games are equal.
 
-Equipped with these simplifications, we can now embark upon a proof of our claim. Let us first prove a much simpler, yet very useful, statement of the claim.
+Equipped with these simplifications, we can now embark upon a proof of Theorem \ref{thm:pow2}.
 
 \begin{lemma}
 All games starting with $4$-tuples only containing $0$s and $1$s have length at most $5$.
@@ -125,21 +131,14 @@ Since $a, b, c, d$ are congruent to $0\pmod{2^n}$, each is congruent to either $
 $$
 \hat{a} = \frac{a}{2^n}\pmod{2}
 $$
-Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to $0$ or $2^n$ modulo $2^{n+1}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $5$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0$ modulo $2^{n+1}$ after at most $5$ steps.
+Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to  $0$ or $2^n\pmod{2^{n+1}}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $5$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0\pmod{2^{n+1}}$ after at most $5$ steps.
 \end{proof}
 
-We can use this to make two conclusions that will prove our main result and also give an upper bound on the length of any game.
-
-TODO(jven,mikemeko): I think this corollary should be the only lemma here as its probably the most important... the two lemmas above are just steps to proving this and marking this as a corollary kinda de-emphasizes it?
-
-\begin{corollary}
-For any $n \in \znn$, the $4$-tuple $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
-\label{cor:pow2}
-\end{corollary}
+We can use this to prove Theorem \ref{thm:pow2} and also to give an upper bound on the length of any game.
 
 \begin{proof}
-We prove this by induction on $n$.
-Both the base case and inductive step of this inductive proof follow directly from Lemma \ref{lem:evenodd}.
+The proof is by induction on $n$.
+Both the base case and inductive step follow directly from Lemma \ref{lem:evenodd}.
 \end{proof}
 
 \begin{corollary}
@@ -147,7 +146,7 @@ Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at mos
 \end{corollary}
 
 \begin{proof}
-Let $n = \lfloor\log_2{M}\rfloor + 1$. By Corollary \ref {cor:pow2}, $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements are also less than $2^n$, and thus are all zero.
+Let $n = \lfloor\log_2{M}\rfloor + 1$. By Theorem \ref {thm:pow2}, $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements in $D^{4n}((a, b, c, d))$ are also less than $2^n$, and thus are all zero.
 \end{proof}
 
 \section{Existence of Arbitrarily Long Games\label{sec:longgames}}
