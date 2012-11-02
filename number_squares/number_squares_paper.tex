@@ -259,9 +259,9 @@ We now show that all games of $2^k$-tuples are of finite length.
 For $k\in \znn$, all games of $2^k$-tuples are finite.
 \end{theorem}
 
-Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k+1$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $(2^k+1)e$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
+Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $2^ke$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
 
-The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with the difference operator. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
+The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k+1$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with the difference operator. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
 
 \begin{definition}
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. The \textbf{exclusive or} $(a_i)\xor (b_i)$ (herein referred to as \textbf{xor}) is the $n$-tuple whose $i^{th}$ element is $(a_i+b_i)\pmod{2}$. For example, $(0,1,0,1)\xor(0,0,1,1)=(0,1,1,0)$. It is clear that $\xor$ is commutative and associative.
@@ -292,18 +292,18 @@ The result follows. $\qed$
 We now construct a set of $2^k$-tuples over $\{0,1\}$ such that (i) all tuples in the set yield games of finite length and (ii) any $2^k$-tuple over $\{0,1\}$ can be written as the xor of tuples in the set.
 
 \begin{lemma}
-The game for any $2^k$-tuple consisting of $2^k-1$ $0$s and one $1$ is finite and of length $2^{k+1}$.
+The game for any $2^k$-tuple consisting of $2^k-1$ $0$s and one $1$ is finite and of length $2^k+1$.
 \end{lemma}
 
 \textit{Proof}: We need only show that this holds for the tuple $(0,0,\ldots,0,1)$. The other such tuples follow by the fact that game length is invariant under ``cycling'' of tuples, as demonstrated in the $4$-tuple case.
 
-We proceed by induction on $k$. We strengthen our induction hypothesis by not only requiring that the game $(0,0,\ldots,0,1)$ is finite and of length $2^{k+1}$ but also that a $1$ does not appear as the first element until the penultimate tuple $(1,1,\ldots,1,1)$. For $k=0$, the game $(1)$ is $((1),(0))$, which is of length $2=2^{0+1}$, and trivially does not have a $1$ as the first element  until the penultimate tuple $(1)$.
+We proceed by induction on $k$. We strengthen our induction hypothesis by not only requiring that the game $(0,0,\ldots,0,1)$ is finite and of length $2^k+1$ but also that a $1$ does not appear as the first element until the penultimate tuple $(1,1,\ldots,1,1)$. For $k=0$, the game $(1)$ is $((1),(0))$, which is of length $2=2^0+1$, and trivially does not have a $1$ as the first element until the penultimate tuple $(1)$.
 
-Now suppose the result holds for some $k\in \znn$ and consider the $2^{k+1}$-tuple game $(0,0,\ldots,0,0,0,0,\ldots,0,1)$. Note that throughout the game, the last $2^k$ elements of the tuple will proceed as the $2^k$-tuple case so long as the first element of the tuple is $0$ and that the first $2^k$ elements of the tuple will remain $0$ until the $(2^k+1)^{th}$ element (the first element of the second half) is $1$. By our induction hypothesis, we have both of these guarantees, so that after $2^{k+1}-1$ steps, the tuple is $(0,0,\ldots,0,0,1,1,\ldots,1,1)$. After one more step, we have $(0,0,\ldots,0,1,0,0,\ldots,0,1)$. Now again, the first $2^k$ elements and the last $2^k$ elements will each proceed as in the $2^k$-tuple case so long as the first and $(2^k+1)^{th}$ elements are $0$. By the induction hypothesis, we again have this, so that after a total of $2^{k+2}-1$ steps, we have $(1,1,\ldots,1,1,1,1,\ldots,1,1)$. One more step yields the zero tuple, after a total of $2^{k+2}$ steps. This completes our induction. $\qed$
+Now suppose the result holds for some $k\in \znn$ and consider the $2^{k+1}$-tuple game $(0,0,\ldots,0,0,0,0,\ldots,0,1)$. Note that throughout the game, the last $2^k$ elements of the tuple will proceed as the $2^k$-tuple case so long as the first element of the tuple is $0$ and that the first $2^k$ elements of the tuple will remain $0$ until the $(2^k+1)^{th}$ element (the first element of the second half) is $1$. By our induction hypothesis, we have both of these guarantees, so that after $2^k-1$ steps, the tuple is $(0,0,\ldots,0,0,1,1,\ldots,1,1)$. After one more step, we have $(0,0,\ldots,0,1,0,0,\ldots,0,1)$. Now again, the first $2^k$ elements and the last $2^k$ elements will each proceed as in the $2^k$-tuple case so long as the first and $(2^k+1)^{th}$ elements are $0$. By the induction hypothesis, we again have this, so that after a total of $2^{k+1}-1$ steps, we have $(1,1,\ldots,1,1,1,1,\ldots,1,1)$. One more step yields the zero tuple, after a total of $2^{k+1}$ steps, corresponding to a game length of $2^{k+1}+1$. This completes our induction. $\qed$
 
-\begin{theorem}
-The game for any $2^k$-tuple over $\{0,1\}$ is finite and of length at most $2^{k+1}$.
-\end{theorem}
+\begin{lemma}
+The game for any $2^k$-tuple over $\{0,1\}$ is finite and of length at most $2^k+1$.
+\end{lemma}
 
 \textit{Proof:} Consider the set $S$ of all $2^k$-tuples consisting of $2^k-1$ $0$s and one $1$:
 
@@ -315,7 +315,9 @@ $$\begin{array}{c}
 (0,0,\ldots,0,1)
 \end{array}$$
 
-By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^{k+1}$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^{k+1}}((a_i))=D^{2^{k+1}}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^{k+1}}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k$, as desired.
+By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired. $\qed$
+
+This lemma, together with the proof as outlined previously in this section, allow us to conclude that all games for tuples of size $2^k$ are finite.
 
 \section{Games Over Non-Integers}
 
@@ -329,13 +331,7 @@ The proof of this follows very easily from the fact that game length is invarian
 
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
-A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$.
-
-\section{Games Over the Real Numbers}
-
-Our results regarding games over the real numbers are not as thorough as our results on games over the integers, but we did make some interesting discoveries. Note that in this section, \emph{all games are games of 4-tuples}.
-
-Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
+A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$. Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
 
 \begin {theorem}
 \label{thm:inequalities}
