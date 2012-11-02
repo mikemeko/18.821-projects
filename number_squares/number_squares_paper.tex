@@ -26,6 +26,8 @@
 
 % Utility commands
 
+% vspace
+\newcommand{\breathe}{\vspace{0.2cm}}
 % xor
 \newcommand{\xor}{\oplus}
 % Integers
@@ -60,7 +62,7 @@ We will begin by presenting the definition of the difference in the context of $
 We will now define the operation that was introduced in the previous section. Herein, we will use $\znn$ to denote the non-negative integers and $\zp$ to denote the positive integers. Also, at times when we feel it will promote clarity and ease of understanding, we will abuse the notation $n\pmod{m}$ and mean the remainder of $n$ upon division by $m$.
 
 \begin{definition}
-Given a $4$-tuple $(a, b, c, d)\in \mathbb{Z}^4$, the \underline{difference} of $(a, b, c, d)$ is the $4$-tuple $(|a - b|, |b - c|, |c - d|, |d - a|)$.
+Given a $4$-tuple $(a, b, c, d)\in \mathbb{Z}^4$, the \underline{difference} $D((a, b, c, d))$ of $(a,b,c,d)$ is the $4$-tuple $(|a - b|, |b - c|, |c - d|, |d - a|)$.
 \end{definition}
 
 As motivated in the introduction, we are interested in repeatedly applying the difference to a $4$-tuple until we reach the tuple consisting of all zeroes. In particular, we have the following definition:
@@ -70,9 +72,11 @@ Given a $4$-tuple $(a, b, c, d)\in \mathbb{Z}^4$, the \underline{(a, b, c, d) ga
 
 \begin{enumerate}
 \item $(a_0, b_0, c_0, d_0) = (a, b, c, d)$
-\item $\forall i\in \znn$, if $(a_i, b_i, c_i, d_i) = (0, 0, 0, 0)$, then the $(a, b, c, d)$ game is a finite sequence ending at $(a_i, b_i, c_i, d_i)$. Otherwise, $(a_{i+1}, b_{i+1}, c_{i+1}, d_{i+1})$ is the difference of $(a_i, b_i, c_i, d_i)$.
-\end{enumerate}
+\item $\forall i\in \znn$, if $(a_i, b_i, c_i, d_i) = (0, 0, 0, 0)$, then the $(a, b, c, d)$ game is a finite sequence ending at $(a_i, b_i, c_i, d_i)$. Otherwise:
 
+$$(a_{i+1}, b_{i+1}, c_{i+1}, d_{i+1})=D((a_i, b_i, c_i, d_i)).$$
+\end{enumerate}
+\breathe
 We will often refer to a $4$-tuple as a game itself, where it is understood that we mean the game whose first element is this $4$-tuple.
 
 \end{definition}
@@ -81,9 +85,9 @@ Note that by this definition, the game of a $4$-tuple is either finite ending in
 
 \section{Finiteness of All Games\label{sec:convergence}}
 
-We will now show that any game $(a,b,c,d)$ starting with four integers $a$, $b$, $c$, and $d$ is finite, i.e. the game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
+We will now show that any game $(a,b,c,d)$ is finite, i.e. the game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
 
-Before proving this claim, let us make two simplifying observation.
+Before proving this claim, let us make two simplifying observations.
 
 First, regardless of the elements in the first $4$-tuple of a game, by definition of the difference operation, the second $4$-tuple in the game will have non-negative elements. Thus, for simplicity, henceforth we will assume that all the elements in the starting $4$-tuple of a game are non-negative, for if they are not, we can just consider the game starting from the difference of the $4$-tuple.
 
@@ -92,16 +96,16 @@ Second, note that the games $(a,b,c,d)$ and $(b,c,d,a)$ have exactly the same le
 Equipped with these simplifications, we can now embark upon a proof of our claim. Let us first prove a much simpler, yet very useful, statement of the claim.
 
 \begin{lemma}
-All games starting with $4$-tuples only containing $0$'s and $1$'s have length at most $5$.
+All games starting with $4$-tuples only containing $0$s and $1$s have length at most $5$.
 \label{lem:zerosones}
 \end{lemma}
 
 \begin{proof}
-Indeed there are $16$ $4$-tuples that contain only $0$'s and $1$'s. However, we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate rotation of one of these $6$. Based on our observation above that a rotation does not affect the length of a game, studying these $6$ $4$-tuples is sufficient.
+Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s. However, we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate rotation of one of these $6$. Based on our observation above that a rotation does not affect the length of a game, studying these $6$ $4$-tuples is sufficient.
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
-\caption{All games starting with just $0$'s and $1$'s have length at most $5$.}
+\caption{All games starting with just $0$s and $1$s have length at most $5$.}
 \label{fig:zerosones}
 \end{figure}
 
@@ -112,14 +116,14 @@ Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4
 We can use Lemma \ref{lem:zerosones} to make a stronger claim.
 
 \begin{lemma}
-For any $n \in \znn$, if four integer $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, then the $4$-tuple $(a_4, b_4, c_4, d_4)$ in the $(a,b,c,d)$ game will have elements that are congruent to $0$ modulo $2^{n+1}$.
+For any $n \in \znn$, if $a, b, c, d \in \znn$ are congruent to $0\pmod{2^n}$, then $D^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$.
 \label{lem:evenodd}
 \end{lemma}
 
 \begin{proof}
-Since $a$, $b$, $c$, and $d$ are congruent to $0$ modulo $2^n$, each is congruent to either $0$ or $2^n$ modulo $2^{n+1}$. Now define $\hat{a}$ to be $0$ if $a$ is congruent to $0$ modulo $2^{n+1}$ or $1$ otherwise. That is,
+Since $a, b, c, d$ are congruent to $0\pmod{2^n}$, each is congruent to either $0$ or $2^n\pmod{2^{n+1}}$. Now define $\hat{a}$ to be $0$ if $a$ is congruent to $0\pmod{2^{n+1}}$ or $1$ otherwise. That is,
 $$
-\hat{a} = \frac{a \bmod{2^{n+1}}}{2^n}
+\hat{a} = \frac{a}{2^n}\pmod{2}
 $$
 Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to $0$ or $2^n$ modulo $2^{n+1}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $5$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0$ modulo $2^{n+1}$ after at most $5$ steps.
 \end{proof}
@@ -129,7 +133,7 @@ We can use this to make two conclusions that will prove our main result and also
 TODO(jven,mikemeko): I think this corollary should be the only lemma here as its probably the most important... the two lemmas above are just steps to proving this and marking this as a corollary kinda de-emphasizes it?
 
 \begin{corollary}
-For any $n \in \znn$, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$.
+For any $n \in \znn$, the $4$-tuple $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
 \label{cor:pow2}
 \end{corollary}
 
@@ -139,11 +143,11 @@ Both the base case and inductive step of this inductive proof follow directly fr
 \end{proof}
 
 \begin{corollary}
-Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at most $4\lceil\log_2{M}\rceil + 1$.
+Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at most $4(\lfloor\log_2{M}\rfloor + 1) + 1$.
 \end{corollary}
 
 \begin{proof}
-Let $n = \lceil\log_2{M}\rceil$. By Corollary \ref {cor:pow2}, the $4$-tuple $(a_{4n}, b_{4n}, c_{4n}, d_{4n})$ in the $(a,b,c,d)$ game has elements that are congruent to $0$ modulo $2^n$. However, since $M\leq2^n$, this implies that $a_{4n}=b_{4n}=c_{4n}=d_{4n}=0$.
+Let $n = \lfloor\log_2{M}\rfloor + 1$. By Corollary \ref {cor:pow2}, $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements are also less than $2^n$, and thus are all zero.
 \end{proof}
 
 \section{Existence of Arbitrarily Long Games\label{sec:longgames}}
@@ -185,7 +189,7 @@ $$(0, 103502633381134336, 293873656088494080, 644020556730990592)$$
 
 TODO(jven): Should I motivate this proof a little bit? Could be a little long-winded.
 
-\section{Games For Other $k$-tuples}
+\section{Games For Other $k$-tuples\label{sec:othertuples}}
 
 We have thus far defined games over $4$-tuples and showed that all such games are of finite length. We can generalize the notion of a game for tuples of different lengths. In fact, the property that all games are of finite length holds for all tuple sizes of the form $2^k$. For tuple sizes not of this form, there exist games that are of infinite length.
 
@@ -224,7 +228,7 @@ The difference of $(a_0, a_1, \ldots, a_{n})$ is:
 \noindent
  $(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|)$.
 
-\vspace{.2cm}
+\breathe
 
 The difference of $(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_n)$ is:
 
@@ -270,7 +274,7 @@ The only statement in our proposed strategy that does not obviously generalize f
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. The \textbf{exclusive or} $(a_i)\xor (b_i)$ (herein referred to as \textbf{xor}) is the $n$-tuple whose $i^{th}$ element is $(a_i+b_i)\pmod{2}$. For example, $(0,1,0,1)\xor(0,0,1,1)=(0,1,1,0)$. It is clear that $\xor$ is commutative and associative.
 \end{definition}
 
-We now show that xor commutes with the difference operator. We will denote the difference of the tuple $(a_i)$ as $D((a_i))$.
+We now show that xor commutes with the difference operator.
 
 \begin{lemma}
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $D((a_i)\xor (b_i))=D((a_i))\xor D((b_i))$.
@@ -298,17 +302,20 @@ We now construct a set of $2^k$-tuples over $\{0,1\}$ such that (i) all tuples i
 The game for any $2^k$-tuple consisting of $2^k-1$ $0$s and one $1$ is finite and of length $2^k+1$.
 \end{lemma}
 
-\textit{Proof}: We need only show that this holds for the tuple $(0,0,\ldots,0,1)$. The other such tuples follow by the fact that game length is invariant under ``cycling'' of tuples, as demonstrated in the $4$-tuple case.
+\begin{proof}
+We need only show that this holds for the tuple $(0,0,\ldots,0,1)$. The other such tuples follow by the fact that game length is invariant under rotation of tuples, as demonstrated in Section $\ref{sec:convergence}$.
 
 We proceed by induction on $k$. We strengthen our induction hypothesis by not only requiring that the game $(0,0,\ldots,0,1)$ is finite and of length $2^k+1$ but also that a $1$ does not appear as the first element until the penultimate tuple $(1,1,\ldots,1,1)$. For $k=0$, the game $(1)$ is $((1),(0))$, which is of length $2=2^0+1$, and trivially does not have a $1$ as the first element until the penultimate tuple $(1)$.
 
-Now suppose the result holds for some $k\in \znn$ and consider the $2^{k+1}$-tuple game $(0,0,\ldots,0,0,0,0,\ldots,0,1)$. Note that throughout the game, the last $2^k$ elements of the tuple will proceed as the $2^k$-tuple case so long as the first element of the tuple is $0$ and that the first $2^k$ elements of the tuple will remain $0$ until the $(2^k+1)^{th}$ element (the first element of the second half) is $1$. By our induction hypothesis, we have both of these guarantees, so that after $2^k-1$ steps, the tuple is $(0,0,\ldots,0,0,1,1,\ldots,1,1)$. After one more step, we have $(0,0,\ldots,0,1,0,0,\ldots,0,1)$. Now again, the first $2^k$ elements and the last $2^k$ elements will each proceed as in the $2^k$-tuple case so long as the first and $(2^k+1)^{th}$ elements are $0$. By the induction hypothesis, we again have this, so that after a total of $2^{k+1}-1$ steps, we have $(1,1,\ldots,1,1,1,1,\ldots,1,1)$. One more step yields the zero tuple, after a total of $2^{k+1}$ steps, corresponding to a game length of $2^{k+1}+1$. This completes our induction. $\qed$
+Now suppose the result holds for some $k\in \znn$ and consider the $2^{k+1}$-tuple game $(0,0,\ldots,0,0,0,0,\ldots,0,1)$. Note that throughout the game, the last $2^k$ elements of the tuple will proceed as the $2^k$-tuple case so long as the first element of the tuple is $0$ and that the first $2^k$ elements of the tuple will remain $0$ until the $(2^k+1)^{th}$ element (the first element of the second half) is $1$. By our induction hypothesis, we have both of these guarantees, so that after $2^k-1$ steps, the tuple is $(0,0,\ldots,0,0,1,1,\ldots,1,1)$. After one more step, we have $(0,0,\ldots,0,1,0,0,\ldots,0,1)$. Now again, the first $2^k$ elements and the last $2^k$ elements will each proceed as in the $2^k$-tuple case so long as the first and $(2^k+1)^{th}$ elements are $0$. By the induction hypothesis, we again have this, so that after a total of $2^{k+1}-1$ steps, we have $(1,1,\ldots,1,1,1,1,\ldots,1,1)$. One more step yields the zero tuple, after a total of $2^{k+1}$ steps, corresponding to a game length of $2^{k+1}+1$. This completes our induction.
+\end{proof}
 
 \begin{lemma}
 The game for any $2^k$-tuple over $\{0,1\}$ is finite and of length at most $2^k+1$.
 \end{lemma}
 
-\textit{Proof:} Consider the set $S$ of all $2^k$-tuples consisting of $2^k-1$ $0$s and one $1$:
+\begin{proof}
+Consider the set $S$ of all $2^k$-tuples consisting of $2^k-1$ $0$s and one $1$:
 
 $$\begin{array}{c}
 (1,0,\ldots,0,0) \\
@@ -318,7 +325,8 @@ $$\begin{array}{c}
 (0,0,\ldots,0,1)
 \end{array}$$
 
-By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired. $\qed$
+By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired.
+\end{proof}
 
 This lemma, together with the proof as outlined previously in this section, allow us to conclude that all games for tuples of size $2^k$ are finite.
 
@@ -336,7 +344,7 @@ Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{
 
 A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$. Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
 
-\begin {theorem}
+\begin{theorem}
 \label{thm:inequalities}
 Given a game $G_0 =  (a, b, c, d)$, if $a \leq c \leq b \leq d$, or if $a \leq d \leq c \leq b$, then $G_0$ terminates in 4 steps. 
 \end{theorem}
