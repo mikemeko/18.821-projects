@@ -323,7 +323,7 @@ $(1, 1, 0, \ldots, 0)$ includes a non-zero even number of odd elements, by const
 Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game, where $(1, 1, 0, \ldots, 0)$ has an odd number of zeros, never terminates.
 \end{proof}
 
-For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
+For every odd $k > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $k$ that never terminates. We now use this result to show that for every $k$ that is not an integer power of 2, there are games of size $k$ that do not terminate.
 
 We need one more lemma to prove our claim:
 
@@ -345,18 +345,16 @@ If the game $(a_0, a_1, \ldots, a_{k-1})$ has infinite length, then so does the 
 
 which is just two concatenated copies of $\diff((a_0, a_1, \ldots, a_{k-1}))$. In other words, the property that one tuple is two concatenated copies of another tuple is invariant under the application of $\diff$ to both tuples. So if the $(a_0, a_1, \ldots, a_{k-1})$ game does not terminate, then the $(a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})$ game does not terminate.
 
-By repeating this process, it is clear that the game $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ has finite length only if the game $(a_0, a_1, \ldots, a_n)$ has finite length. So $(a_0, a_1, \ldots, a_{n-1}, a_n, a_{n+1}, \ldots, a_{2n-1}) = (1, 1, 0, \ldots, 0, 1, 1, 0, \ldots, 0)$, where $n$ is odd, never terminates. 
-
 \end{proof}
 
 \begin{theorem}
 \label{theorem:notPowersOfTwo}
-If $n$ is not of the form $2^k$, then there exists an $n$-tuple whose game has infinite length.
+If $n > 2$ is not of the form $2^k$, then there exists an $n$-tuple game of infinite length.
 \end{theorem}
 
 \begin{proof}
 
-If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a game of size $p$ of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain a game of size $n$ of infinite length. 
+If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a $p$-tuple game of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain an $n$-tuple game of infinite length. 
 \end{proof}
 
 
