@@ -104,6 +104,8 @@ $\diff$ can also be applied analogously to tuples of real numbers. For example:
 
 $$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2})$$.
 
+In Section \ref{sec:invariants} TODO(mikemeko, dgrazian)
+
 In Section \ref{sec:convergence} we show that every game starting with 4-tuples of integers does indeed terminate in a finite number of steps, as suggested by the table in Figure \ref{fig: lengthVersusStartingTuple}. We also provide an upper bound on the number of steps required for such a game to terminate, in terms of the size of the entries of the starting tuple.
 
 In Section \ref{sec:longgames}, however, we show that it is possible to construct games on 4-tuples of arbitrarily long finite length. 
@@ -144,31 +146,42 @@ Finally, in Section \ref{sec:nonIntegers} we extend our analysis beyond the inte
 %
 %Note that by this definition, the game of a $4$-tuple is either finite ending in $(0, 0, 0, 0)$ or infinite and never containing $(0, 0, 0, 0)$. Naturally, we will refer to the length of a game, meaning the (possibly infinite) length of the sequence.
 
+\section{Simplifying Observation\label{sec:invariants}}
+
+In this section, we aim to make observations that will simplify our analysis in the rest of the paper.
+
+First, we list three operations on a game under which the length of the game is invariant. We shall use the operations throughout the paper to make simplifying modifications to games without affecting their lengths.
+
+Suppose $(a,b,c,d)$ is a game of length greater than $2$. Now we can make the following assertions:
+
+\begin{enumerate}
+\item The $(b,c,d,a)$ game has the same length as the $(a,b,c,d)$ game. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of the difference operation. Each $4$-tuple in the $(b,c,d,a)$ game contains the same elements as the corresponding $4$-tuple in the $(a,b,c,d)$ game, except cyclically shifted left by $1$. \\
+\item The $(ua, ub, uc, ud)$ game, for any $u \in \z - \{0\}$, has the same length as the $(a,b,c,d)$ game. That is, scaling a $4$-tuple by a non-$0$ integer does not change the length of the game. The subsequent $4$-tuples in the $(ua, ub, uc, ud)$ game are the same as the corresponding $4$-tuples in the $(a,b,c,d)$ game, except scaled by $|u|$. \\
+\item The game $(a + v, b + v, c + v, d + v)$, for any $v \in \z$, has the same length as the $(a,b,c,d)$ game. That is, translating a $4$-tuple does not change the length of the game. After one step, the games $(a, b, c, d)$ and $(a + v, b + v, c + v, d + v)$ will be identical.
+\end{enumerate}
+
+Note that these assertions can be easily extended to any $k$-tuples, $k \in \zp$.
+
+Second, we will make the assumption that all starting $k$-tuples for the games we consider contain non-negative elements. The reason for this is that, regardless of the elements in the first $k$-tuple of a game, the second $k$-tuple of the game will have non-negative elements. So if we are interested in studying a game that starts with a $k$-tuple $(a_0, a_1, \dots, a_k)$ containing negative elements, we can just consider the game starting from $\diff((a_0, a_1, \dots, a_k))$.
+
 \section{Finiteness of All Games\label{sec:convergence}}
 
-We will now show that every integer game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
+We will now show that every integer $4$-tuple game terminates at the $4$-tuple $(0,0,0,0)$ in finite time (actually, as we will see, very quickly).
 
 The main result we shall use to prove this claim is the following.
 \begin{theorem}
-For any $n \in \znn$, the $4$-tuple $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
+For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
 \label{thm:pow2}
 \end{theorem}
 
-Before proving this theorem, let us first make a few useful observations.
-
-First, regardless of the elements in the first $4$-tuple of a game, by definition of the difference operation, the second $4$-tuple in the game will have non-negative elements. Thus, for simplicity, henceforth we will assume that all the elements in the starting $4$-tuple of a game are non-negative, for if they are not, we can just consider the game starting from the difference of the $4$-tuple.
-
-Second, note that the games $(a,b,c,d)$ and $(b,c,d,a)$ have exactly the same length. That is, rotating a $4$-tuple does not alter the properties of the game other than changing the order of numbers as they appear in the $4$-tuples in the game. The reason for this is the cyclic nature of the difference operation: the difference of $(b,c,d,a)$ contains the same elements that are in the difference of $(a,b,c,d)$, but rotated left by $1$. Thus, the lengths of the two games are equal.
-
-Equipped with these simplifications, we can now embark upon a proof of Theorem \ref{thm:pow2}.
-
-\begin{lemma}
-All games starting with $4$-tuples only containing $0$s and $1$s have length at most $5$.
-\label{lem:zerosones}
-\end{lemma}
-
 \begin{proof}
-Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s. However, we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate rotation of one of these $6$. Based on our observation above that a rotation does not affect the length of a game, studying these $6$ $4$-tuples is sufficient.
+We prove this by induction on $n$.
+
+The base case for which $n=0$ follows trivially because it simply asserts that $a$, $b$, $c$, and $d$ are congruent to $0\pmod{1}$.
+
+In the inductive step, we need to show that for any $n \in \znn$, if $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$, then $\diff^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$. Before proving this, let us make an important observation.
+
+For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
@@ -176,30 +189,8 @@ Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s. However, we o
 \label{fig:zerosones}
 \end{figure}
 
-Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum length of such a game is $5$ (length $5$ is achieved by $(0,1,1,1)$ and $(1,0,0,0)$).
+Returning to the proof of the inductive hypothesis, we note that we can take out a factor of $2^n$ from the $(a,b,c,d)$ game since $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$. If we take $4$ steps while keeping the $2^n$ factored out, we have that the remaining values must be even, which shows that the elements of $\diff^4(a,b,c,d)$ are congruent to $0\pmod{2^{n+1}}$. This concludes the inductive proof.
 
-\end{proof}
-
-We can use Lemma \ref{lem:zerosones} to make a stronger claim.
-
-\begin{lemma}
-For any $n \in \znn$, if $a, b, c, d \in \znn$ are congruent to $0\pmod{2^n}$, then $D^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$.
-\label{lem:evenodd}
-\end{lemma}
-
-\begin{proof}
-Since $a, b, c, d$ are congruent to $0\pmod{2^n}$, each is congruent to either $0$ or $2^n\pmod{2^{n+1}}$. Now define $\hat{a}$ to be $0$ if $a$ is congruent to $0\pmod{2^{n+1}}$ or $1$ otherwise. That is,
-$$
-\hat{a} = \frac{a}{2^n}\pmod{2}
-$$
-Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Now if we look at the game $(\hat{a},\hat{b},\hat{c},\hat{d})$, it precisely captures whether the corresponding elements in the corresponding 4-tuples in the game $(a,b,c,d)$ are congruent to  $0$ or $2^n\pmod{2^{n+1}}$. By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $5$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0\pmod{2^{n+1}}$ after at most $5$ steps.
-\end{proof}
-
-We can use this to prove Theorem \ref{thm:pow2} and also to give an upper bound on the length of any game.
-
-\begin{proof}
-The proof is by induction on $n$.
-Both the base case and inductive step follow directly from Lemma \ref{lem:evenodd}.
 \end{proof}
 
 \begin{corollary}
@@ -207,7 +198,7 @@ Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at mos
 \end{corollary}
 
 \begin{proof}
-Let $n = \lfloor\log_2{M}\rfloor + 1$. By Theorem \ref {thm:pow2}, $D^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements in $D^{4n}((a, b, c, d))$ are also less than $2^n$, and thus are all zero.
+Let $n = \lfloor\log_2{M}\rfloor + 1$. By Theorem \ref {thm:pow2}, $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements in $\diff^{4n}((a, b, c, d))$ are also less than $2^n$, and thus are all zero.
 \end{proof}
 
 \section{Existence of Arbitrarily Long Games\label{sec:longgames}}
@@ -220,15 +211,19 @@ For all $n\in \zp$, there exists a game of length $n$.
 
 For $n < 5$, it is very easy to construct such a game. Indeed, for $n=1,2,3,4$ we have the games $(0, 0, 0, 0)$, $(1, 1, 1, 1)$, $(1, 0, 1, 0)$, and $(1, 1, 0, 0)$, respectively.
 
-Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this form. The result is that this construction can be repeated indefinitely until a game of the desired length is reached. First, we need the following lemma:
+Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this form. The result is that this construction can be repeated indefinitely until a game of the desired length is reached.
+% First, we need the following lemma:
 
-\begin{lemma}
-Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(ua, ub, uc, ud)$ and $(a + v, b + v, c + v, d + v)$ for any $u, v\in \mathbb{Z}$, $u\neq 0$, also have length $n$.
-\end{lemma}
+%\begin{lemma}
+%Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(ua, ub, uc, ud)$ and $(a + v, b + v, c + v, d + v)$ for any $u, v\in \mathbb{Z}$, $u\neq 0$, also have length $n$.
+%\end{lemma}
 
-\textit{Proof:} Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that for $u\neq 0$, the $(ua, ub, uc, ud)$ game is $\Big((|u|a_i, |u|b_i, |u|c_i, |u|d_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + v, b + v, c + v, d + v)$ is the same as that of $(a, b, c, d)$. The result follows.
+%\begin{proof}
+%Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that for $u\neq 0$, the $(ua, ub, uc, ud)$ game is $\Big((|u|a_i, |u|b_i, |u|c_i, |u|d_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + v, b + v, c + v, d + v)$ is the same as that of $(a, b, c, d)$. The result follows.
+%\end{proof}
 
-Returning to the original proof, consider a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
+%Returning to the original proof, 
+Consider a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
 
 $$\begin{array}{cl}
 & (c - b - a, 2a + (c - b - a), 2b + (c - b - a), 2c + (c - b - a)) \\
@@ -352,7 +347,7 @@ The game for any $2^k$-tuple consisting of $2^k-1$ $0$s and one $1$ is finite an
 \end{lemma}
 
 \begin{proof}
-We need only show that this holds for the tuple $(0,0,\ldots,0,1)$. The other such tuples follow by the fact that game length is invariant under rotation of tuples, as demonstrated in Section $\ref{sec:convergence}$.
+We need only show that this holds for the tuple $(0,0,\ldots,0,1)$. The other such tuples follow by the fact that game length is invariant under cyclic permutation of tuples, as demonstrated in Section $\ref{sec:convergence}$.
 
 We proceed by induction on $k$. We strengthen our induction hypothesis by not only requiring that the game $(0,0,\ldots,0,1)$ is finite and of length $2^k+1$ but also that a $1$ does not appear as the first element until the penultimate tuple $(1,1,\ldots,1,1)$. For $k=0$, the game $(1)$ is $((1),(0))$, which is of length $2=2^0+1$, and trivially does not have a $1$ as the first element until the penultimate tuple $(1)$.
 
@@ -389,9 +384,26 @@ All games of $4$-tuples over $\mathbb{Q}$ are finite.
 
 The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$. (Note that the lemma in that section dealt only with integers but the argument is easily extended to any reals.)
 
+TODO(dgrazian, mikemeko): do we want $(aqrs, bprs, cqpr, dpqr)$ in place of $(a,b,c,d)$ here?
+
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
-A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$. Though we have yet to understand the behavior of the difference over $\mathbb{R}$ to the same fullness and exhaustiveness as over $\mathbb{Z}$, there are still many interesting observations that can be made:
+%Though we have yet to understand the behavior of the difference over $\mathbb{R}$ to the same fullness and exhaustiveness as over $\mathbb{Z}$, there are still many interesting observations that can be made:
+A more interesting question arises when we instead consider games over $\mathbb{R}$. In this case, we will demonstrate, by example, that there exist $4$-tuple games that actually do not terminate.
+
+Consider the game
+$$
+(1,x,x^2,x^3)
+$$
+where $x$ is a real number greater than $1$ that we will define shortly. Now we have
+\begin{align*}
+\diff((1,x,x^2,x^3))
+= & (x-1, x^2 - x, x^3 - x^2, x^3 - 1) \\
+= & (x-1) (1, x, x^2, x^2 + x + 1).
+\end{align*}
+If we choose $x$ such that $x^2 + x + 1 = x^3$, then we see that $s(1,x,x^2,x^3)$ is a multiple of $(1,x,x^2,x^3)$, which, since we know that the length of a game is invariant under scaling, shows us that the game will never terminate. The only real (and irrational) solution to $x^2 + x + 1 = x^3$, which is approximately $1.839$, satisfies the condition of being greater than $1$, so we have indeed constructed a non-terminating $4$-tuple game.
+
+Even though we do not have a complete characterization for the games that do terminate, we have identified the following class of $4$-tuples that are guaranteed to terminate:
 
 \begin{theorem}
 \label{thm:inequalities}
@@ -419,20 +431,4 @@ The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result al
 
 Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met during the course of a game, then that game will terminate in four more steps.
 
-\section{Non-terminating $4$-tuple Games\label{sec:nonterminating}}
-
-TODO(mikemeko) naming this section might not be necessary.
-
-We have shown that $4$-tuple games that start with $4$ rational numbers always terminate. Now we will demonstrate, by example, that there exist $4$-tuple games that actually do not terminate.
-
-Consider the game
-$$
-(1,x,x^2,x^3)
-$$
-where $x$ is a real number greater than $1$ that we will define shortly. Note that the difference of this $4$-tuple is
-\begin{align*}
-& (x-1, x^2 - x, x^3 - x^2, x^3 - 1)\\
-= & (x-1) (1, x, x^2, x^2 + x + 1).
-\end{align*}
-If we choose $x$ such that $x^2 + x + 1 = x^3$, then we see that the difference of $(1,x,x^2,x^3)$ is a multiple of itself, which shows us that the game will never terminate. The only real (and irrational) solution to $x^2 + x + 1 = x^3$, which is approximately $1.839$, satisfies the condition of being greater than $1$, so we have indeed constructed a non-terminating $4$-tuple game.
 \end{document}
