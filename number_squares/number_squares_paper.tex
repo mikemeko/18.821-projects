@@ -287,8 +287,30 @@ A more interesting question arises when we instead consider game of $4$-tuples o
 
 Our results regarding games over the real numbers are not as thorough as our results on games over the integers, but we did make some interesting discoveries. Note that in this section, \emph{all games are games of 4-tuples}.
 
-We discovered a large class of terminating games over the reals. We also discovered examples of games over the reals which do not terminate. This contrasts with games over the integers, which always terminate.
+Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
 
+\begin {theorem}
+\label{thm:inequalities}
+Given a game $G_0 =  (a, b, c, d)$, if $a \leq c \leq b \leq d$, or if $a \leq d \leq c \leq b$, then $G_0$ terminates in 4 steps. 
+\end{theorem}
+
+\begin{proof}
+Consider a game $(a,b,c,d)$ and assume $a \leq c \leq b \leq d$. The difference of $G_0 =  (a, b, c, d)$ is:
+
+\begin{align*}
+G_1 &= (|a-b|, |b-c|, |c-d|, |d-a|) \\
+&=(b-a, b-c, d-c, d-a)\\
+Then, \\
+G_2 &= (|(b-a) - (b-c)|, |(b-c) - (d-c)|, |(d-c) - (d-a)|, |(d-a) - (b-a)| \\
+&= (c-a, d-b, c-a, d-b)\\
+G_3 &= (|c + b - a - d|, |a + d - c - b|, |c + b - a - d|, |a + d - c - b|)\\
+G_4 &= (0,0,0,0)
+\end{align*}
+
+The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result also holds for any cyclic rotation of the inequalities (e.g., such as if $c \leq b \leq d \leq a$.)
+\end{proof}
+
+Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met during the course of a game, then that game will terminate in four more steps.
 
 
 TODO(jven,dgrazian): Solve me! :D
