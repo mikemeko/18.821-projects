@@ -55,11 +55,11 @@ We investigate the behavior of an operator that maps tuples to same-size tuples,
 
 In this paper, we present an operation $\diff$ that acts on tuples of integers in a very simple way. Given a 4-tuple (a, b, c, d):
 
-$$\diff((a, b, c, d)) = (|a - b|, |b - c|, |c - d|, |d - a|)$$. 
+$$\diff((a, b, c, d)) = (|a - b|, |b - c|, |c - d|, |d - a|).$$ 
 
 For example:
 
-$$\diff((2, 6, 1, 9)) = (4, 5, 8, 7)$$.
+$$\diff((2, 6, 1, 9)) = (4, 5, 8, 7).$$
 
 In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached. We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$  the $(a, b, c, d)$ \textit{game} or, where the context is clear, simply $(a, b, c, d)$.
 
@@ -94,15 +94,15 @@ This table may seem rather surprising. Apparently, typical games terminate, and 
 
 This paper is devoted to investigating the lengths of games and the conditions under which games terminate. First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
 
-$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|)$$.
+$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|).$$
 
 For example:
 
-$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3)$$.
+$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3).$$
 
 $\diff$ can also be applied analogously to tuples of real numbers. For example:
 
-$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2})$$.
+$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2}).$$
 
 In Section \ref{sec:invariants} we show that the length of a game is invariant under certain operations on the starting tuple. This simplifies our analysis in the remaining sections.
 
@@ -150,19 +150,15 @@ Finally, in Section \ref{sec:nonIntegers} we extend our analysis beyond the inte
 
 In this section, we aim to make observations that will simplify our analysis in the rest of the paper.
 
-First, we list three operations on the starting tuple of a game under which the length of the game is invariant. We will use these operations throughout the paper to make simplifying modifications to games without affecting their lengths.
-
-Suppose $(a,b,c,d)$ is a game of length greater than $2$. Now we can make the following assertions:
+First, we list three operations on the starting tuple of a game under which the length of the game is invariant. We will use these operations throughout the paper to make simplifying modifications to games without affecting their lengths. Suppose $(a_0, a_1, \dots, a_{k-1})$ is a game of length greater than $2$. Now we can make the following assertions:
 
 \begin{enumerate}
-\item The $(b,c,d,a)$ game has the same length as the $(a,b,c,d)$ game. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of $\diff$. Each $4$-tuple in the $(b,c,d,a)$ game contains the same elements as the corresponding $4$-tuple in the $(a,b,c,d)$ game, except cyclically shifted left by $1$. \\
-\item The $(ua, ub, uc, ud)$ game, for any $u \in \z - \{0\}$, has the same length as the $(a,b,c,d)$ game. That is, scaling a $4$-tuple by a non-zero integer does not change the length of the game. The subsequent $4$-tuples in the $(ua, ub, uc, ud)$ game are the same as the corresponding $4$-tuples in the $(a,b,c,d)$ game, except scaled by $|u|$. \\
-\item The game $(a + v, b + v, c + v, d + v)$, for any $v \in \z$, has the same length as the $(a,b,c,d)$ game. That is, translating a $4$-tuple does not change the length of the game. After one step, the games $(a, b, c, d)$ and $(a + v, b + v, c + v, d + v)$ will be identical.
+\item The $(a_1,a_2, \dots, a_{k-1}, a_0)$ game has the same length. That is, cyclically permuting a tuple does not change the length of the game. Each tuple in the $(a_1,a_2, \dots, a_{k-1}, a_0)$ game contains the same elements as the corresponding tuple in the $(a_0, a_1, \dots, a_{k-1})$ game, except cyclically shifted left by $1$. \\
+\item The $(ua_0, ua_1, \dots, ua_{k-1})$ game, for any $u \in \mathbb{R} - \{0\}$, has the same length. That is, scaling a tuple by a non-zero number does not change the length of the game. The subsequent tuples in the $(ua_0, ua_1, \dots, ua_{k-1})$ game are the same as the corresponding tuples in the $(a_0, a_1, \dots, a_{k-1})$ game, except scaled by $|u|$. \\
+\item The game $(a_0 + v, a_1 + v, \dots, a_{k-1} + v)$, for any $v \in \mathbb{R}$, has the same length. That is, translating a tuple does not change the length of the game. After one step, the games $(a_0, a_1, \dots, a_{k-1})$ and $(a_0 + v, a_1 + v, \dots, a_{k-1} + v)$ will be identical.
 \end{enumerate}
 
-Note that these assertions can be easily extended to any $k$-tuples, $k \in \zp$.
-
-Second, we will assume that all starting $k$-tuples for the games we consider contain only non-negative elements. The reason for this is that, regardless of the elements in the first $k$-tuple of a game, the second $k$-tuple of the game will include only non-negative elements. So if we are interested in studying a game that starts with a $k$-tuple $(a_0, a_1, \dots, a_k)$ containing negative elements, we can just consider the game starting from $\diff((a_0, a_1, \dots, a_k))$.
+Second, we will assume that all starting tuples for the games we consider contain only non-negative elements. The reason for this is that, regardless of the elements in the first tuple, the second tuple of the game will contain only non-negative elements. So if we are interested in studying a game that starts with a tuple $(a_0, a_1, \dots, a_k)$ containing negative elements, we can just consider the game starting from $\diff((a_0, a_1, \dots, a_k))$.
 
 \section{Finiteness of All Games\label{sec:convergence}}
 
@@ -201,7 +197,7 @@ Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at mos
 Let $n = \lfloor\log_2{M}\rfloor + 1$. By Theorem \ref {thm:pow2}, $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$. However, since $M < 2^n$, all of the elements in $\diff^{4n}((a, b, c, d))$ are also less than $2^n$, and thus are all zero.
 \end{proof}
 
-\section{Existence of Arbitrarily Long Games\label{sec:longgames}}
+\section{Existence of Arbitrarily Long Finite Games\label{sec:longgames}}
 
 The previous section argued that all games are of finite length. However, we will show in this section that games may be of any arbitrarily long finite length. We state this more precisely in the following theorem:
 
@@ -212,37 +208,25 @@ For all $n\in \zp$, there exists a game of length $n$.
 For $n < 5$, it is very easy to construct such a game. Indeed, for $n=1,2,3,4$ we have the games $(0, 0, 0, 0)$, $(1, 1, 1, 1)$, $(1, 0, 1, 0)$, and $(1, 1, 0, 0)$, respectively.
 
 Our plan for $n \geq 5$ is as follows: given games of a particularly nice form, we will show how to construct a game of one greater length while still preserving this form. The result is that this construction can be repeated indefinitely until a game of the desired length is reached.
-% First, we need the following lemma:
 
-%\begin{lemma}
-%Suppose the game $(a, b, c, d)$ has length $n$. Then the games $(ua, ub, uc, ud)$ and $(a + v, b + v, c + v, d + v)$ for any $u, v\in \mathbb{Z}$, $u\neq 0$, also have length $n$.
-%\end{lemma}
-
-%\begin{proof}
-%Suppose the $(a, b, c, d)$ game is $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Then it is clear that for $u\neq 0$, the $(ua, ub, uc, ud)$ game is $\Big((|u|a_i, |u|b_i, |u|c_i, |u|d_i)\Big)_{i=0}^{n - 1}$. Similarly, the difference of $(a + v, b + v, c + v, d + v)$ is the same as that of $(a, b, c, d)$. The result follows.
-%\end{proof}
-
-%Returning to the original proof, 
-Consider a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
+Suppose there exists a game $(0, a, b, c)$ of length $n$, where $0\leq a\leq b\leq c$ and $a + b < c$. Alter this game by doubling each element, then adding $c - b - a$ to each element. This yields the game:
 
 $$\begin{array}{cl}
 & (c - b - a, 2a + (c - b - a), 2b + (c - b - a), 2c + (c - b - a)) \\
 = & (-a - b + c, a - b + c, -a + b + c, -a - b + 3c)
 \end{array}$$
 
-By the lemma above, this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the difference of the following sequence:
+We showed in Section \ref{sec:invariants} that game length is invariant under scaling as well as addition of each element in the tuple by a constant. Thus this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the difference of the following sequence:
 
 $$(0, -a - b + c, -2b + 2c, -a - b + 3c)$$
 
 This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
 
-It thus remains to provide a game of the desired form of length $5$. The game $(0, 1, 1, 3)$ works, and we're done. $\qed$
+It thus remains to provide a game of length $5$ and of the form $(0, a, b, c)$, $0\leq a\leq b\leq c$, $a + b < c$, since all subsequent game lengths can be obtained by iterating the above process repeatedly from such a game. The game $(0, 1, 1, 3)$ is of the desired form and has length $5$, so we're done. $\qed$
 
-Note that our proof is constructive: given any $n\in \zp$, the proof gives an algorithm (and an efficient one at that) to find a length $n$ game. As an example, starting with the length $5$ game $(0, 1, 1, 3)$, we find that a length $50$ game is:
+Note that our proof is constructive: given any $n\in \zp$, the proof gives an algorithm to find a length $n$ game. As an example, starting with the length $5$ game $(0, 1, 1, 3)$, we find that a length $50$ game is:
 
 $$(0, 103502633381134336, 293873656088494080, 644020556730990592)$$
-
-TODO(jven): Should I motivate this proof a little bit? Could be a little long-winded.
 
 \section{Games For Other $k$-tuples\label{sec:othertuples}}
 
