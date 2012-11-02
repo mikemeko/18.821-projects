@@ -243,7 +243,31 @@ Given an integer $k > 2$ that is not an integer power of 2, $k$ can be written i
 
 \subsection{Finiteness of All $2^k$-tuple Games}
 
+We now show that all games of $2^k$-tuples are of finite length.
 
+\begin{theorem}
+For $k\in \znn$, all games of $2^k$-tuples are finite.
+\end{theorem}
+
+Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $2^ke$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
+
+The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k$. It thus suffices to prove this statement.
+
+\begin{lemma}
+The game for the $2^k$-tuple $(1,0,0,\ldots,0)$ is finite and of length $2^k$.
+\end{lemma}
+
+\textit{Proof}: sup $\qed$
+
+xor stuff
+
+\begin{lemma}
+xor and difference commute
+\end{lemma}
+
+\textit{Proof:} yo $\qed$
+
+finish
 
 \section{Games Over Non-Integers}
 
