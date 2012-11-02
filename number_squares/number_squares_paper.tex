@@ -110,7 +110,7 @@ In Section \ref{sec:convergence} we show that every 4-tuple game over the intege
 
 In Section \ref{sec:longgames}, however, we show that it is possible to construct a 4-tuple game over the integers of arbitrarily long finite length. 
 
-In Section \ref{sec:othertuples} we analyze games with tuples of sizes other than $4$. We show that for every $k > 1$, if $k$ is an integer power of 2 (such as 2, 4, 8, etc.), then every $k$-tuple game over the integers terminates in a finite number of steps. We also show that if $k$ is not an integer power of 2, then there exist $k$-tuple games over the integers that do \textit{not} terminate in a finite number of steps (that is, that never reach (0, \ldots, 0)).
+In Section \ref{sec:othertuples} we analyze games with tuples of sizes other than $4$. We show that for every $k > 2$, if $k$ is an integer power of 2 (such as 2, 4, 8, etc.), then every $k$-tuple game over the integers terminates in a finite number of steps. We also show that if $k$ is not an integer power of 2, then there exist $k$-tuple games over the integers that do \textit{not} terminate in a finite number of steps (that is, that never reach (0, \ldots, 0)).
 
 Finally, in Section \ref{sec:nonIntegers} we extend our analysis beyond the integers. We show that all 4-tuple games on the rational numbers terminate in a finite number of steps (just as was the case for the integers.) Additionally, we exhibit a large class of 4-tuple games on the real numbers that terminate quickly. However, we also construct a 4-tuple game on the real numbers that never terminates.
 
@@ -246,7 +246,7 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games For Other $k$-tuples\label{sec:othertuples}}
 
-We now extend our discussion to games with tuples of sizes other than 4. We show that given $k >1$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
+We now extend our discussion to games with tuples of sizes other than 4. We show that given $k > 2$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
 
 \subsection{Finiteness of All $2^k$-tuple Games}
 
@@ -322,7 +322,7 @@ This lemma, together with the proof as outlined previously in this section, allo
 
 \subsection{Existence of Infinitely Long Games}
 
-We now show that if $k > 1$ is not an integer power of 2, then there exist $k$-games of infinite length. First, we prove a useful lemma:
+We now show that if $k > 2$ is not an integer power of 2, then there exist $k$-games of infinite length. First, we prove a useful lemma:
 
 \begin{lemma}
 The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number of 0's, never terminates.
@@ -330,12 +330,13 @@ The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number
 \end{lemma}
 
 \begin{proof}
-\emph{Notice that the difference of any tuple must include an even number of odd elements}. The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
+\emph{Notice that given a tuple} $(a_0, \ldots, a_{k-1})$,  $\diff ((a_0, \ldots, a_{k-1}))$ \emph{must include an even number of odd elements}. The number of odd elements in $\diff ((a_0, \ldots, a_{k-1}))$ is precisely the number of pairs of adjacent elements in  $(a_0, \ldots, a_{k-1})$, with the initial and final elements considered adjacent, consisting of numbers of different parity. Walking along the tuple from $a_0$ to $a_{k-1}$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in  $\diff((a_0, \ldots, a_{k-1}))$.
 
-Let $(a_{00}, a_{01}, a_{02}, \ldots, a_{0n}) = (1, 1, 0, \ldots, 0)$ be the initial game state described in the statement of the lemma. We show by induction that for all $i$, 
-$D^i(1,1,0,\ldots,0) \neq (0, 0, \ldots, 0)$. Equivalently, the odd-sized game beginning with $(1, 1, 0, \ldots, 0)$ does not terminate:
+Let $(1, 1, 0, \ldots, 0)$ be a tuple of odd size consisting of two 1's followed by all 0's. We show that for all $i \geq 0$, $\diff^{i}((1, 1, 0, \ldots, 0)) \neq (0, 0, \ldots, 0)$:
 
-$(a_{00}, a_{01}, a_{02}, \ldots, a_{0n})$ includes a non-zero even number of odd elements, by construction. Assume that $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes a non-zero even number of odd elements. So $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ must include a non-zero even number of odd elements. So  $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ cannot be the tuple of all $0$'s. This concludes the proof of the lemma.
+$(1, 1, 0, \ldots, 0)$ includes a non-zero even number of odd elements, by construction. Assume that $\diff^i((1, 1, 0, \ldots, 0))$ includes a non-zero even number of odd elements. So $\diff^i((1, 1, 0, \ldots, 0))$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $\diff^{i+1}((1, 1, 0, \ldots, 0))$ must include a non-zero even number of odd elements. So  $\diff^{i+1}((1, 1, 0, \ldots, 0))$ cannot be the tuple of all $0$'s.
+
+Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game never terminates.
 \end{proof}
 
 For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
