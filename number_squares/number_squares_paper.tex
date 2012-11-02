@@ -106,11 +106,11 @@ $$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2})$$.
 
 In Section \ref{sec:invariants} we show that the length of a game is invariant under certain operations on the starting tuple. This simplifies our analysis in the remaining sections.
 
-In Section \ref{sec:convergence} we show that every 4-tuple game on the integers does indeed terminate in a finite number of steps, as suggested by the table in Figure \ref{fig: lengthVersusStartingTuple}. We also provide an upper bound on the number of steps required for such a game to terminate, in terms of the entries of the starting tuple.
+In Section \ref{sec:convergence} we show that every 4-tuple game over the integers does indeed terminate in a finite number of steps, as suggested by the table in Figure \ref{fig: lengthVersusStartingTuple}. We also provide an upper bound on the number of steps required for such a game to terminate, in terms of the entries of the starting tuple.
 
-In Section \ref{sec:longgames}, however, we show that it is possible to construct a 4-tuple game on the integers of arbitrarily long finite length. 
+In Section \ref{sec:longgames}, however, we show that it is possible to construct a 4-tuple game over the integers of arbitrarily long finite length. 
 
-In Section \ref{sec:othertuples} we analyze games with tuples of sizes other than $4$. We show that for every $k > 1$, if $k$ is an integer power of 2 (such as 2, 4, 8, etc.), then every $k$-tuple game on the integers terminates in a finite number of steps. We also show that if $k$ is not an integer power of 2, then there exist $k$-tuple games on the integers that do \textit{not} terminate in a finite number of steps (that is, that never reach (0, \ldots, 0)).
+In Section \ref{sec:othertuples} we analyze games with tuples of sizes other than $4$. We show that for every $k > 1$, if $k$ is an integer power of 2 (such as 2, 4, 8, etc.), then every $k$-tuple game over the integers terminates in a finite number of steps. We also show that if $k$ is not an integer power of 2, then there exist $k$-tuple games over the integers that do \textit{not} terminate in a finite number of steps (that is, that never reach (0, \ldots, 0)).
 
 Finally, in Section \ref{sec:nonIntegers} we extend our analysis beyond the integers. We show that all 4-tuple games on the rational numbers terminate in a finite number of steps (just as was the case for the integers.) Additionally, we exhibit a large class of 4-tuple games on the real numbers that terminate quickly. However, we also construct a 4-tuple game on the real numbers that never terminates.
 
@@ -246,61 +246,7 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games For Other $k$-tuples\label{sec:othertuples}}
 
-We have thus far defined games over $4$-tuples and showed that all such games are of finite length. We can generalize the notion of a game to tuples of different lengths. In fact, the property that all games are of finite length holds for all tuple sizes of the form $2^k$. For tuple sizes not of this form, there exist games that are of infinite length.
-
-\subsection{Existence of Infinitely Long Games}
-
-We will first show that for tuple sizes not of the form $2^k$, there exist games of infinite length. First, we prove a useful lemma:
-
-\begin{lemma}
-Consider the game $(1, 1, 0, \ldots, 0)$ of odd size (so there are an odd number of $0$'s.) This game never terminates.
-\label{lem:evenodds}
-\end{lemma}
-
-\begin{proof}
-\emph{Notice that the difference of any tuple must include an even number of odd elements}. The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
-
-Let $(a_{00}, a_{01}, a_{02}, \ldots, a_{0n}) = (1, 1, 0, \ldots, 0)$ be the initial game state described in the statement of the lemma. We show by induction that for all $i$, 
-$D^i(1,1,0,\ldots,0) \neq (0, 0, \ldots, 0)$. Equivalently, the odd-sized game beginning with $(1, 1, 0, \ldots, 0)$ does not terminate:
-
-$(a_{00}, a_{01}, a_{02}, \ldots, a_{0n})$ includes a non-zero even number of odd elements, by construction. Assume that $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes a non-zero even number of odd elements. So $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ must include a non-zero even number of odd elements. So  $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ cannot be the tuple of all $0$'s. This concludes the proof of the lemma.
-\end{proof}
-
-For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
-
-We need one more lemma to prove our claim:
-
-\begin{lemma}
-\label{lem:doubles}
-If the game for an $n$-tuple $(a_0, a_1, \ldots, a_{n-1})$ has infinite length, then so does the game for the $2n$-tuple $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$.
-\end{lemma}
-
-\begin{proof}
-
-The difference of $(a_0, a_1, \ldots, a_{n-1})$ is:
-
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
-
-\breathe
-
-The difference of $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$ is:
-
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|),$$
-which is just two concatenated copies of the difference of $(a_0, a_1, \ldots, a_{n-1})$.
-
-By repeating this process, it is clear that the game $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ has finite length only if the game $(a_0, a_1, \ldots, a_n)$ has finite length. So $(a_0, a_1, \ldots, a_{n-1}, a_n, a_{n+1}, \ldots, a_{2n-1}) = (1, 1, 0, \ldots, 0, 1, 1, 0, \ldots, 0)$, where $n$ is odd, never terminates. 
-
-\end{proof}
-
-\begin{theorem}
-\label{theorem:notPowersOfTwo}
-If $n$ is not of the form $2^k$, then there exists an $n$-tuple whose game has infinite length.
-\end{theorem}
-
-\begin{proof}
-
-If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a game of size $p$ of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain a game of size $n$ of infinite length. 
-\end{proof}
+We now extend our discussion to games with tuples of sizes other than 4. We show that given $k >1$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
 
 \subsection{Finiteness of All $2^k$-tuple Games}
 
@@ -373,6 +319,62 @@ By our previous lemma, taking successive differences of each of these tuples yie
 \end{proof}
 
 This lemma, together with the proof as outlined previously in this section, allow us to conclude that all games for tuples of size $2^k$ are finite.
+
+\subsection{Existence of Infinitely Long Games}
+
+We now show that if $k > 1$ is not an integer power of 2, then there exist $k$-games of infinite length. First, we prove a useful lemma:
+
+\begin{lemma}
+The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number of 0's, never terminates.
+\label{lem:evenodds}
+\end{lemma}
+
+\begin{proof}
+\emph{Notice that the difference of any tuple must include an even number of odd elements}. The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
+
+Let $(a_{00}, a_{01}, a_{02}, \ldots, a_{0n}) = (1, 1, 0, \ldots, 0)$ be the initial game state described in the statement of the lemma. We show by induction that for all $i$, 
+$D^i(1,1,0,\ldots,0) \neq (0, 0, \ldots, 0)$. Equivalently, the odd-sized game beginning with $(1, 1, 0, \ldots, 0)$ does not terminate:
+
+$(a_{00}, a_{01}, a_{02}, \ldots, a_{0n})$ includes a non-zero even number of odd elements, by construction. Assume that $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes a non-zero even number of odd elements. So $(a_{i0}, a_{i1}, \ldots, a_{in})$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ must include a non-zero even number of odd elements. So  $(a_{(i+1)0}, a_{(i+1)1}, \ldots, a_{(i+1)n})$ cannot be the tuple of all $0$'s. This concludes the proof of the lemma.
+\end{proof}
+
+For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
+
+We need one more lemma to prove our claim:
+
+\begin{lemma}
+\label{lem:doubles}
+If the game for an $n$-tuple $(a_0, a_1, \ldots, a_{n-1})$ has infinite length, then so does the game for the $2n$-tuple $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$.
+\end{lemma}
+
+\begin{proof}
+
+The difference of $(a_0, a_1, \ldots, a_{n-1})$ is:
+
+$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
+
+\breathe
+
+The difference of $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$ is:
+
+$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|),$$
+which is just two concatenated copies of the difference of $(a_0, a_1, \ldots, a_{n-1})$.
+
+By repeating this process, it is clear that the game $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ has finite length only if the game $(a_0, a_1, \ldots, a_n)$ has finite length. So $(a_0, a_1, \ldots, a_{n-1}, a_n, a_{n+1}, \ldots, a_{2n-1}) = (1, 1, 0, \ldots, 0, 1, 1, 0, \ldots, 0)$, where $n$ is odd, never terminates. 
+
+\end{proof}
+
+\begin{theorem}
+\label{theorem:notPowersOfTwo}
+If $n$ is not of the form $2^k$, then there exists an $n$-tuple whose game has infinite length.
+\end{theorem}
+
+\begin{proof}
+
+If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a game of size $p$ of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain a game of size $n$ of infinite length. 
+\end{proof}
+
+
 
 \section{Games Over Non-Integers\label{sec:nonIntegers}}
 
