@@ -202,7 +202,9 @@ Consider the game $(a_0, a_1, a_2, \ldots, a_n)$ where n is even (so the number 
 \label{lem:evenodds}
 \end{lemma}
 
-TODO(jven,dgrazian): I think this is phrased a bit awkwardly... can we just say that the game $(1,0,0,...,0)$ has infinite length for any odd size, then state that doubling these give all of the non-$2^k$ sizes? I think all of the generality is losing sight of the goal.
+TODO(jven,dgrazian): I think this is phrased a bit awkwardly... can we just say that the game $(1,0,0,...,0)$ has infinite length for any odd size, then state that doubling these give all of the non-$2^k$ sizes? I think all of the generality is losing sight of the goal that we just need to construct a game that doesn't terminate
+
+TODO(jven,dgrazian): We don't use this G notation previously so we shouldn't introduce it here
 
 \begin{proof}
 \emph{Notice that the difference of any tuple must include an even number of odd elements} (1). The number of odd elements is precisely the number of pairs of adjacent elements (with the initial and final elements considered adjacent) consisting of an even and an odd element. Walking along the tuple from $a_0$ to $a_n$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in the difference of the tuple.
@@ -218,44 +220,33 @@ We need one more lemma to prove our claim:
 
 \begin{lemma}
 \label{lem:doubles}
-If $(a_0, a_1, \ldots, a_{n})$ is a game that does not terminate, then $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ also does not terminate.
+If the game for an $n$-tuple $(a_0, a_1, \ldots, a_{n-1})$ has infinite length, then so does the game for the $2n$-tuple $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$.
 \end{lemma}
 
 \begin{proof}
 
-The difference of $(a_0, a_1, \ldots, a_{n})$ is:
+The difference of $(a_0, a_1, \ldots, a_{n-1})$ is:
 
-\noindent
- $(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|)$.
+$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
 
 \breathe
 
-The difference of $(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_n)$ is:
+The difference of $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$ is:
 
-\noindent
-$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|$,
+$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
 
-\noindent
-$|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_n|, |a_n - a_0|)$.
-
-Since this is true for general values of $a_0$, \ldots, $a_n$, the $i$th sequence in the game beginning with $(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_n)$ is simply
-
-\noindent
-two appended copies of the $i$th sequence in the game beginning with $(a_0, a_1, \ldots, a_{n})$. So if $(a_0, a_1, \ldots, a_{n})$ doesn't terminate, then 
-
-\noindent
-$(a_0, a_1, \ldots, a_{n}, a_0, a_1, \ldots, a_{n})$ doesn't terminate.
+Note that this is a $2n$-tuple whose left half is the difference of the left half of the original $2n$-tuple and whose right half is the same as its left. By repeating this process, it is clear that the $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ game has finite length only if the $(a_0, a_1, \ldots, a_n)$ game has finite length, which is not so. The result follows.
 
 \end{proof}
 
 \begin{theorem}
 \label{theorem:notPowersOfTwo}
-If $n$ is an integer that is not an integer power of 2, then there is a game of size $n$ that does not terminate.
+If $n$ is not of the form $2^k$, then there exists an $n$-tuple whose game has infinite length.
 \end{theorem}
 
 \begin{proof}
 
-Given an integer $k > 2$ that is not an integer power of 2, $k$ can be written in the form $p \times 2^{m}$ where $p$ is an odd prime and $m$ is an integer. By Lemma \ref{lem:evenodds}, there is a game of size $p$ that does not terminate (e.g. $(1,1,0, \ldots, 0)$) By applying Lemma \ref{lem:doubles} $m$ times, we obtain a game of size $m$ that does not terminate. 
+If $n$ is not of the form $2^k$, then $n$ can be written in the form $p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a game of size $p$ of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain a game of size $n$ of infinite length. 
 \end{proof}
 
 \subsection{Finiteness of All $2^k$-tuple Games}
@@ -342,14 +333,17 @@ The proof of this follows very easily from the fact that game length is invarian
 
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
-A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$. Unlike games over the integers, there are games over the reals that do not terminate. However, we did discover a large class of terminating games over the reals:
+A more interesting question arises when we instead consider game of $4$-tuples over $\mathbb{R}$. Though we have yet to understand the behavior of the difference over $\mathbb{R}$ to the same fullness and exhaustiveness as over $\mathbb{Z}$, there are still many interesting observations that can be made:
 
 \begin{theorem}
 \label{thm:inequalities}
-Given a game $G_0 =  (a, b, c, d)$, if $a \leq c \leq b \leq d$, or if $a \leq d \leq c \leq b$, then $G_0$ terminates in 4 steps. 
+For $a,b,c,d\in \mathbb{R}$, if $a \leq c \leq b \leq d$ or $a \leq d \leq c \leq b$, then the $(a,b,c,d)$ game is finite and has length $4$. 
 \end{theorem}
 
 \begin{proof}
+
+TODO(jven,dgrazian): Axe the Gs?
+
 Consider a game $(a,b,c,d)$ and assume $a \leq c \leq b \leq d$. The difference of $G_0 =  (a, b, c, d)$ is:
 
 \begin{align*}
