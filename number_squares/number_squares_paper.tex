@@ -176,11 +176,13 @@ TODO(jven): Should I motivate this proof a little bit? Could be a little long-wi
 
 \section{Games For Other $k$-tuples}
 
-This paper is primarily concerned with games of 4-tuples, but it is worth exploring the behavior of games of other sizes. We will show that given a an integer $n$, every game of size $n$ terminates if and only if $n$ is an integer power of 2.
+We have thus far defined games over $4$-tuples and showed that all such games are of finite length. We can generalize the notion of a game for tuples of different lengths. In fact, the property that all games are of finite length holds for all tuple sizes of the form $2^k$. For tuple sizes not of this form, there exist games that are of infinite length.
 
-First, we prove a useful Lemma:
+\subsection{Existence of Infinitely Long Games}
 
-\begin {lemma}
+We will first show that for tuple sizes not of the form $2^k$, there exist games of infinite length. First, we prove a useful lemma:
+
+\begin{lemma}
 Consider the game $(a_0, a_1, a_2, \ldots, a_n)$ where n is even (so the number of elements is odd) and the elements are not all equal. Let the game include a non-zero even number of odd elements. Then the game never terminates.
 \label{lem:evenodds}
 \end{lemma}
@@ -239,7 +241,7 @@ If $n$ is an integer that is not an integer power of 2, then there is a game of 
 Given an integer $k > 2$ that is not an integer power of 2, $k$ can be written in the form $p \times 2^{m}$ where $p$ is an odd prime and $m$ is an integer. By Lemma \ref{lem:evenodds}, there is a game of size $p$ that does not terminate (e.g. $(1,1,0, \ldots, 0)$) By applying Lemma \ref{lem:doubles} $m$ times, we obtain a game of size $m$ that does not terminate. 
 \end{proof}
 
-TODO (Daniel) Prove that games of size $k = 2^n$ always terminate.
+\subsection{Finiteness of All $2^k$-tuple Games}
 
 
 
