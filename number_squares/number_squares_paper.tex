@@ -42,15 +42,18 @@
 \begin{document}
 
 \begin{abstract}
+We investigate the behavior of an operator that maps tuples to same-size tuples, seeking to characterize those starting tuples which, upon successive applications of the operation, yield the zero tuple in finite time.
 \end{abstract}
 
 \maketitle
 
 \section{Introduction\label{sec:intro}}
 
-In this paper, we present an operation that acts on $4$-tuples of integers in a very simple way. Our aim is to completely understand the behavior of this operation under various starting $4$-tuples.
+In this paper, we present an operation called the \textit{difference} that acts on tuples of integers in a very simple way. Our aim is to completely understand the behavior of this operation under various starting tuples. Specifically, we are interested in applying the difference to a given tuple successively until a tuple of all zeroes is reached, or else concluding that the zero tuple will never be reached.
 
-Our analysis has resulted in a number of observations (and of course corresponding proofs). First, we will show that for any choice of the initial $4$-tuple, continual application of the operation eventually yields the $4$-tuple of all zeroes after finitely many steps. We also provide an upper bound on the number of applications of the operation that are necessary to reach this zero state, given any starting $4$-tuple. Second, we will show that given any non-negative integer $n$, we can construct a starting $4$-tuple such that exactly $n$ applications of the operation yield the zero state. Finally, we look at interesting generalizations of this problem, such as tuples of different lengths and tuples of elements of non-integers.
+Our analysis has resulted in a number of observations. First, for any starting tuple whose size is of the form $2^k$, the difference eventually yields the same-size tuple of all zeroes after finitely many steps. We also provide an upper bound on the number of applications of the difference that are necessary for a given starting tuple. On the other hand, we also show that there exist games of arbitrarily long finite length. Second, we show that this does not hold for tuple sizes not of the form $2^k$: that is, we can construct such tuples so that upon successive applications of the difference, the zero tuple is never reached. We finally extend the notion of the difference to operate on tuples of non-integers, also with the aim of understanding which starting tuples eventually yield the zero tuple.
+
+We will begin by presenting the definition of the difference in the context of $4$-tuples of integers. The $4$-tuple case completely captures the problem for all $2^k$-tuples so it is useful to begin here. Next, we give a construction for infinitely long games for all tuple sizes not of the form $2^k$. We then present the details for generalizing our arguments for $4$-tuples to $2^k$-tuples. Finally, we address the extension of the difference operator to tuples over $\mathbb{Q}$ and $\mathbb{R}$.
 
 \section{Definitions and Notation\label{sec:defs}}
 
