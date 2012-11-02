@@ -61,9 +61,9 @@ For example:
 
 $$\diff((2, 6, 1, 9)) = (4, 5, 8, 7)$$.
 
-In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached. We will call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$ the $(a, b, c, d)$ \textit{game}, the \textit{game starting with} $(a, b, c, d)$, or the \textit{game on} $(a, b, c, d)$.
+In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached. We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$  the \textit{game on} $(a, b, c, d)$ or, where the context is clear, simply $(a, b, c, d)$.
 
-For example, the game starting with $(3, 7, 2, 5)$ is:
+For example, the game on $(3, 7, 2, 5)$ is:
 \begin{align*}
 & (3, 7, 2, 5) \\
 & (4, 5, 3, 2) \\
@@ -92,7 +92,7 @@ This particular game takes 4 steps (applications of $\diff$) to terminate, so we
 
 This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper.
 
-This paper will be devoted to investigating the lengths of games and the conditions under which games terminate. First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+This paper is devoted to investigating the lengths of games and the conditions under which games terminate. First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
 
 $$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|)$$.
 
