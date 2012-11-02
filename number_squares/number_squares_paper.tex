@@ -150,12 +150,12 @@ Finally, in Section \ref{sec:nonIntegers} we extend our analysis beyond the inte
 
 In this section, we aim to make observations that will simplify our analysis in the rest of the paper.
 
-First, we list three operations on a game under which the length of the game is invariant. We shall use the operations throughout the paper to make simplifying modifications to games without affecting their lengths.
+First, we list three operations on the starting tuple of a game under which the length of the game is invariant. We will use these operations throughout the paper to make simplifying modifications to games without affecting their lengths.
 
 Suppose $(a,b,c,d)$ is a game of length greater than $2$. Now we can make the following assertions:
 
 \begin{enumerate}
-\item The $(b,c,d,a)$ game has the same length as the $(a,b,c,d)$ game. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of the difference operation. Each $4$-tuple in the $(b,c,d,a)$ game contains the same elements as the corresponding $4$-tuple in the $(a,b,c,d)$ game, except cyclically shifted left by $1$. \\
+\item The $(b,c,d,a)$ game has the same length as the $(a,b,c,d)$ game. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of $\diff$. Each $4$-tuple in the $(b,c,d,a)$ game contains the same elements as the corresponding $4$-tuple in the $(a,b,c,d)$ game, except cyclically shifted left by $1$. \\
 \item The $(ua, ub, uc, ud)$ game, for any $u \in \z - \{0\}$, has the same length as the $(a,b,c,d)$ game. That is, scaling a $4$-tuple by a non-$0$ integer does not change the length of the game. The subsequent $4$-tuples in the $(ua, ub, uc, ud)$ game are the same as the corresponding $4$-tuples in the $(a,b,c,d)$ game, except scaled by $|u|$. \\
 \item The game $(a + v, b + v, c + v, d + v)$, for any $v \in \z$, has the same length as the $(a,b,c,d)$ game. That is, translating a $4$-tuple does not change the length of the game. After one step, the games $(a, b, c, d)$ and $(a + v, b + v, c + v, d + v)$ will be identical.
 \end{enumerate}
