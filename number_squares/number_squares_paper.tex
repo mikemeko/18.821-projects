@@ -92,17 +92,19 @@ This particular game takes 4 steps (applications of $\diff$) to terminate, so we
 
 This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper.
 
-This paper is devoted to investigating the lengths of games and the conditions under which games terminate. First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+This paper is devoted to investigating the lengths of games and the conditions under which games terminate. 
 
-$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|).$$
-
-For example:
-
-$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3).$$
-
-$\diff$ can also be applied analogously to tuples of real numbers. For example:
-
-$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2}).$$
+%First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+%
+%$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|).$$
+%
+%For example:
+%
+%$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3).$$
+%
+%$\diff$ can also be applied analogously to tuples of real numbers. For example:
+%
+%$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2}).$$
 
 In Section \ref{sec:invariants} we show that the length of a game is invariant under certain operations on the starting tuple. This simplifies our analysis in the remaining sections.
 
@@ -230,7 +232,15 @@ $$(0, 103502633381134336, 293873656088494080, 644020556730990592)$$
 
 \section{Games For Other $k$-tuples\label{sec:othertuples}}
 
-We now extend our discussion to games with tuples of sizes other than 4. We show that given $k > 2$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
+We now extend our discussion to games with tuples of sizes other than 4. We generalize the operation $\diff$ to act in the natural way on tuples of other sizes. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+
+$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|)$$.
+
+For example:
+
+$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3)$$.
+
+We show that given $k > 2$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
 
 \subsection{Finiteness of All $2^k$-tuple Games}
 
@@ -386,7 +396,7 @@ where $x$ is a real number greater than $1$ that we will define shortly. Now we 
 \end{align*}
 If we choose $x$ such that $x^2 + x + 1 = x^3$, then we see that $s(1,x,x^2,x^3)$ is a multiple of $(1,x,x^2,x^3)$, which, since we know that the length of a game is invariant under scaling, shows us that the game will never terminate. The only real (and irrational) solution to $x^2 + x + 1 = x^3$, which is approximately $1.839$, satisfies the condition of being greater than $1$, so we have indeed constructed a non-terminating $4$-tuple game.
 
-Even though we do not have a complete characterization for the games on the real numbers that do terminate, we have identified the following class of $4$-tuples that are guaranteed to terminate:
+The operation $\diff$ can also act on tuples of real numbers; the formula for $\diff(a, b, c, d)$ is unchanged. Even though we do not have a complete characterization of the games on the real numbers that do terminate, we have identified the following class of $4$-tuples that are guaranteed to terminate:
 
 \begin{theorem}
 \label{thm:inequalities}
