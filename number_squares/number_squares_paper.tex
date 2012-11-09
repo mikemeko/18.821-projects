@@ -170,19 +170,18 @@ We will now show that every integer $4$-tuple game terminates at the $4$-tuple $
 
 The main result we shall use to prove this claim is the following.
 \begin{theorem}
-For any $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
+For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
 \label{thm:pow2}
 \end{theorem}
 
-Before proving this theorem, let us first make a few useful observations.
-
-\begin{lemma}
-All games starting with $4$-tuples only containing $0$s and $1$s have length at most $5$.
-\label{lem:zerosones}
-\end{lemma}
-
 \begin{proof}
-Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s. However, we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since a cyclic permutation does not affect the length of a game, studying these $6$ $4$-tuples is sufficient.
+We prove this by induction on $n$.
+
+The base case for which $n=0$ follows trivially because it simply asserts that $a$, $b$, $c$, and $d$ are congruent to $0\pmod{1}$.
+
+In the inductive step, we need to show that for any $n \in \znn$, if $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$, then $\diff^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$. Before proving this, let us make an important observation.
+
+For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
@@ -190,36 +189,9 @@ Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s. However, we o
 \label{fig:zerosones}
 \end{figure}
 
-Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum length of such a game is $5$ (length $5$ is achieved by $(0,1,1,1)$ and $(1,0,0,0)$).
+Returning to the proof of the inductive hypothesis, we note that we can take out a factor of $2^n$ from the $(a,b,c,d)$ game since $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$. If we take $4$ steps while keeping the $2^n$ factored out, we have that the remaining values must be even, which shows that the elements of $\diff^4(a,b,c,d)$ are congruent to $0\pmod{2^{n+1}}$. This concludes the inductive proof.
 
 \end{proof}
-
-We can use Lemma \ref{lem:zerosones} to make a stronger claim.
-
-\begin{lemma}
-For any $n \in \znn$, if $a, b, c, d \in \znn$ are congruent to $0\pmod{2^n}$, then $\diff^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$.
-\label{lem:evenodd}
-\end{lemma}
-
-\begin{proof}
-Since $a, b, c, d$ are congruent to $0\pmod{2^n}$, each is congruent to either $0$ or $2^n\pmod{2^{n+1}}$. Now define $\hat{a}$ to be $0$ if $a$ is congruent to $0\pmod{2^{n+1}}$ or $1$ otherwise. That is,
-$$
-\hat{a} = \frac{a}{2^n}\pmod{2}
-$$
-Similarly define $\hat{b}$, $\hat{c}$, and $\hat{d}$. Let $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{4}$ describe the first 5 elements in the $(a, b, c, d)$ game, and $\Big((\hat{a}_i, \hat{b}_i, \hat{c}_i, \hat{d}_i)\Big)_{i=0}^{4}$ the first 5 elements in the $(\hat{a}, \hat{b}, \hat{c}, \hat{d})$ game. It is clear that
-$$
-(a_i, b_i, c_i, d_i) \equiv (\hat{a}_i, \hat{b}_i, \hat{c}_i, \hat{d}_i) \pmod{2^{n+1}} \forall i=0,1,\ldots,4.
-$$
-By Lemma \ref{lem:zerosones}, we know that the game $(\hat{a},\hat{b},\hat{c},\hat{d})$ terminates at $(0,0,0,0)$ after at most $4$ steps, so we know that the elements in the game $(a,b,c,d)$ will be congruent to $0\pmod{2^{n+1}}$ after at most $4$ steps.
-\end{proof}
-
-We can use this to prove Theorem \ref{thm:pow2} and also to give an upper bound on the length of any game.
-
-\textit{Proof of Theorem \ref{thm:pow2}.}
-
-The proof is by induction on $n$.
-Both the base case and inductive step follow directly from Lemma \ref{lem:evenodd}.
-\qed
 
 \begin{corollary}
 Let $M=\max(a,b,c,d)$. Then the game $(a,b,c,d)$ is finite and has length at most $4(\lfloor\log_2{M}\rfloor + 1) + 1$.
