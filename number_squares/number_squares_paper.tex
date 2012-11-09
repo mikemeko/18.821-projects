@@ -152,17 +152,17 @@ In this section, we aim to make observations that will simplify our analysis in 
 
 First, we list three operations on a game under which the length of the game is invariant. We shall use the operations throughout the paper to make simplifying modifications to games without affecting their lengths.
 
-Suppose $(a,b,c,d)$ is a game of length $n > 2$ given by $\Big((a_i, b_i, c_i, d_i)\Big)_{i=0}^{n - 1}$. Now we can make the following assertions:
+Suppose $(a,b,c,d)$ is a game of length greater than $2$. Now we can make the following assertions:
 
 \begin{enumerate}
-\item The game $(b,c,d,a)$ has length $n$. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of the difference operation. It is clear that the game $(b,c,d,a)$ is given by $\Big((b_i, c_i, d_i, a_i)\Big)_{i=0}^{n - 1}$. Thus, the lengths of the two games are equal. \\
-\item The game $(ua, ub, uc, ud)$, for any $u \in \z - \{0\}$, has length $n$. That is, scaling a $4$-tuple by a non-$0$ number does not change the length of the game. It is clear that the game $(ua, ub, uc, ud)$ is given by $\Big((|u|a_i, |u|b_i, |u|c_i, |u|d_i)\Big)_{i=0}^{n - 1}$. Thus, the lengths of the two games are equal. \\
-\item The game $(a + v, b + v, c + v, d + v)$, for any $v \in \z$, has length $n$. That is, translating a $4$-tuple does not change the length of the game. After one step, the games $(a, b, c, d)$ and $(a + v, b + v, c + v, d + v)$ will be identical. Thus, the lengths of the two games are equal.
+\item The $(b,c,d,a)$ game has the same length as the $(a,b,c,d)$ game. That is, cyclically permuting a $4$-tuple does not change the length of the game. The reason for this is the cyclic nature of the difference operation. Each $4$-tuple in the $(b,c,d,a)$ game contains the same elements as the corresponding $4$-tuple in the $(a,b,c,d)$ game, except cyclically shifted left by $1$. \\
+\item The $(ua, ub, uc, ud)$ game, for any $u \in \z - \{0\}$, has the same length as the $(a,b,c,d)$ game. That is, scaling a $4$-tuple by a non-$0$ integer does not change the length of the game. The subsequent $4$-tuples in the $(ua, ub, uc, ud)$ game are the same as the corresponding $4$-tuples in the $(a,b,c,d)$ game, except scaled by $|u|$. \\
+\item The game $(a + v, b + v, c + v, d + v)$, for any $v \in \z$, has the same length as the $(a,b,c,d)$ game. That is, translating a $4$-tuple does not change the length of the game. After one step, the games $(a, b, c, d)$ and $(a + v, b + v, c + v, d + v)$ will be identical.
 \end{enumerate}
 
 Note that these assertions can be easily extended to any $k$-tuples, $k \in \zp$.
 
-Second, we will make the assumption that all starting $k$-tuples for the games we consider contain non-negative elements. The reason for this is that, regardless of the elements in the first $k$-tuple of a game, by the definition of $\diff$, the second $k$-tuple in the game will have non-negative elements. So if we are interested in studying a game that starts with a $k$-tuple $(a_0, a_1, \dots, a_k)$ containing negative elements, we can just consider the game starting from $\diff((a_0, a_1, \dots, a_k))$.
+Second, we will make the assumption that all starting $k$-tuples for the games we consider contain non-negative elements. The reason for this is that, regardless of the elements in the first $k$-tuple of a game, the second $k$-tuple of the game will have non-negative elements. So if we are interested in studying a game that starts with a $k$-tuple $(a_0, a_1, \dots, a_k)$ containing negative elements, we can just consider the game starting from $\diff((a_0, a_1, \dots, a_k))$.
 
 \section{Finiteness of All Games\label{sec:convergence}}
 
@@ -383,6 +383,8 @@ All games of $4$-tuples over $\mathbb{Q}$ are finite.
 \end{theorem}
 
 The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$. (Note that the lemma in that section dealt only with integers but the argument is easily extended to any reals.)
+
+TODO(dgrazian, mikemeko): do we want $(aqrs, bprs, cqpr, dpqr)$ in place of $(a,b,c,d)$ here?
 
 Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
