@@ -33,7 +33,7 @@
 % Integers
 \newcommand{\z}{\mathbb{Z}}
 % Our 'difference' operation
-\newcommand{\diff}{s}
+\newcommand{\diff}{D}
 % Non-negative integers
 \newcommand{\znn}{\mathbb{N}}
 % Positive integers
@@ -251,17 +251,17 @@ Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. The \textbf{exclu
 We now show that xor commutes with the difference operator.
 
 \begin{lemma}
-Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $D((a_i)\xor (b_i))=D((a_i))\xor D((b_i))$.
+Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $\diff((a_i)\xor (b_i))=\diff((a_i))\xor \diff((b_i))$.
 \end{lemma}
 
-\textit{Proof}: The key observation is that when $u,v\in \{0,1\}$, $|u-v|=(u+v)\pmod{2}$. We have that the $i^{th}$ element of $D((a_i)\xor (b_i))$ is
+\textit{Proof}: The key observation is that when $u,v\in \{0,1\}$, $|u-v|=(u+v)\pmod{2}$. We have that the $i^{th}$ element of $\diff((a_i)\xor (b_i))$ is
 
 $$\begin{array}{cl}
 & |(a_i+b_i)\pmod{2} - (a_{i+1}+b_{i+1})\pmod{2}| \\
 = & (a_i+a_{i+1}+b_i+b_{i+1})\pmod{2}
 \end{array}$$
 
-(In the case $i=n-1$, take $i+1$ to be $0$.) The $i^{th}$ element of $D((a_i))\xor D((b_i))$ is
+(In the case $i=n-1$, take $i+1$ to be $0$.) The $i^{th}$ element of $\diff((a_i))\xor \diff((b_i))$ is
 
 $$\begin{array}{cl}
 & (|a_i-a_{i+1}|+|b_i-b_{i+1}|)\pmod{2} \\
