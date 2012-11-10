@@ -72,7 +72,7 @@ For example, the  $(3, 7, 2, 5)$ game is:
 & (0, 0, 0, 0)
 \end{align*}
 
-This particular game takes 4 steps (applications of $\diff$) to terminate, so we say it has length 4. The table in Figure \ref{fig: lengthVersusStartingTuple} gives the lengths of several other games. The entries of the starting tuples were selected uniformly at random from $0$ to $1000$.
+This particular game takes 4 steps (applications of $\diff$) to terminate and includes 5 tuples, so we say it has length 5. The table in Figure \ref{fig: lengthVersusStartingTuple} gives the lengths of several other games. The entries of the starting tuples were selected uniformly at random from $0$ to $1000$.
 
 \begin{figure}
 \caption{Length of game versus starting tuple}
@@ -81,18 +81,16 @@ This particular game takes 4 steps (applications of $\diff$) to terminate, so we
     \begin{tabular}{| c | c |}
     \hline
     Starting tuple &  Length of game\\ \hline
-    (540, 752, 144, 4) & 4\\ \hline
-    (345, 906, 136, 149) & 6\\ \hline
-    (912, 135, 490, 150) & 4\\ \hline
-    (129, 660, 348, 211) & 7 \\ \hline
-    (215, 57, 594, 502) & 5 \\ \hline
+    (540, 752, 144, 4) & 5\\ \hline
+    (345, 906, 136, 149) & 7\\ \hline
+    (912, 135, 490, 150) & 5\\ \hline
+    (129, 660, 348, 211) & 8 \\ \hline
+    (215, 57, 594, 502) & 6 \\ \hline
     \end{tabular}
 \end{center}
 \end{figure}
 
-This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper.
-
-This paper is devoted to investigating the lengths of games and the conditions under which games terminate. 
+This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper, which is devoted to investigating the lengths of games and the conditions under which games terminate. 
 
 %First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
 %
@@ -168,7 +166,7 @@ We will now show that every integer $4$-tuple game terminates at the $4$-tuple $
 
 The main result we shall use to prove this claim is the following.
 \begin{theorem}
-For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
+For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are all congruent to $0\pmod{2^n}$.
 \label{thm:pow2}
 \end{theorem}
 
@@ -316,7 +314,7 @@ This lemma, together with the proof as outlined previously in this section, allo
 
 \subsection{Existence of Infinitely Long Games}
 
-We now show that if $k > 2$ is not an integer power of 2, then there exist $k$- tuple games of infinite length. First, we prove a useful lemma:
+We now show that if $k > 2$ is not an integer power of 2, then there exist $k$-tuple games of infinite length. First, we prove a useful lemma:
 
 \begin{lemma}
 The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number of 0's, never terminates.
@@ -333,7 +331,7 @@ $(1, 1, 0, \ldots, 0)$ includes a non-zero even number of odd elements, by const
 Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game, where $(1, 1, 0, \ldots, 0)$ has an odd number of zeros, never terminates.
 \end{proof}
 
-For every odd $k > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $k$ that never terminates. We now use this result to show that for every $k$ that is not an integer power of 2, there are games of size $k$ that do not terminate.
+For every odd $k > 1$, Lemma \ref{lem:evenodds} gives an example of a $k$-tuple game that never terminates. We now use this result to show that for every $k$ that is not an integer power of 2, there are games of size $k$ that do not terminate.
 
 We need one more lemma to prove our claim:
 
@@ -400,7 +398,7 @@ The operation $\diff$ can also act on tuples of real numbers; the formula for $\
 
 \begin{theorem}
 \label{thm:inequalities}
-For $a,b,c,d\in \mathbb{R}$, if $a \leq c \leq b \leq d$ or $a \leq d \leq c \leq b$, then the $(a,b,c,d)$ game is finite and has length $4$. 
+For $a,b,c,d\in \mathbb{R}$, if $a \leq c \leq b \leq d$ or $a \leq d \leq c \leq b$, then the $(a,b,c,d)$ game is finite and has length $5$. 
 \end{theorem}
 
 \begin{proof}
