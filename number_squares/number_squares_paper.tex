@@ -179,7 +179,7 @@ The base case for which $n=0$ follows trivially because it simply asserts that $
 
 In the inductive step, we need to show that for any $n \in \znn$, if $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$, then $\diff^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$. Before proving this, let us make an important observation.
 
-For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
+For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that $B = \diff(A)$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
@@ -218,11 +218,11 @@ $$\begin{array}{cl}
 = & (-a - b + c, a - b + c, -a + b + c, -a - b + 3c)
 \end{array}$$
 
-We showed in Section \ref{sec:invariants} that game length is invariant under scaling as well as addition of each element in the tuple by a constant. Thus this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the difference of the following sequence:
+We showed in Section \ref{sec:invariants} that game length is invariant under scaling as well as addition of each element in the tuple by a constant. Thus this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the sequence obtained by applying $\diff$ to the following sequence:
 
 $$(0, -a - b + c, -2b + 2c, -a - b + 3c)$$
 
-This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
+This game thus has length $n + 1$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
 
 It thus remains to provide a game of length $5$ and of the form $(0, a, b, c)$, $0\leq a\leq b\leq c$, $a + b < c$, since all subsequent game lengths can be obtained by iterating the above process repeatedly from such a game. The game $(0, 1, 1, 3)$ is of the desired form and has length $5$, so we're done. $\qed$
 
@@ -252,13 +252,13 @@ For $k\in \znn$, all games of $2^k$-tuples are finite.
 
 Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $2^ke$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
 
-The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k+1$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with the difference operator. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
+The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k+1$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with $\diff$. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
 
 \begin{definition}
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. The \textbf{exclusive or} $(a_i)\xor (b_i)$ (herein referred to as \textbf{xor}) is the $n$-tuple whose $i^{th}$ element is $(a_i+b_i)\pmod{2}$. For example, $(0,1,0,1)\xor(0,0,1,1)=(0,1,1,0)$. It is clear that $\xor$ is commutative and associative.
 \end{definition}
 
-We now show that xor commutes with the difference operator.
+We now show that xor commutes with $\diff$.
 
 \begin{lemma}
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $\diff((a_i)\xor (b_i))=\diff((a_i))\xor \diff((b_i))$.
@@ -309,7 +309,7 @@ $$\begin{array}{c}
 (0,0,\ldots,0,1)
 \end{array}$$
 
-By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired.
+By our previous lemma, taking successively applying $\diff$ to each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired.
 \end{proof}
 
 This lemma, together with the proof as outlined previously in this section, allow us to conclude that all games for tuples of size $2^k$ are finite.
