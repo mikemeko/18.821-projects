@@ -5,12 +5,21 @@ multiple ways.
 
 __author__ = 'Justin Venezuela (jven@mit.edu)'
 
-def find_cube_sums_naive():
+def gcd(a, b):
+  assert a >= 0 and b >= 0, 'Inputs must be non-negative.'
+  a, b = max(a, b), min(a, b)
+  while b > 0:
+    a, b = b, a % b
+  return a
+
+def find_cube_sums_naive(relatively_prime = False):
   d = {}
   s = 0
   while True:
-    for a in range(s / 2):
+    for a in range(s / 2 + 1):
       b = s - a
+      if relatively_prime and gcd(a, b) > 1:
+        continue
       n = a * a * a + b * b * b
       if n in d:
         d[n].append((a, b))
@@ -43,5 +52,5 @@ def find_multiple_cube_sums_naive():
     s += 1
 
 if __name__ == '__main__':
-  #find_cube_sums_naive()
-  find_multiple_cube_sums_naive()
+  find_cube_sums_naive(relatively_prime = True)
+  #find_multiple_cube_sums_naive()
