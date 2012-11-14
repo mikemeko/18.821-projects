@@ -11,12 +11,14 @@ class Deduplicator(list):
   different ways. This is to capture the fact that if a^3 + b^3 = c^3 + d^3,
   then for any x, (ax)^3 + (bx)^3 = (cx)^3 + (dx)^3.
   """
-  def __init__(self, rep_sum_of_cubes, first_pair):
+  def __init__(self, rep_sum_of_cubes, first_pair, cubes):
     list.__init__(self)
     self.rep_sum_of_cubes = rep_sum_of_cubes
     self.first_pair = first_pair
+    self.cubes = cubes
   def belongs(self, sum_of_cubes):
-    return sum_of_cubes % self.rep_sum_of_cubes == 0
+    return (sum_of_cubes % self.rep_sum_of_cubes == 0 and
+        sum_of_cubes / self.rep_sum_of_cubes in self.cubes)
   def __str__(self):
     return '%d %s' % (self.rep_sum_of_cubes, str(self.first_pair))
 
@@ -24,7 +26,6 @@ def find_groups(N):
   """
   Finds deduplicated groups of numbers that can be written as a sum of cubes.
   N: number of cubes to store.
-  TODO(mikemeko): storing N cubes is pretty inefficient.
   """
   # dictionary mapping cubes to their cube-roots
   cubes = {}
@@ -40,7 +41,7 @@ def find_groups(N):
 
   # a sorted list of subms of cubes that can be expressed so in multiple ways
   mult_sums_of_cubes = sorted([item for item in sums_of_cubes.items() if
-                               len(item[1]) > 1], key=lambda item: item[0])
+      len(item[1]) > 1], key=lambda item: item[0])
 
   # deduplicated sums of cubes - note that the creation of the groups relies on
   # seeing the sums of cubes in sorted order.
@@ -51,7 +52,7 @@ def find_groups(N):
         group.append(sum_of_cubes)
         break
     else:
-      new_group = Deduplicator(sum_of_cubes, pairs)
+      new_group = Deduplicator(sum_of_cubes, pairs, cubes)
       new_group.append(sum_of_cubes)
       groups.append(new_group)
   return groups
