@@ -33,7 +33,7 @@
 % Integers
 \newcommand{\z}{\mathbb{Z}}
 % Our 'difference' operation
-\newcommand{\diff}{s}
+\newcommand{\diff}{D}
 % Non-negative integers
 \newcommand{\znn}{\mathbb{N}}
 % Positive integers
@@ -61,7 +61,7 @@ For example:
 
 $$\diff((2, 6, 1, 9)) = (4, 5, 8, 7).$$
 
-In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached. We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$  the $(a, b, c, d)$ \textit{game} or, where the context is clear, simply $(a, b, c, d)$.
+In particular, we are interested in repeatedly applying $\diff$ to an initial tuple, until the tuple (0, 0, 0, 0) is reached (if it is ever reached at all.) We call the (possibly infinite) sequence of tuples obtained by repeatedly applying $\diff$ to $(a, b, c, d)$ until (0, 0, 0, 0) is reached  the $(a, b, c, d)$ \textit{game} or, where the context is clear, simply $(a, b, c, d)$.
 
 For example, the  $(3, 7, 2, 5)$ game is:
 \begin{align*}
@@ -72,7 +72,7 @@ For example, the  $(3, 7, 2, 5)$ game is:
 & (0, 0, 0, 0)
 \end{align*}
 
-This particular game takes 4 steps (applications of $\diff$) to terminate, so we say it has length 4. The table in Figure \ref{fig: lengthVersusStartingTuple} gives the lengths of several other games. The entries of the starting tuples were selected uniformly at random from $0$ to $1000$.
+This particular game takes 4 steps (applications of $\diff$) to terminate and includes 5 tuples, so we say it has length 5. The table in Figure \ref{fig: lengthVersusStartingTuple} gives the lengths of several other games. The entries of the starting tuples were selected uniformly at random from $0$ to $1000$.
 
 \begin{figure}
 \caption{Length of game versus starting tuple}
@@ -81,28 +81,28 @@ This particular game takes 4 steps (applications of $\diff$) to terminate, so we
     \begin{tabular}{| c | c |}
     \hline
     Starting tuple &  Length of game\\ \hline
-    (540, 752, 144, 4) & 4\\ \hline
-    (345, 906, 136, 149) & 6\\ \hline
-    (912, 135, 490, 150) & 4\\ \hline
-    (129, 660, 348, 211) & 7 \\ \hline
-    (215, 57, 594, 502) & 5 \\ \hline
+    (540, 752, 144, 4) & 5\\ \hline
+    (345, 906, 136, 149) & 7\\ \hline
+    (912, 135, 490, 150) & 5\\ \hline
+    (129, 660, 348, 211) & 8 \\ \hline
+    (215, 57, 594, 502) & 6 \\ \hline
     \end{tabular}
 \end{center}
 \end{figure}
 
-This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper.
+This table may seem rather surprising. Apparently, typical games terminate, and furthermore, they terminate in very few steps. This observation is definitely not immediately obvious from the definition of $\diff$, and it provides motivation for this paper, which is devoted to investigating the lengths of games and the conditions under which games terminate. 
 
-This paper is devoted to investigating the lengths of games and the conditions under which games terminate. First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
-
-$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|).$$
-
-For example:
-
-$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3).$$
-
-$\diff$ can also be applied analogously to tuples of real numbers. For example:
-
-$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2}).$$
+%First, we generalize the operation $\diff$ in the natural way to tuples of sizes other than $4$. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+%
+%$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|).$$
+%
+%For example:
+%
+%$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3).$$
+%
+%$\diff$ can also be applied analogously to tuples of real numbers. For example:
+%
+%$$\diff(\pi, 1, 3, \sqrt{2}) = (\pi - 1, 2, 3 - \sqrt{2}, \pi - \sqrt{2}).$$
 
 In Section \ref{sec:invariants} we show that the length of a game is invariant under certain operations on the starting tuple. This simplifies our analysis in the remaining sections.
 
@@ -166,7 +166,7 @@ We will now show that every integer $4$-tuple game terminates at the $4$-tuple $
 
 The main result we shall use to prove this claim is the following.
 \begin{theorem}
-For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are congruent to $0\pmod{2^n}$.
+For any $a,b,c,d \in \z$ and $n \in \znn$, the $4$-tuple $\diff^{4n}((a, b, c, d))$ has elements that are all congruent to $0\pmod{2^n}$.
 \label{thm:pow2}
 \end{theorem}
 
@@ -177,7 +177,7 @@ The base case for which $n=0$ follows trivially because it simply asserts that $
 
 In the inductive step, we need to show that for any $n \in \znn$, if $a$, $b$, $c$, and $d$ are congruent to $0\pmod{2^n}$, then $\diff^4((a, b, c, d))$ will have elements that are congruent to $0\pmod{2^{n+1}}$. Before proving this, let us make an important observation.
 
-For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that the difference of $A$ is $B$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
+For any $a$, $b$, $c$, $d$, we have that $\diff^4((a,b,c,d))$ contains only even elements. To prove this, it suffices to show that any game that starts with a $4$-tuple only containing $0$s and $1$s terminates after $4$ steps. Indeed, there are $16$ $4$-tuples that contain only $0$s and $1$s, but we only need to consider $6$ of them, namely $(0,0,0,0)$, $(0,1,1,1)$, $(1,0,0,0)$, $(1,0,0,1)$, $(1,0,1,0)$, and $(1,1,1,1)$, since the other $10$ $4$-tuples can be obtained by appropriate cyclic permutation of one of these $6$. Since the length of a game is invariant under cyclic permutations, studying these $6$ $4$-tuples is sufficient. Figure \ref{fig:zerosones} shows a graph in which the nodes represent the $6$ $4$-tuples we are studying, and an edge from node $A$ to node $B$ indicates that $B = \diff(A)$. From this graph, it is clear that all of the games have finite length. Furthermore, the maximum number of steps necessary for termination is $4$, achieved, for example, by $(1,0,0,0)$).
 
 \begin{figure}
 \includegraphics{number_squares_0s_and_1s.png}
@@ -216,11 +216,11 @@ $$\begin{array}{cl}
 = & (-a - b + c, a - b + c, -a + b + c, -a - b + 3c)
 \end{array}$$
 
-We showed in Section \ref{sec:invariants} that game length is invariant under scaling as well as addition of each element in the tuple by a constant. Thus this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the difference of the following sequence:
+We showed in Section \ref{sec:invariants} that game length is invariant under scaling as well as addition of each element in the tuple by a constant. Thus this game also has length $n$. Furthermore, since each element of this tuple is non-negative (and in fact positive), it is the sequence obtained by applying $\diff$ to the following sequence:
 
 $$(0, -a - b + c, -2b + 2c, -a - b + 3c)$$
 
-This game thus has length $n + 1$ since its difference yields a game of length $n$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
+This game thus has length $n + 1$. Note also that this tuple is again of the form $(0, a', b', c')$, where $0\leq a'\leq b'\leq c'$ and $a' + b' = -a - 3b + 3c < -a - b + 3c = c'$. Thus we may iterate this process to yield a game of length $n + 2$, and so on.
 
 It thus remains to provide a game of length $5$ and of the form $(0, a, b, c)$, $0\leq a\leq b\leq c$, $a + b < c$, since all subsequent game lengths can be obtained by iterating the above process repeatedly from such a game. The game $(0, 1, 1, 3)$ is of the desired form and has length $5$, so we're done. $\qed$
 
@@ -230,7 +230,15 @@ $$(0, 103502633381134336, 293873656088494080, 644020556730990592)$$
 
 \section{Games For Other $k$-tuples\label{sec:othertuples}}
 
-We now extend our discussion to games with tuples of sizes other than 4. We show that given $k > 2$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
+We now extend our discussion to games with tuples of sizes other than 4. We generalize the operation $\diff$ to act in the natural way on tuples of other sizes. In particular, given a k-tuple $(a_0, \ldots, a_{k-1})$:
+
+$$\diff(a_0, \ldots, a_{k-1}) = (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-2} - a_{k-1}|, |a_{k-1} - a_0|)$$.
+
+For example:
+
+$$\diff((4, 12, 1, 0, 5, 7)) = (8, 11, 1, 5, 2, 3)$$.
+
+We show that given $k > 2$, if $k$ is an integer power of $2$ (1, 2, 4, etc.), then every $k$-tuple over the integers terminates in a finite number of steps. Otherwise, there exist $k$-tuple games over the integers of infinite length.
 
 \subsection{Finiteness of All $2^k$-tuple Games}
 
@@ -242,26 +250,26 @@ For $k\in \znn$, all games of $2^k$-tuples are finite.
 
 Our proof strategy is the same as that of the original $4$-tuple case. We will show that given any initial tuple, after $2^k$ steps, each element of the tuple will be congruent to $0\pmod{2}$, and thus congruent to either $0$ or $2\pmod{4}$. But then after another $2^k$ steps, each element of the tuple will be congruent to $0\pmod{4}$, and so on. Now let $B$ be the maximal element of the starting tuple. (Just as in the $4$-tuple case, we assume with no loss of generality that the starting tuple consists only of non-negative integers.) Choosing $e$ so that $2^e>B$, it is clear that after $2^ke$ steps, all elements of the tuple will be congruent to $0\pmod{2^e}$, and thus equal to $0$, as desired.
 
-The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k+1$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with the difference operator. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
+The only statement in our proposed strategy that does not obviously generalize from our proof in the $4$-tuple case is the fact that any game for a $2^k$-tuple of $0$s and $1$s is finite and of length at most $2^k+1$. It thus suffices to prove this statement. We will do so by finding a binary operation (a ``sum'') on these tuples of $0$s and $1$s that commutes with $\diff$. We will next construct a ``basis'' of such tuples whose games are known to be of finite length. Finally, we exhibit that all tuples of $0$s and $1$s can be expressed as a sum of tuples in this basis. The commutativity of the operators then allows us to conclude that all tuples of $0$s and $1$s yield games of finite length.
 
 \begin{definition}
 Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. The \textbf{exclusive or} $(a_i)\xor (b_i)$ (herein referred to as \textbf{xor}) is the $n$-tuple whose $i^{th}$ element is $(a_i+b_i)\pmod{2}$. For example, $(0,1,0,1)\xor(0,0,1,1)=(0,1,1,0)$. It is clear that $\xor$ is commutative and associative.
 \end{definition}
 
-We now show that xor commutes with the difference operator.
+We now show that xor commutes with $\diff$.
 
 \begin{lemma}
-Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $D((a_i)\xor (b_i))=D((a_i))\xor D((b_i))$.
+Let $(a_i),(b_i)$ be $n$-tuples whose elements are $0$ or $1$. Then $\diff((a_i)\xor (b_i))=\diff((a_i))\xor \diff((b_i))$.
 \end{lemma}
 
-\textit{Proof}: The key observation is that when $u,v\in \{0,1\}$, $|u-v|=(u+v)\pmod{2}$. We have that the $i^{th}$ element of $D((a_i)\xor (b_i))$ is
+\textit{Proof}: The key observation is that when $u,v\in \{0,1\}$, $|u-v|=(u+v)\pmod{2}$. We have that the $i^{th}$ element of $\diff((a_i)\xor (b_i))$ is
 
 $$\begin{array}{cl}
 & |(a_i+b_i)\pmod{2} - (a_{i+1}+b_{i+1})\pmod{2}| \\
 = & (a_i+a_{i+1}+b_i+b_{i+1})\pmod{2}
 \end{array}$$
 
-(In the case $i=n-1$, take $i+1$ to be $0$.) The $i^{th}$ element of $D((a_i))\xor D((b_i))$ is
+(In the case $i=n-1$, take $i+1$ to be $0$.) The $i^{th}$ element of $\diff((a_i))\xor \diff((b_i))$ is
 
 $$\begin{array}{cl}
 & (|a_i-a_{i+1}|+|b_i-b_{i+1}|)\pmod{2} \\
@@ -299,14 +307,14 @@ $$\begin{array}{c}
 (0,0,\ldots,0,1)
 \end{array}$$
 
-By our previous lemma, taking successive differences of each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired.
+By our previous lemma, taking successively applying $\diff$ to each of these tuples yields the zero tuple in exactly $2^k+1$ steps. Furthermore, it is clear that any $2^k$-tuple of $0$s and $1$s can be written as an xor of tuples in this list. (For example, $(1,1,0,1)=(1,0,0,0)\xor(0,1,0,0)\xor(0,0,0,1)$.) Let $(a_i)$ be such a tuple and suppose it decomposes into the xor of the tuples in $S'\subset S$. That is, $(a_i)=\xor_{s\in S'} s$. Now $D^{2^k+1}((a_i))=D^{2^k+1}(\xor_{s\in S'} s)=\xor_{s\in S'} D^{2^k+1}(s)=\xor_{s\in S'} (0,0,\ldots,0,0) = (0,0,\ldots,0,0)$. Thus the game $(a_i)$ is finite and of length at most $2^k+1$, as desired.
 \end{proof}
 
 This lemma, together with the proof as outlined previously in this section, allow us to conclude that all games for tuples of size $2^k$ are finite.
 
 \subsection{Existence of Infinitely Long Games}
 
-We now show that if $k > 2$ is not an integer power of 2, then there exist $k$-games of infinite length. First, we prove a useful lemma:
+We now show that if $k > 2$ is not an integer power of 2, then there exist $k$-tuple games of infinite length. First, we prove a useful lemma:
 
 \begin{lemma}
 The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number of 0's, never terminates.
@@ -314,49 +322,47 @@ The $(1, 1, 0, \ldots, 0)$ game, consisting of two 1's followed by an odd number
 \end{lemma}
 
 \begin{proof}
-\emph{Notice that given a tuple} $(a_0, \ldots, a_{k-1})$,  $\diff ((a_0, \ldots, a_{k-1}))$ \emph{must include an even number of odd elements}. The number of odd elements in $\diff ((a_0, \ldots, a_{k-1}))$ is precisely the number of pairs of adjacent elements in  $(a_0, \ldots, a_{k-1})$, with the initial and final elements considered adjacent, consisting of numbers of different parity. Walking along the tuple from $a_0$ to $a_{k-1}$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in  $\diff((a_0, \ldots, a_{k-1}))$.
+\emph{Notice that given a tuple} $(a_0, \ldots, a_{k-1})$,  $\diff ((a_0, \ldots, a_{k-1}))$ \emph{must include an even number of odd elements}. The number of odd elements in $\diff ((a_0, \ldots, a_{k-1}))$ is precisely the number of pairs of cyclically adjacent elements in  $(a_0, \ldots, a_{k-1})$ consisting of numbers of different parity. Walking along the tuple from $a_0$ to $a_{k-1}$ and back around to $a_0$, every even element immediately followed by an odd element must be matched by an odd element immediately followed by an even element, and vice versa. So there is an even number of such pairs and thus an even number of odd elements in  $\diff((a_0, \ldots, a_{k-1}))$.
 
 Let $(1, 1, 0, \ldots, 0)$ be a tuple of odd size consisting of two 1's followed by all 0's. We show that for all $i \geq 0$, $\diff^{i}((1, 1, 0, \ldots, 0)) \neq (0, 0, \ldots, 0)$:
 
 $(1, 1, 0, \ldots, 0)$ includes a non-zero even number of odd elements, by construction. Assume that $\diff^i((1, 1, 0, \ldots, 0))$ includes a non-zero even number of odd elements. So $\diff^i((1, 1, 0, \ldots, 0))$ includes both even and odd elements and therefore must have adjacent even and odd elements. Therefore, $\diff^{i+1}((1, 1, 0, \ldots, 0))$ must include a non-zero even number of odd elements. So  $\diff^{i+1}((1, 1, 0, \ldots, 0))$ cannot be the tuple of all $0$'s.
 
-Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game never terminates.
+Therefore, for all $i \geq 0$, $\diff^i((1, 1, 0, \ldots, 0)) \neq (0, \ldots, 0)$. So the $(1, 1, 0, \ldots, 0)$ game, where $(1, 1, 0, \ldots, 0)$ has an odd number of zeros, never terminates.
 \end{proof}
 
-For every odd $n > 1$, Lemma \ref{lem:evenodds} gives an example of a game of size $n$ that never terminates. We now use this result to show that for every $n$ that is not an integer power of 2, there are games of size $n$ that do not terminate.
+For every odd $k > 1$, Lemma \ref{lem:evenodds} gives an example of a $k$-tuple game that never terminates. We now use this result to show that for every $k$ that is not an integer power of 2, there are games of size $k$ that do not terminate.
 
 We need one more lemma to prove our claim:
 
 \begin{lemma}
 \label{lem:doubles}
-If the game for an $n$-tuple $(a_0, a_1, \ldots, a_{n-1})$ has infinite length, then so does the game for the $2n$-tuple $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$.
+If the game $(a_0, a_1, \ldots, a_{k-1})$ has infinite length, then so does the game $(a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})$.
 \end{lemma}
 
 \begin{proof}
 
-The difference of $(a_0, a_1, \ldots, a_{n-1})$ is:
 
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|).$$
+\begin{align*}
+&\diff((a_0, a_1, \ldots, a_{k-1})) \\
+= \hspace{.1cm} & (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|), \\
+& \mathrm{and}\\ 
+& \diff((a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})) \\
+= \hspace{.1cm} & (|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{k-1} - a_0|),
+\end{align*}
 
-\breathe
-
-The difference of $(a_0, a_1, \ldots, a_{n-1}, a_0, a_1, \ldots, a_{n-1})$ is:
-
-$$(|a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|, |a_0 - a_1|, |a_1 - a_2|, \ldots, |a_{n-1} - a_0|),$$
-which is just two concatenated copies of the difference of $(a_0, a_1, \ldots, a_{n-1})$.
-
-By repeating this process, it is clear that the game $(a_0, a_1, \ldots, a_n, a_0, a_1, \ldots, a_n)$ has finite length only if the game $(a_0, a_1, \ldots, a_n)$ has finite length. So $(a_0, a_1, \ldots, a_{n-1}, a_n, a_{n+1}, \ldots, a_{2n-1}) = (1, 1, 0, \ldots, 0, 1, 1, 0, \ldots, 0)$, where $n$ is odd, never terminates. 
+which is just two concatenated copies of $\diff((a_0, a_1, \ldots, a_{k-1}))$. In other words, the property that one tuple is two concatenated copies of another tuple is invariant under the application of $\diff$ to both tuples. So if the $(a_0, a_1, \ldots, a_{k-1})$ game does not terminate, then the $(a_0, a_1, \ldots, a_{k-1}, a_0, a_1, \ldots, a_{k-1})$ game does not terminate.
 
 \end{proof}
 
 \begin{theorem}
 \label{theorem:notPowersOfTwo}
-If $n$ is not of the form $2^k$, then there exists an $n$-tuple whose game has infinite length.
+If $n > 2$ is not of the form $2^k$, then there exists an $n$-tuple game of infinite length.
 \end{theorem}
 
 \begin{proof}
 
-If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = p \cdot 2^k$ where $p$ is an odd prime. By Lemma \ref{lem:evenodds}, there is a game of size $p$ of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain a game of size $n$ of infinite length. 
+If $n$ is not of the form $2^k$, then $n$ can be written in the form $n = m \cdot 2^k$ where $m$ is an odd number. By Lemma \ref{lem:evenodds}, there is an $m$-tuple game of infinite length. By applying Lemma \ref{lem:doubles} $k$ times, we obtain an $n$-tuple game of infinite length. 
 \end{proof}
 
 
@@ -371,9 +377,7 @@ All games of $4$-tuples over $\mathbb{Q}$ are finite.
 
 The proof of this follows very easily from the fact that game length is invariant under the operation of scaling each element of the $4$-tuple by a non-zero quantity. We used this fact in our construction of arbitrarily long games in Section $\ref{sec:longgames}$. (Note that the lemma in that section dealt only with integers but the argument is easily extended to any reals.)
 
-TODO(dgrazian, mikemeko): do we want $(aqrs, bprs, cqpr, dpqr)$ in place of $(a,b,c,d)$ here?
-
-Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(a, b, c, d)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
+Indeed, given a game $\left(\dfrac{a}{p}, \dfrac{b}{q}, \dfrac{c}{r}, \dfrac{d}{s}\right)$ over rationals, it is clear that the game will progress the same as the game $(aqrs, bprs, cpqs, dpqr)$ over the integers, with each tuple in the sequence scaled by $\dfrac{1}{pqrs}$. The result follows.
 
 %Though we have yet to understand the behavior of the difference over $\mathbb{R}$ to the same fullness and exhaustiveness as over $\mathbb{Z}$, there are still many interesting observations that can be made:
 A more interesting question arises when we instead consider games over $\mathbb{R}$. In this case, we will demonstrate, by example, that there exist $4$-tuple games that actually do not terminate.
@@ -390,32 +394,29 @@ where $x$ is a real number greater than $1$ that we will define shortly. Now we 
 \end{align*}
 If we choose $x$ such that $x^2 + x + 1 = x^3$, then we see that $s(1,x,x^2,x^3)$ is a multiple of $(1,x,x^2,x^3)$, which, since we know that the length of a game is invariant under scaling, shows us that the game will never terminate. The only real (and irrational) solution to $x^2 + x + 1 = x^3$, which is approximately $1.839$, satisfies the condition of being greater than $1$, so we have indeed constructed a non-terminating $4$-tuple game.
 
-Even though we do not have a complete characterization for the games that do terminate, we have identified the following class of $4$-tuples that are guaranteed to terminate:
+The operation $\diff$ can also act on tuples of real numbers; the formula for $\diff(a, b, c, d)$ is unchanged. Even though we do not have a complete characterization of the games on the real numbers that do terminate, we have identified the following class of $4$-tuples that are guaranteed to terminate:
 
 \begin{theorem}
 \label{thm:inequalities}
-For $a,b,c,d\in \mathbb{R}$, if $a \leq c \leq b \leq d$ or $a \leq d \leq c \leq b$, then the $(a,b,c,d)$ game is finite and has length $4$. 
+For $a,b,c,d\in \mathbb{R}$, if $a \leq c \leq b \leq d$ or $a \leq d \leq c \leq b$, then the $(a,b,c,d)$ game is finite and has length $5$. 
 \end{theorem}
 
 \begin{proof}
 
-TODO(jven,dgrazian): Axe the Gs?
-
-Consider a game $(a,b,c,d)$ and assume $a \leq c \leq b \leq d$. The difference of $G_0 =  (a, b, c, d)$ is:
+The proof follows from direct computation. Consider a game $(a,b,c,d)$ and assume $a \leq c \leq b \leq d$:
 
 \begin{align*}
-G_1 &= (|a-b|, |b-c|, |c-d|, |d-a|) \\
+\diff(a, b, c, d) &= (|a-b|, |b-c|, |c-d|, |d-a|) \\
 &=(b-a, b-c, d-c, d-a)\\
-Then, \\
-G_2 &= (|(b-a) - (b-c)|, |(b-c) - (d-c)|, |(d-c) - (d-a)|, |(d-a) - (b-a)| \\
+\diff^2(a, b, c, d) &= (|(b-a) - (b-c)|, |(b-c) - (d-c)|, |(d-c) - (d-a)|, |(d-a) - (b-a)| \\
 &= (c-a, d-b, c-a, d-b)\\
-G_3 &= (|c + b - a - d|, |a + d - c - b|, |c + b - a - d|, |a + d - c - b|)\\
-G_4 &= (0,0,0,0)
+\diff^3(a, b, c, d) &= (|c + b - a - d|, |a + d - c - b|, |c + b - a - d|, |a + d - c - b|)\\
+\diff^4(a, b, c, d) &= (0,0,0,0)
 \end{align*}
 
-The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result also holds for any cyclic rotation of the inequalities (e.g., such as if $c \leq b \leq d \leq a$.)
+The proof for the case when $a \leq d \leq c \leq b$ is analogous. The result also holds for any cyclic permutation of these inequalities (e.g., such as if $c \leq b \leq d \leq a$.)
 \end{proof}
 
-Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met during the course of a game, then that game will terminate in four more steps.
+Theorem \ref{thm:inequalities} implies that if any of the inequalities given in Theorem \ref{thm:inequalities} are met in the progression of a game, then that game will terminate in four more steps. Note that these inequalities cover a large class of games. If the entries of a 4-tuple are selected uniformly at random between 0 and 1, then there is a $\frac{1}{3}$ chance that the game will terminate in just four steps. Further investigation might determine the probability that such a randomly determined game will terminate at all.
 
 \end{document}
