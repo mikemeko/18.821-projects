@@ -44,10 +44,10 @@ def simulate(num_blocks, num_trials):
     staircase_str = serialize_staircase(staircase)
     if staircase_str not in hist:
       hist[staircase_str] = 0
-    hist[staircase_str] += 1
+    hist[staircase_str] += 1.0
   for staircase_str in hist:
-    print '%s: %d' % (
-        deserialize_staircase(staircase_str), hist[staircase_str])
+    print '%s: %.4f' % (
+        deserialize_staircase(staircase_str), hist[staircase_str] / num_trials)
 
 def serialize_staircase(staircase):
   """
@@ -62,5 +62,5 @@ def deserialize_staircase(staircase_str):
   return [int(e) for e in staircase_str.split('.')]
 
 if __name__ == '__main__':
-  #print prettify_staircase(get_staircase(5))
-  simulate(3, 10000)
+  #print prettify_staircase(get_staircase(15))
+  simulate(4, 100000)
