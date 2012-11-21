@@ -74,14 +74,30 @@ def enumerate_staircases(num_blocks):
         if new_staircase_str not in staircases[k]:
           staircases[k][new_staircase_str] = 0
         staircases[k][new_staircase_str] += p / len(valid_locs)
-    # Normalize
-    s = sum(staircases[k].values())
-    for staircase_str in staircases[k]:
-      staircases[k][staircase_str] /= s
   # Get results for staircases with num_blocks blocks
   for staircase_str in sorted(staircases[num_blocks - 1].keys()):
     print '%s: %.4f' % (deserialize_staircase(staircase_str),
         staircases[num_blocks - 1][staircase_str])
+
+memo = {}
+def num_constructions(staircase):
+  """
+  Finds the number of ways a given staircase can be constructed.
+  """
+  assert_valid_staircase(staircase)
+  # Base case, a staircase of all 1s
+  if staircase[-1] == 1:
+    return 1
+  serialized = serialize_staircase(staircase)
+  if serialized not in memo:
+    memo[serialized] = 0
+    remove_locs = (i for i in xrange(len(staircase) - 1)
+      if staircase[i] > staircase[i + 1])
+    for i in remove_locs:
+      removed_staircase = staircase[:-1]
+      removed_staircase[i] -= 1
+      memo[serialized] += num_constructions(removed_staircase)
+  return memo[serialized] 
 
 def serialize_staircase(staircase):
   """
@@ -95,7 +111,18 @@ def deserialize_staircase(staircase_str):
   """
   return [int(e) for e in staircase_str.split('.')]
 
+def assert_valid_staircase(staircase):
+  """
+  Checks the conditions on (unique) staircase representation.
+  """
+  assert sum(staircase) == len(staircase), 'values must sum to to length'
+  for i in xrange(len(staircase) - 1):
+    assert staircase[i] >= staircase[i+1], 'decreasing at index %d' % (i + 1)
+  assert staircase[-1] >= 0, 'values must be non-negative'
+
 if __name__ == '__main__':
   #print prettify_staircase(get_staircase(15))
-  simulate_staircases(6, 100000)
-  enumerate_staircases(6)
+  #simulate_staircases(4, 100000)
+  enumerate_staircases(4)
+  staircase = [2,1,1,0]
+  print '%d ways to construct %s' % (num_constructions(staircase), staircase)

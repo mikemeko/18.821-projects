@@ -41,7 +41,7 @@ def find_groups(N):
 
   # a sorted list of subms of cubes that can be expressed so in multiple ways
   mult_sums_of_cubes = sorted([item for item in sums_of_cubes.items() if
-      len(item[1]) > 1], key=lambda item: item[0])
+      len(item[1]) > 3], key=lambda item: item[0])
 
   # deduplicated sums of cubes - note that the creation of the groups relies on
   # seeing the sums of cubes in sorted order.
@@ -58,5 +58,5 @@ def find_groups(N):
   return groups
 
 if __name__ == '__main__':
-  for group in find_groups(100):
+  for group in find_groups(1000):
     print group
