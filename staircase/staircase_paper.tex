@@ -124,7 +124,7 @@ $$
 \ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-1) \\
 \vdots & \vdots & \ddots & \vdots \\
 \ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
-\end{matrix} \right|
+\end{matrix} \right|.
 $$
 \end{definition}
 
@@ -153,7 +153,7 @@ For a sequence of integers $c_0, c_1, \dots, c_k$ and an integer $i \in \{0,1,\d
 -i\ifact(c_i-i) & (1-i)\ifact(c_i + 1 - i) & \cdots & (k-i) \ifact(c_i+k-i) \\
 \vdots & \vdots & \ddots & \vdots \\
 \ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
-\end{matrix} \right|
+\end{matrix} \right|.
 \end{multline*}
 \end{definition}
 
@@ -196,7 +196,7 @@ $$\begin{array}{ccl}
 Equipped with these definitions and results, we now proceed to our main result.
 
 \begin{theorem}
-For a sequence of integers $c_0 \geq c_1 \geq \dots \geq 0$, we have
+For a sequence of integers $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we have
 $$
 T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \cdot \M(c_0, c_1, \dots, c_k).
 $$
@@ -219,7 +219,7 @@ T(0,0,\dots,0) = \M(0,0,\dots,0)=\left|
 $$
 as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix with diagonal terms that are all $1$.
 
-In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. We have to take care here since some of these cases might not respect the condition expressed in the theorem. However, any of these sequences that violates the Theorem's condition satisfies the condition in Lemma \ref{lem:mcornercase}. Thus, it is still safe to assume that the theorem holds for these sequences.
+In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. We have to take care here since some of these cases might not respect the condition expressed in the theorem (i.e. the staircase condition). However, any of these sequences that violates the Theorem's condition satisfies the condition in Lemma \ref{lem:mcornercase}. Indeed, for these sequences, we want $T(c_0, \dots, c_i - 1, \dots, c_k) = 0$ since they violate the staircase condition. Thus, it is still safe to assume that the theorem holds for these sequences.
 
 $$\begin{array}{ccl}
 T(c_0, \dots, c_k) & = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
@@ -240,15 +240,15 @@ Thus, all that remains to show now is that
 \M_0(c_0,\dots,c_k) + \dots + \M_k(c_0,\dots,c_k) = 0.
 \label{eqn:sumto0}
 \end{equation}
-Each of the summands in Equation \ref{eqn:sumto0} is a determinant of a $(k+1)\times(k+1)$ matrix, which is some linear combination of $(k+1)!$ terms. For a given permutation $(\sigma_0, \sigma_1, \dots, \sigma_k)$ of $(0,1,\dots,k)$, where $\sigma_i$ indicates the column number of the element from the $i^{th}$ row of a given matrix, each determinant contains a term of the form:
+Each of the summands in Equation \ref{eqn:sumto0} is a determinant of a $(k+1)\times(k+1)$ matrix, which is some linear combination of $(k+1)!$ terms. For a given permutation $(\sigma_0, \sigma_1, \dots, \sigma_k)$ of $(0,1,\dots,k)$, where $\sigma_j$ indicates the column number of the element from the $j^{th}$ row of a given matrix, the determinant $\M_i(c_0, \dots, c_k)$ contains a term of the form:
 $$
-C \prod_{i=0}^{k}{\mu(c_i+\sigma_i-i)},
+C_i \prod_{j=0}^{k}{\mu(c_j+\sigma_j-j)},
 $$
-for some constant $C$. Since there are $(k+1)!$ permutations of $(0,1,\dots,k)$, there are $(k+1)!$ such terms for each determinant. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote the permutation of $(0,1,\dots,k)$ that this term corresponds to by $(\sigma_0, \sigma_1, \dots, \sigma_k)$. Note that the constant coefficient for this term from the determinant $\M_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\M_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the total constant coefficient for the term:
+for some constant $C_i$. In fact, we have that $C_i = \sigma_i - i$. This follows directly from the structure of $\M_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the total constant coefficient for the term:
 $$
-\sum_{i=0}^{k}{\sigma_i-i} = 0.
+\sum_{i=0}^{k}{C_i} = \sum_{i=0}^{k}{\sigma_i-i} = 0.
 $$
-Thus, we have that each term contributes nothing to the sum of determinants, giving us the result we need. Note that we have ignored the signs for these terms in the determinant computations, but this is not a problem since the signs are the same across all $k+1$ determinants, and the coefficient for each term is $0$.
+Thus, we have that each of the $(k+1)!$ terms contributes nothing to the sum of determinants, giving us the result we need. Note that we have ignored the signs for these terms in the determinant computations, but this is not a problem since the signs are the same across all $k+1$ determinants.
 \end{proof}
 
 \newsection{2-Column Staircases}{sec:twocolumn}
