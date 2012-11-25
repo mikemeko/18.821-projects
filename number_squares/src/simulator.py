@@ -106,9 +106,10 @@ if __name__ == '__main__':
   z = .3123524232
   
   #Simulator([random.random() for i in range(5)])._run(False)
-  #Simulator([random.randint(0,1000) for i in range(3)])._run(False)
-  Simulator((.43, .21, .122, .131))._run()
-  x = 1
+  Simulator([random.randint(0,1000) for i in range(3)])._run(False)
+  print Simulator([random.randint(0, 1000) for i in range(4)])._run()
+  
+  #print Simulator((129, 660, 348, 211))._run()
 #  for n in xrange(50):
 #    print '%d: %s' % (n, 'WIN' if
 #        Simulator([x] + [0] * (n - 1)).get_game_length() != None else 'LOSE')

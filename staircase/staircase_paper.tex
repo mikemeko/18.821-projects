@@ -91,7 +91,61 @@ The result follows.
 For increasing $n$ beginning with $n = 0$, the numbers of partitions of $n$ are $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow exponentially with $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
 
 \newsection{Expected Number of Columns}{sec:expectedcolumns}
-TODO(dgrazian)
+We now consider the number of columns that occur when $n$ blocks are dropped. Our results at this point are rather minimal, but we present what we have.
+
+There is a $\frac{1}{2^{n-1}}$ probability of a randomly constructed $n$-block staircase having one column. The only staircase of $n$ blocks with 1 column is $(n)$, a tower of $n$ blocks. The first block is guaranteed to be dropped in the first column. For $1<k \leq n$, the $k^{th}$ block is added to a staircase consisting of $(k-1)$ blocks in a single column. The $k^{th}$ block therefore has probability $\frac{1}{2}$ of being dropped in the first cloumn. So the probability of obtaining the $n$-block staircase $(n)$ is $\frac{1}{2^n}$.
+
+Similarly, the probability of obtaining a staircase with $n$ columns is $\frac{1}{2^{n}}$. The only $n$-block staircase with $n$ columns is $(1, 1, \ldots, 1)$, and the probability of obtaining this staircase is $\frac{1}{2^{n}}$ by reasoning similar to that in the paragraph above.
+
+However, the probability distribution of the number of columns in a randomly constructed $n$-block staircase is not symmetric. For example, for $n > 4$ it is more likely for a randomly constructed $n$-block staircase to contain $2$ columns than to contain $n-1$ columns. The only staircase with $n-1$ columns is $(2, 1, 1, \ldots, 1)$. There are $n-1$ block-dropping sequences that form this staircase, because any block after the $1^{st}$ can be the $2^{nd}$ block dropped in the $1^{st}$ column. Each of these seqences has probability less than $\frac{1}{2^{n-1}}$ of ocurring, so the probability of an $n$-block staircase having $n-1$ columns is less than $\frac{n}{2^{n-1}}$.  In contrast, there are $\lfloor \frac{n}{2} \rfloor$ staircases with $2$ columns. These are $(n-1, 1), (n-2, 2), \ldots, (\lceil \frac{n}{2} \rceil, \lfloor \frac{n}{2} \rfloor)$. The first of these staircases alone has the same probability of occurring  as the one staircase with $n-1$ columns. So the probability of a $n-1$ column staircase must be greater than that of a $2$-column staircase.
+
+In general we suspect that the probability distribution of the number of columns in a randomly constructed staircase is skewed left. Specifically, for $1 < k < \frac{n}{2}$, the probability of a staircase having $k$ columns is greater than the probability of it having $n-k+1$ columns. For example, see figure $\ref{fig:prob_distribution}$ for the probability distribution with 10 blocks. (TODO : proof?)
+
+We also obtain a lower bound on the expectation of the number of columns in a randomly generated staircase.
+
+\begin{theorem}
+\label{lower_bound}
+The expected number of blocks required for a staircase to reach $n$ columns is less than or equal to $\displaystyle\sum_{i=1}^{n}i = \frac{n(n-1)}{2}$
+\end{theorem}
+
+\begin{proof}
+Consider the construction of a staircase $1$ block at a time. Given a staircase with $k-1$ columns the probability that the next block will create an extra column is greater than or equal to $\frac{1}{k}$, so the expected number of blocks required to create the next column is less than or equal to $k$. Therefore, the number of blocks required to get to the $n^{th}$ column is less than or equal to $1 + 2 + \ldots + n$. The theorem follows.
+\label{thm:lower_bound}
+\end{proof}
+
+Theorem \ref{thm:lower_bound} implies that the expected number of columns in a randomly generated staircase of $\frac{n(n-1)}{2}$ blocks is greater than or equal to $n$. This means that the expected number of columns in a staircase of $n$ blocks grows at least on the order of $\sqrt{n}$.
+
+
+
+
+
+\begin{figure}
+\caption{Probability Distribution of Number of Columns in Staircase With Ten Blocks}
+\label{fig:prob_distribution}
+\begin{center}
+\begin{tabular}{| c | c |}
+\hline
+Number of Columns & Probability\\ \hline
+1 & .0020\\ \hline
+2 & .0582\\ \hline
+3 & .2099\\ \hline
+4 & .2910\\ \hline
+5 & .2254\\ \hline
+6 & .1294\\ \hline
+7 & .0557\\ \hline
+8 & .0208\\ \hline
+9 & .0057\\ \hline
+10 & .0020\\ \hline
+\end{tabular}
+\end{center}
+\end{figure}
+  
+
+
+
+
+
+TODO More in this section?
 
 \newsection{2-Column Staircases}{sec:twocolumn}
 Now we restrict ourselves to staircases of the form $(m,n)$ that have at most $2$ columns. We are interested in finding the number of ways to construct the $(m,n)$ staircase.

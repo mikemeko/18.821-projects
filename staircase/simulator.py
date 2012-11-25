@@ -79,6 +79,35 @@ def enumerate_staircases(num_blocks):
     print '%s: %.4f' % (deserialize_staircase(staircase_str),
         staircases[num_blocks - 1][staircase_str])
 
+
+def distribution_of_number_of_columns(num_blocks):
+  staircases = [{} for k in range(num_blocks)]
+  staircases[0][serialize_staircase(get_staircase(1))] = 1.0
+  for k in range(1, num_blocks):
+    for staircase_str, p in staircases[k-1].iteritems():
+      staircase = deserialize_staircase(staircase_str)
+      staircase = staircase + [0]
+      valid_locs = [0]
+      for loc in range(1, k + 1):
+        if staircase[loc - 1] > staircase[loc]:
+          valid_locs.append(loc)
+      for loc in valid_locs:
+        new_staircase = staircase[:]
+        new_staircase[loc] += 1
+        new_staircase_str = serialize_staircase(new_staircase)
+        if new_staircase_str not in staircases[k]:
+          staircases[k][new_staircase_str] = 0
+        staircases[k][new_staircase_str] += p / len(valid_locs)
+  distribution = {}
+  for i in range(1, num_blocks+1):
+      distribution[i] = 0
+  for staircase_str in sorted(staircases[num_blocks - 1].keys()):
+        if '0' not in staircase_str:
+            distribution[num_blocks] += staircases[num_blocks-1][staircase_str]
+        else:
+            index = deserialize_staircase(staircase_str).index(0)
+            distribution[index] += staircases[num_blocks-1][staircase_str]
+  return distribution
 memo = {}
 def num_constructions(staircase):
   """
@@ -123,6 +152,10 @@ def assert_valid_staircase(staircase):
 if __name__ == '__main__':
   #print prettify_staircase(get_staircase(15))
   #simulate_staircases(4, 100000)
-  enumerate_staircases(4)
-  staircase = [2,1,1,0]
-  print '%d ways to construct %s' % (num_constructions(staircase), staircase)
+  #enumerate_staircases(4)
+  #enumerate_staircases(10)
+  #staircase = [2,1,1,0]
+  distribution = distribution_of_number_of_columns(25)
+  for val in distribution:
+      print 'Probability of %d columns is: %.4f' % (val,distribution[val])
+  #print '%d ways to construct %s' % (num_constructions(staircase), staircase)
