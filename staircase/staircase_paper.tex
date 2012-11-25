@@ -160,7 +160,7 @@ For a sequence of integers $c_0, c_1, \dots, c_k$ and an integer $i \in \{0,1,\d
 Once again, we will prove a useful identity that will be useful to prove our main result.
 
 \begin{lemma}
-For a sequence of integer $c_0, c_1, \dots, c_k$, we have
+For a sequence of integers $c_0, c_1, \dots, c_k$, we have
 $$
 \M(c_0, c_1, \dots, c_i - 1, \dots, c_k) = c_i \M(c_0, c_1, \dots, c_k) + \M_i(c_0, c_1, \dots, c_k).
 $$
@@ -273,7 +273,7 @@ Similarly, the probability of obtaining a staircase with $n$ columns is $\frac{1
 
 However, the probability distribution of the number of columns in a randomly constructed $n$-block staircase is not symmetric. For example, for $n > 4$ it is more likely for a randomly constructed $n$-block staircase to contain $2$ columns than to contain $n-1$ columns. The only staircase with $n-1$ columns is $(2, 1, 1, \ldots, 1)$. There are $n-1$ block-dropping sequences that form this staircase, because any block after the $1^{st}$ can be the $2^{nd}$ block dropped in the $1^{st}$ column. Each of these seqences has probability less than $\frac{1}{2^{n-1}}$ of ocurring, so the probability of an $n$-block staircase having $n-1$ columns is less than $\frac{n}{2^{n-1}}$.  In contrast, there are $\lfloor \frac{n}{2} \rfloor$ staircases with $2$ columns. These are $(n-1, 1), (n-2, 2), \ldots, (\lceil \frac{n}{2} \rceil, \lfloor \frac{n}{2} \rfloor)$. The first of these staircases alone has the same probability of occurring  as the one staircase with $n-1$ columns. So the probability of a $n-1$ column staircase must be greater than that of a $2$-column staircase.
 
-In general we suspect that the probability distribution of the number of columns in a randomly constructed staircase is skewed left. Specifically, for $1 < k < \frac{n}{2}$, the probability of a staircase having $k$ columns is greater than the probability of it having $n-k+1$ columns. For example, see figure $\ref{fig:prob_distribution}$ for the probability distribution with 10 blocks. (TODO : proof?)
+In general we suspect that the probability distribution of the number of columns in a randomly constructed staircase is strongly skewed right. Specifically, for $1 < k < \frac{n}{2}$, the probability of a staircase having $k$ columns is greater than the probability of it having $n-k+1$ columns. See figure $\ref{fig:prob_distribution}$ for the probability distribution with 50 blocks. The probability density is heavily concentrated between 6 and 20.
 
 We also obtain a lower bound on the expectation of the number of columns in a randomly generated staircase.
 
@@ -283,7 +283,7 @@ The expected number of blocks required for a staircase to reach $n$ columns is l
 \end{theorem}
 
 \begin{proof}
-Consider the construction of a staircase $1$ block at a time. Given a staircase with $k-1$ columns the probability that the next block will create an extra column is greater than or equal to $\frac{1}{k}$, so the expected number of blocks required to create the next column is less than or equal to $k$. Therefore, the number of blocks required to get to the $n^{th}$ column is less than or equal to $1 + 2 + \ldots + n$. The theorem follows.
+Consider the construction of a staircase $1$ block at a time. Given a staircase with $k-1$ columns the probability that the next block will create an extra column is greater than or equal to $\frac{1}{k}$, so the expected number of blocks required to create the next column is less than or equal to $k$. Therefore, the number of blocks required to get to the $n^{th}$ column is less than or equal to $1 + 2 + \cdots + n$. The theorem follows.
 \label{thm:lower_bound}
 \end{proof}
 
@@ -294,31 +294,14 @@ Theorem \ref{thm:lower_bound} implies that the expected number of columns in a r
 
 
 \begin{figure}
-\caption{Probability Distribution of Number of Columns in Staircase With Ten Blocks}
 \label{fig:prob_distribution}
-\begin{center}
-\begin{tabular}{| c | c |}
-\hline
-Number of Columns & Probability\\ \hline
-1 & .0020\\ \hline
-2 & .0582\\ \hline
-3 & .2099\\ \hline
-4 & .2910\\ \hline
-5 & .2254\\ \hline
-6 & .1294\\ \hline
-7 & .0557\\ \hline
-8 & .0208\\ \hline
-9 & .0057\\ \hline
-10 & .0020\\ \hline
-\end{tabular}
-\end{center}
+\includegraphics[scale=.75]{column_prob_chart.png}
 \end{figure}
   
+\newsection{Conclusion}{sec:conclusion}
+
+This paper's main result was to enumerate the number of ways to construct a given staircase. There are other natural questions to explore in further research. For example, we showed in Section \ref{sec:expectedcolumns} that the expected number of columns in a staircase of $n$ blocks is at least on the order of $\sqrt{n}$. Further analysis might show an upper bound on the expected number of columns. Even better would be a limiting curve that the probability density function approaches as $n$ grows arbitrarily large. Another good problem would be to enumerate or bound the expected number of columns in a randomly selected staircase, without adjusting for the number of ways to construct the staircases.
 
 
-
-
-
-TODO More in this section?
 
 \end{document}

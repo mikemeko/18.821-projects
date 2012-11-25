@@ -187,6 +187,7 @@ def assert_valid_columns(columns):
     assert columns[i] >= columns[i+1], 'decreasing at index %d' % (i + 1)
 
 if __name__ == '__main__':
-  staircase = staircase_from_columns([4,1,1,1,1,1,1,1])
-  print '%d ways to construct %s' % (num_constructions(staircase), staircase)
-  print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
+  #staircase = staircase_from_columns([4,1,1,1,1,1,1,1])
+  print distribution_of_number_of_columns(30)
+#  print '%d ways to construct %s' % (num_constructions(staircase), staircase)
+ # print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
