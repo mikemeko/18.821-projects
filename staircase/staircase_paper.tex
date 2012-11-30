@@ -25,7 +25,19 @@
 \newtheorem{remark}[theorem]{Remark}
 
 % Utility commands
-% None yet
+% Real numbers
+\newcommand{\R}{\mathbb{R}}
+% Figures: \newfigure{label}{caption}{content}
+\newcommand{\newfigure}[3]{
+\begin{figure}
+#3
+\caption{#2 \label{#1}}
+\end{figure}
+}
+% Sections: \newsection{title}{label}
+\newcommand{\newsection}[2]{
+\section{#1 \label{#2}}
+}
 
 \title{A Staircase Model of Erosion}
 \author{Daniel Grazian, Michael Mekonnen, Agustin O Venezuela III}
@@ -39,9 +51,49 @@ TODO(dgrazian, jven, mikemeko)
 
 \maketitle
 
-\section{Introduction\label{sec:intro}}
-TODO(jven)
+\newsection{Introduction}{sec:intro}
+In this paper, we consider the random process of forming staircases by dropping blocks into an infinite row of infinitely tall columns.
 
+More concretely, consider partitioning the first quadrant of $\R^2$ into axis-aligned columns of width $1$, as in Figure $\ref{fig:columns}$. We will index the columns starting at $0$.
+
+\newfigure{fig:columns}{Partitioning of the first quadrant into columns}{
+BLAH
+}
+
+Now consider iteratively placing unit squares (blocks) into these columns. We will say that a block is at location $(i, j)$ for non-negative integers $i, j$ if it is axis-aligned and its bottom-left vertex is at $(i, j)$. At each step, a block can be placed at $(i, j)$ if and only if (1) $i = 0$ or there is a block at $(i - 1, j)$ and (2) $j = 0$ or there is a block at $(i, j - 1)$. Figure $\ref{fig:dropblocks}$ shows an example of a valid sequence of placing $5$ blocks. We will usually refer to such a sequence of placements a \textit{dropping of $5$ blocks}, for obvious reasons. We call a configuration of $n$ blocks in the first quadrant a \textit{staircase} if it can be obtained by dropping $n$ blocks.
+
+\newfigure{fig:dropblocks}{Example of dropping $5$ blocks}{
+SUP
+}
+
+We will refer to a staircase as the monotonically decreasing finite sequence of positive integers $(b_i)$, where $b_i$ is the number of blocks in column $i$. For example, the last staircase in Figure \ref{fig:dropblocks} can be written as $(hi,hi,hi,hi,hi)$. Note that we do not include columns that do not contain any blocks.
+
+We are interested in constructing random staircases: beginning with no blocks, we consider all the locations $(i, j)$ at which a block can be validly placed, choose such a location uniformly at random, and place a block there. This raises various interesting questions regarding the distribution over the shape of the resulting staircase when $n$ blocks are dropped.
+
+To begin, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks. Finally, Section \ref{sec:twocolumn} will present exact results for the variant of the problem in which we restrict staircases to having at most $2$ columns.
+
+\newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
+Our investigation into the distribution over staircase shapes begins with determining how many staircase shapes exist using $n$ blocks.
+
+\begin{theorem}
+The number of staircases with $n$ blocks is equal to the number of partitions of $n$ (the number of ways to write $n$ as a sum of positive integers, irrespective of the order of the parts).
+\begin{proof}
+There is an obvious bijection $f$ between staircase with $n$ blocks and partitions of $n$. We map the staircase $(b_i)$ with $n$ blocks to the partition $n=\sum b_i$.
+
+$f$ is injective. If $(b_i)\neq (b_i')$ are two distinct staircases, then $n = \sum b_i = \sum b_i'$ are two partitions of $n$ such that with the parts written in monotonically decreasing order, we have some $b_i\neq b_i'$. It follows that the two partitions are distinct.
+
+$f$ is also surjective. Given a partition $n = \sum a_i$, we can sort $(a_i)$ in monotonically decreasing order, yielding $(b_i)$. $f$ clearly maps $(b_i)$ to the partition $\sum a_i$.
+
+The result follows.
+\end{proof}
+\end{theorem}
+
+For increasing $n$ beginning with $n = 0$, the numbers of partitions of $n$ are $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow exponentially with $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
+
+\newsection{Expected Number of Columns}{sec:expectedcolumns}
+TODO(dgrazian)
+
+\newsection{2-Column Staircases}{sec:twocolumn}
 \section{$2$-Column Staircases\label{sec:2column}}
 TODO(mikemeko): update section based on what we choose to use to denote a particular staircase
 Now we restrict ourselves to staircases of the form $(m,n)$ that have at most $2$ columns. We are interested in finding the number of ways to construct the $(m,n)$ staircase.
@@ -87,8 +139,5 @@ We can prove this using the recurrence given in Equation \ref{eqn:2-recurrence}.
 \caption{TODO}
 \label{fig:reflection}
 \end{figure}
-
-\section{Average Number of Columns\label{sec:columns}}
-TODO(mikemeko)
 
 \end{document}
