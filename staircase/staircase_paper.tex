@@ -110,21 +110,21 @@ T(m,n) = \left\{
   \end{array} \right.
 \label{eqn:2-recurrence}
 \end{equation}
-The idea behind this recurrence is that, in the case where $m > n$, we can construct the $(m,n)$ staircase by first constructing the $(m-1,n)$ staircase and then adding a block to the first column or by constructing the $(m,n-1)$ staircase and then adding a block to the second column. If $m < n$, it is not possible to construct such a staircase by definition. Finally, there is exactly $1$ way to construct the $(m,0)$ staircase, and that is by adding a block to the first column $m$ times.
+The idea behind this recurrence is that, in the case where $m > n$, we can construct the $(m,n)$ staircase by first constructing the $(m-1,n)$ staircase and then adding a block to the first column or by constructing the $(m,n-1)$ staircase and then adding a block to the second column. There is exactly $1$ way to construct the $(m,0)$ staircase, and that is by adding a block to the first column $m$ times. Finally, if $m < n$, it is not possible to construct such a staircase by definition.
 
 Instead of attempting to solve this recurrence algebraically, we will come up with an answer through a combinatorial argument, and use the recurrence to verify that the answer is correct.
 
 Since the interesting case in the recurrence is the $m \geq n > 0$ case, we will focus on that condition in the analysis that follows. The other cases are simply base cases for the recurrence. Note that in our setting, constructing the $(m,n)$ staircase requires that the second column be no higher than the first column throughout the construction. Since we have $m+n$ blocks to work with, it is clear that there are generally $\binom{m+n}{m}$ ways to produce the $(m,n)$ staircase (corresponding to the $m$ blocks out of the $m+n$ that we choose to put in the first column), but some of these violate the staircase construction condition. So now we need to find the number of of ways to to produce the $(m,n)$ staircase using $m+n$ blocks such that, at some point during the construction, the second column is higher than the first one. We will find this number using a combinatorial argument.
 
-We can think about constructing the $(m,n)$ staircase as going form $(0,0)$ to $(m,n)$ on the $2$-dimensional lattice by taking unit steps to the right or up. The staircase construction requires that this path never cross the diagonal line in the lattice. So our task now is to count the number of paths that do cross the diagonal. We shall do this using the reflection principle: we will create a bijection between the set of paths from $(0,0)$ to $(m,n)$ that do cross diagonal to the set of all paths from $(0,0)$ to $(n-1,m+1)$.
+We can think about constructing the $(m,n)$ staircase as going form $(0,0)$ to $(m,n)$ on the $2$-dimensional lattice by taking unit steps to the right or up. The staircase construction condition requires that this path never cross the diagonal line in the lattice. So our task now is to count the number of paths that do cross the diagonal. We shall do this using the reflection principle: we will create a bijection between the set of paths from $(0,0)$ to $(m,n)$ that do cross diagonal to the set of all paths from $(0,0)$ to $(n-1,m+1)$.
 
 Given a path from $(0,0)$ to $(m,n)$ that crosses the diagonal, we can construct the corresponding path from $(0,0)$ to $(n-1,m+1)$ as follows. Let us denote the first time the original path crosses the diagonal by the point $(i,i+1)$ for some integer $i < n$. Now we can define the corresponding path from $(0,0)$ to $(n-1,m+1)$ to be exactly the same as the original path up until $(i,i+1)$, but the reflection of the original path after $(i,i+1)$. That is, where the original path takes a unit step to the right, the new path takes a unit step up, and vice versa. To verify that the end point of the new path is $(n-1,m+1)$, note that the original path is left with a total of $m-i$ steps to the right, which means that the new path is left with a total of $m-i$ steps up. Similarly the original path is left with a total of $n-i-1$ steps up, which means the new path is left with a total of $n-i-1$ steps to the right. So the final point of the new path is given by $(i+(n-i-1), i+1+(m-i)) = (n-1,m+1)$, as claimed.
 
-Given a path from $(0,0)$ to $(n-1,m+1)$, we can construct the corresponding path from $(0,0)$ to $(m,n)$ that crosses the diagonal using a the same procedure explained above. Note that the original path must have a point $(i,i+1)$ since $m+1>n-1$. We can verify that the new path has end point $(m,n)$ using a similar analysis: $(i+(m+1-i-1),i+1+(n-1-i)) = (m,n)$, as desired.
+Given a path from $(0,0)$ to $(n-1,m+1)$, we can construct the corresponding path from $(0,0)$ to $(m,n)$ that crosses the diagonal using the same procedure explained above. Note that the original path must have a point $(i,i+1)$ since $m+1>n-1$. We can verify that the new path has end point $(m,n)$ using a similar analysis: $(i+(m+1-i-1),i+1+(n-1-i)) = (m,n)$, as desired.
 
 \begin{figure}
 \includegraphics[width=10cm]{reflection.png}
-\caption{TODO}
+\caption{A path from $(0,0)$ to $(m=5, n=4)$ that crosses the diagonal, and its corresponding path from $(0,0)$ to $(n-1=3, m+1=6)$, shown in red.}
 \label{fig:reflection}
 \end{figure}
 
@@ -135,7 +135,20 @@ $T(m,n) = \binom{m+n}{m} - \binom{m+n}{n-1}, \text{if $m \geq n > 0$.}$
 \end{theorem}
 
 \begin{proof}
-TODO(mikemeko): this needs to be a more careful induction
+We prove this by induction on $m$ and $n$.
+
+In the base case, it suffices to have that $T(0,0) = T(1,0) = 1$, and these equalities follow from the standard definition of the binomial coefficients:
+$$
+\binom{k}{l} =
+\begin{cases}
+\frac{k!}{l!(k-l)!} & \text{if } 0 \leq l \leq k \\
+0 & \text{otherwise.}
+\end{cases}
+$$
+
+TODO(mikemeko): need to be careful for the $T(n,n)$  case.
+
+In the inductive step, we assume that the equality holds for $T(m-1,n)$ and $T(m,n-1)$ and we show that it also hold for $T(m,n)$ using the recurrence given in Equation \ref{eqn:2-recurrence}.
 \begin{align*}
 T(m,n) & = T(m-1,n) + T(m,n-1) \\
 & = \binom{m+n-1}{m-1} - \binom{m+n-1}{n-1} + \binom{m+n-1}{m} - \binom{m+n-1}{n-2} \\
@@ -145,6 +158,6 @@ T(m,n) & = T(m-1,n) + T(m,n-1) \\
 The last equality follows from Pascal's identity.
 \end{proof}
 
-An interesting result we obtain is that $T(n,n) = \binom{2n}{n} - \binom{2n}{n-1}$ is exactly the $n^{th}$ Catalan number.
+An interesting result we obtain is that $T(n,n) = \binom{2n}{n} - \binom{2n}{n-1}$ is exactly the $n^{th}$ Catalan number. In the $2$x$n$ rectangular $(n,n)$ staircase, we can think about the blocks in the first column as left parentheses ``(" and the blocks in the second column as right parentheses ``)". Since the staircase construction condition produces a correct parenthesization, this leads to a familiar interpretation of the Catalan numbers. 
 
 \end{document}
