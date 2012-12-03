@@ -146,16 +146,26 @@ $$
 \end{cases}
 $$
 
-TODO(mikemeko): need to be careful for the $T(n,n)$  case.
+In the inductive step, we consider two cases. First, the case where $m=n>0$. Here, we have, by definition, that $T(m-1,n)=0$. We assume that the equality holds for $T(m,n-1)$, and we get
 
-In the inductive step, we assume that the equality holds for $T(m-1,n)$ and $T(m,n-1)$ and we show that it also hold for $T(m,n)$ using the recurrence given in Equation \ref{eqn:2-recurrence}.
+\begin{align*}
+T(m,n) & = T(m,n-1) \\
+& = T(n,n-1) \\
+& = \binom{2n-1}{n} - \binom{2n-1}{n-2} \\
+& = \Bigg(\binom{2n-1}{n} + \binom{2n-1}{n-1}\Bigg)-\Bigg(\binom{2n-1}{n-1} + \binom{2n-1}{n-2}\Bigg) \\
+& = \binom{2n}{n} - \binom{2n}{n-1} \\
+& = \binom{m+n}{m} - \binom{m+n}{n-1},
+\end{align*}
+as desired. The previous to last equality follows from Pascal's identity.
+
+Next, for the case where $m>n>0$, we assume that the equality holds for $T(m-1,n)$ and $T(m,n-1)$ and we get
 \begin{align*}
 T(m,n) & = T(m-1,n) + T(m,n-1) \\
 & = \binom{m+n-1}{m-1} - \binom{m+n-1}{n-1} + \binom{m+n-1}{m} - \binom{m+n-1}{n-2} \\
 & = \Bigg(\binom{m+n-1}{m-1} + \binom{m+n-1}{m}\Bigg) - \Bigg(\binom{m+n-1}{n-1} + \binom{m+n-1}{n-2}\Bigg) \\
-& = \binom{m+n}{m} - \binom{m+n}{n-1}.
+& = \binom{m+n}{m} - \binom{m+n}{n-1},
 \end{align*}
-The last equality follows from Pascal's identity.
+as desired. Once again, the last equality follows from Pascal's identity.
 \end{proof}
 
 An interesting result we obtain is that $T(n,n) = \binom{2n}{n} - \binom{2n}{n-1}$ is exactly the $n^{th}$ Catalan number. In the $2$x$n$ rectangular $(n,n)$ staircase, we can think about the blocks in the first column as left parentheses ``(" and the blocks in the second column as right parentheses ``)". Since the staircase construction condition produces a correct parenthesization, this leads to a familiar interpretation of the Catalan numbers. 
