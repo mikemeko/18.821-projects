@@ -110,9 +110,10 @@ def num_constructions_2(staircase):
   """
   assert_valid_staircase(staircase)
   columns = [c for c in staircase if c > 0]
-  matrix_rows = [[1.0 / factorial(columns[i] -i + j)
+  matrix_rows = [[1.0 / factorial(columns[i] - i + j)
     for j in xrange(len(columns))] for i in xrange(len(columns))]
-  return int(factorial(sum(columns)) * det(matrix(matrix_rows)))
+  # round to guard against floating point error
+  return int(round(factorial(sum(columns)) * det(matrix(matrix_rows))))
 
 def serialize_staircase(staircase):
   """
@@ -139,6 +140,6 @@ if __name__ == '__main__':
   #print prettify_staircase(get_staircase(15))
   #simulate_staircases(4, 100000)
   #enumerate_staircases(4)
-  staircase = [3,2,2,0,0,0,0]
+  staircase = [3,3,3,3,0,0,0,0,0,0,0,0]
   #print '%d ways to construct %s' % (num_constructions(staircase), staircase)
   print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
