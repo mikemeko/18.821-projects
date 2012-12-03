@@ -4,6 +4,9 @@ Simulator for staircase.
 
 __author__ = 'Justin Venezuela (jven@mit.edu)'
 
+from math import factorial
+from numpy import matrix
+from numpy.linalg import det
 import random
 
 def get_staircase(num_blocks):
@@ -83,6 +86,7 @@ memo = {}
 def num_constructions(staircase):
   """
   Finds the number of ways a given staircase can be constructed.
+  (Using a recursive formula)
   """
   assert_valid_staircase(staircase)
   # Base case, a staircase of all 1s
@@ -98,6 +102,17 @@ def num_constructions(staircase):
       removed_staircase[i] -= 1
       memo[serialized] += num_constructions(removed_staircase)
   return memo[serialized] 
+
+def num_constructions_2(staircase):
+  """
+  Finds the number of ways a given staircase can be constructed.
+  (Using an explicit formula)
+  """
+  assert_valid_staircase(staircase)
+  columns = [c for c in staircase if c > 0]
+  matrix_rows = [[1.0 / factorial(columns[i] -i + j)
+    for j in xrange(len(columns))] for i in xrange(len(columns))]
+  return int(factorial(sum(columns)) * det(matrix(matrix_rows)))
 
 def serialize_staircase(staircase):
   """
@@ -123,6 +138,7 @@ def assert_valid_staircase(staircase):
 if __name__ == '__main__':
   #print prettify_staircase(get_staircase(15))
   #simulate_staircases(4, 100000)
-  enumerate_staircases(4)
-  staircase = [2,1,1,0]
-  print '%d ways to construct %s' % (num_constructions(staircase), staircase)
+  #enumerate_staircases(4)
+  staircase = [3,2,2,0,0,0,0]
+  #print '%d ways to construct %s' % (num_constructions(staircase), staircase)
+  print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
