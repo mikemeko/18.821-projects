@@ -122,8 +122,8 @@ For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \
 $$
 \M(c_0, c_1, \dots, c_k) = \left|
 \begin{matrix}
-\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k-1) \\
-\ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-2) \\
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
+\ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-1) \\
 \vdots & \vdots & \ddots & \vdots \\
 \ifact(c_k-k+1) & \ifact(c_k-k+2) & \cdots & \ifact(c_k) \\
 \end{matrix} \right|
@@ -135,11 +135,11 @@ For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \
 $$
 \N_i(c_0, c_1, \dots, c_k) = \left|
 \begin{matrix}
-\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k-1) \\
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
 \vdots & \vdots & \ddots & \vdots \\
--i\ifact(c_i-i) & (1-i)\ifact(c_i - i + 1) & \cdots & (k-i-1) \ifact(c_i+k-i-1) \\
+-i\ifact(c_i-i) & (1-i)\ifact(c_i - i + 1) & \cdots & (k-i) \ifact(c_i+k-i) \\
 \vdots & \vdots & \ddots & \vdots \\
-\ifact(c_k-k) & \ifact(c_k-k+2) & \cdots & \ifact(c_k-1) \\
+\ifact(c_k-k) & \ifact(c_k-k+2) & \cdots & \ifact(c_k) \\
 \end{matrix} \right|
 $$
 \end{definition}
@@ -208,6 +208,11 @@ Thus, all that remains to show now is that
 $$
 \N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k) = 0.
 $$
+Each of the terms in the sum is a determinant of a $(k+1)\times(k+1)$ matrix, which is a linear combination of $(k+1)!$ terms. Note that each of these terms is the same across the $k+1$ determinants, the only difference being in the leading constant coefficients. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote this term by $(\sigma_0, \sigma_1, \dots, \sigma_k)$, a permutation of $(0, 1, \dots, k)$, with $\sigma_i$ indicating the column number of the term from the $i^{th}$ row. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the final constant coefficient for the factor:
+$$
+\sum_{i=0}^{k}{\sigma_i-i} = 0.
+$$
+Thus, we have that each factor contributes nothing to the sum of determinants, giving us the result we need.
 
 \end{proof}
 
