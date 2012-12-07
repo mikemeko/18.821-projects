@@ -25,6 +25,12 @@
 \newtheorem{remark}[theorem]{Remark}
 
 % Utility commands
+% Inverse factorial
+\newcommand{\ifact}{\mu}
+% Determinant of our special matrix
+\newcommand{\M}{M}
+% Determinant of our special matrix with a row changed
+\newcommand{\N}{N}
 % Real numbers
 \newcommand{\R}{\mathbb{R}}
 % Figures: \newfigure{label}{caption}{content}
@@ -70,6 +76,7 @@ We will refer to a staircase as the monotonically decreasing finite sequence of 
 
 We are interested in constructing random staircases: beginning with no blocks, we consider all the locations $(i, j)$ at which a block can be validly placed, choose such a location uniformly at random, and place a block there. This raises various interesting questions regarding the distribution over the shape of the resulting staircase when $n$ blocks are dropped.
 
+TODO(mikemeko, jven): change this
 To begin, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks. Finally, Section \ref{sec:twocolumn} will present exact results for the variant of the problem in which we restrict staircases to having at most $2$ columns.
 
 \newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
@@ -89,6 +96,120 @@ The result follows.
 \end{theorem}
 
 For increasing $n$ beginning with $n = 0$, the numbers of partitions of $n$ are $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow exponentially with $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
+
+\newsection{Number of ways to construct a staircase}{sec:numconstructions}
+Let us now focus on the number of ways to construct a particular staircase $(c_0, c_1, \dots, c_k)$. For instance, there are $2$ ways to construct the $(2,1)$ staircase. We begin with a few formalizing definitions, and then we proceed to developing a closed form expression for the quantity we are studying.
+
+\begin{definition}
+Let $T(c_0, c_1, \dots, c_k)$ denote the number of ways to construct the $(c_0, c_1, \dots, c_k)$ staircase, where we assume that $c_0 \geq c_1 \geq \dots \geq c_k > 0$.
+\end{definition}
+
+\begin{definition}
+For any integer $i$, we define
+$$
+\ifact(i) = 
+\begin{cases}
+\frac{1}{i!} & \text{if } i \geq 0 \\
+0 & \text{otherwise.}
+\end{cases}
+$$
+\end{definition}
+
+To motivate the definition of $\ifact$, consider the quantity $\binom{1}{-1}$. Intuitively, this quantity should be $0$ since there are $0$ ways to choose $-1$ items from a set containing $1$ item. By definition, we have that $\binom{1}{-1} = \frac{1}{(-1)!2!}$. Thus, $\frac{1}{(-1)!} = \ifact(-1)$ ought to be $0$.
+
+\begin{definition}
+For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define
+$$
+\M(c_0, c_1, \dots, c_k) = \left|
+\begin{matrix}
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k-1) \\
+\ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-2) \\
+\vdots & \vdots & \ddots & \vdots \\
+\ifact(c_k-k+1) & \ifact(c_k-k+2) & \cdots & \ifact(c_k) \\
+\end{matrix} \right|
+$$
+\end{definition}
+
+\begin{definition}
+For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define
+$$
+\N_i(c_0, c_1, \dots, c_k) = \left|
+\begin{matrix}
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k-1) \\
+\vdots & \vdots & \ddots & \vdots \\
+-i\ifact(c_i-i) & (1-i)\ifact(c_i - i + 1) & \cdots & (k-i-1) \ifact(c_i+k-i-1) \\
+\vdots & \vdots & \ddots & \vdots \\
+\ifact(c_k-k) & \ifact(c_k-k+2) & \cdots & \ifact(c_k-1) \\
+\end{matrix} \right|
+$$
+\end{definition}
+
+Let us now write a recurrence relation for $T(c_0, c_1, \dots, c_k)$.
+\begin{lemma}
+\begin{align*}
+T(c_0, c_1, \dots, c_k) = & T(c_0-1, c_1, \dots, c_k) + \\
+&  T(c_0, c_1-1, \dots, c_k) + \\
+& \dots \\
+& T(c_0, c_1, \dots, c_k-1)
+\end{align*}
+\label{lem:recurrence}
+\end{lemma}
+
+\begin{proof}
+TODO(mikemeko): there are special conditions here, mention them?
+
+The $(c_0, c_1, \dots, c_k)$ staircase can be built in one of $k$ different ways: build the $(c_0-1, c_1, \dots, c_k)$ staircase and then add a block to the $0^{th}$ column, or build the $(c_0, c_1-1, \dots, c_k)$ staircase and then add a block to the $1^{st}$ column, etc. The recurrence captures exactly this idea.
+\end{proof}
+
+Now we proceed to our main result.
+
+\begin{theorem}
+$$
+T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \M(c_0, c_1, \dots, c_k)
+$$
+\end{theorem}
+
+\begin{proof}
+We prove this by induction on $c_0, c_1, \dots, c_k$.
+
+TODO(mikemeko): is this base case good? say more about how we can compute any $T(c_0, c_1, \dots, c_k)$ starting with these.
+
+In the base case, we look at all cases in which $c_i \geq 0 \forall i = 0,1,\dots,k$ and $\sum_{i=0}^{k}{c_i} = 1$. First, we have that
+$$
+T(1,0,\dots,0) = \M(1,0,\dots,0)=\left|
+\begin{matrix}
+1 & \ifact(2) & \ifact(3) & \cdots & \ifact(k) \\
+0 & 1 & \ifact(2) & \cdots & \ifact(k-2) \\
+0 & 0 & 1 & \cdots & \ifact(k-3) \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{matrix} \right| = 1,
+$$
+as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix wish diagonal terms that are all $1$. Next, consider setting $c_i = 1, i > 0$ and all other columns $0$. In this case, the $(i-1)^{st}$ and $i^{th}$ rows in the matrix become identical, and, therefore, the determinant equals $0$, as desired.
+
+In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_n)$, $T(c_0,c_1-1,...,c_n)$, $\dots$, $T(c_0,c_1,...,c_n-1)$, and show that it also holds for $T(c_0,c_1,...,c_n)$. Here we use the recurrence in Lemma \ref{lem:recurrence}.
+
+\begin{align*}
+T(c_0, \dots, c_k) = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
+= & (c_0 + \dots + c_k-1)! \\
+& ( \M(c_0-1, \dots, c_k) + \dots + \M(c_0, \dots, c_k-1)) \\
+= & (c_0 + \dots + c_k-1)! \\
+& ( c_0 \M(c_0, \dots, c_k) + \N_0(c_0, c_1, \dots, c_k) + \\
+& c_1 \M(c_0, \dots, c_k) + \N_1(c_0, c_1, \dots, c_k) + \\
+& \dots + \\
+& c_k \M(c_0, \dots, c_k) + \N_k(c_0, c_1, \dots, c_k) ) \\
+= & (c_0 + \dots + c_k)! \M(c_0,\dots,c_k) + \\
+& (c_0+\dots+c_k-1)! (\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k)).
+\end{align*}
+
+TODO(mikemeko) elaborate.
+
+Thus, all that remains to show now is that
+$$
+\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k) = 0.
+$$
+
+\end{proof}
 
 \newsection{Expected Number of Columns}{sec:expectedcolumns}
 We now consider the number of columns that occur when $n$ blocks are dropped. Our results at this point are rather minimal, but we present what we have.
