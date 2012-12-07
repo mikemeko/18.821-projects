@@ -76,7 +76,6 @@ We will refer to a staircase as the monotonically decreasing finite sequence of 
 
 We are interested in constructing random staircases: beginning with no blocks, we consider all the locations $(i, j)$ at which a block can be validly placed, choose such a location uniformly at random, and place a block there. This raises various interesting questions regarding the distribution over the shape of the resulting staircase when $n$ blocks are dropped.
 
-TODO(mikemeko, jven): change this
 To begin, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks. Finally, Section \ref{sec:twocolumn} will present exact results for the variant of the problem in which we restrict staircases to having at most $2$ columns.
 
 \newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
@@ -109,7 +108,7 @@ For any integer $i$, we define
 $$
 \ifact(i) = 
 \begin{cases}
-\frac{1}{i!} & \text{if } i \geq 0 \\
+\frac{1}{i!} & \text{if } i \geq 0, \\
 0 & \text{otherwise.}
 \end{cases}
 $$
@@ -125,26 +124,28 @@ $$
 \ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
 \ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-1) \\
 \vdots & \vdots & \ddots & \vdots \\
-\ifact(c_k-k+1) & \ifact(c_k-k+2) & \cdots & \ifact(c_k) \\
+\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
 \end{matrix} \right|
 $$
 \end{definition}
 
 \begin{definition}
-For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define
+For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define $\N_i(c_0,c_1,\dots,c_k)$ to be the same as $\M(c_0, c_1, \dots, c_k)$, but with the $i^{th}$ row changed as follows
 $$
 \N_i(c_0, c_1, \dots, c_k) = \left|
 \begin{matrix}
 \ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
 \vdots & \vdots & \ddots & \vdots \\
--i\ifact(c_i-i) & (1-i)\ifact(c_i - i + 1) & \cdots & (k-i) \ifact(c_i+k-i) \\
+-i\ifact(c_i-i) & (1-i)\ifact(c_i + 1 - i) & \cdots & (k-i) \ifact(c_i+k-i) \\
 \vdots & \vdots & \ddots & \vdots \\
-\ifact(c_k-k) & \ifact(c_k-k+2) & \cdots & \ifact(c_k) \\
+\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
 \end{matrix} \right|
 $$
 \end{definition}
 
-Let us now write a recurrence relation for $T(c_0, c_1, \dots, c_k)$.
+\vspace{0.75cm}
+
+Equipped with these definitions, we start by writing a recurrence relation for $T(c_0, c_1, \dots, c_k)$, and then we will write a closed form expression for it.
 \begin{lemma}
 \begin{align*}
 T(c_0, c_1, \dots, c_k) = & T(c_0-1, c_1, \dots, c_k) + \\
@@ -178,16 +179,16 @@ In the base case, we look at all cases in which $c_i \geq 0 \forall i = 0,1,\dot
 $$
 T(1,0,\dots,0) = \M(1,0,\dots,0)=\left|
 \begin{matrix}
-1 & \ifact(2) & \ifact(3) & \cdots & \ifact(k) \\
-0 & 1 & \ifact(2) & \cdots & \ifact(k-2) \\
-0 & 0 & 1 & \cdots & \ifact(k-3) \\
+1 & \ifact(2) & \ifact(3) & \cdots & \ifact(k+1) \\
+0 & 1 & \ifact(1) & \cdots & \ifact(k-1) \\
+0 & 0 & 1 & \cdots & \ifact(k-2) \\
 \vdots & \vdots & \vdots & \ddots & \vdots \\
 0 & 0 & 0 & \cdots & 1 \\
 \end{matrix} \right| = 1,
 $$
 as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix wish diagonal terms that are all $1$. Next, consider setting $c_i = 1, i > 0$ and all other columns $0$. In this case, the $(i-1)^{st}$ and $i^{th}$ rows in the matrix become identical, and, therefore, the determinant equals $0$, as desired.
 
-In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_n)$, $T(c_0,c_1-1,...,c_n)$, $\dots$, $T(c_0,c_1,...,c_n-1)$, and show that it also holds for $T(c_0,c_1,...,c_n)$. Here we use the recurrence in Lemma \ref{lem:recurrence}.
+In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. Here we use the recurrence in Lemma \ref{lem:recurrence}.
 
 \begin{align*}
 T(c_0, \dots, c_k) = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
@@ -201,18 +202,36 @@ T(c_0, \dots, c_k) = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
 = & (c_0 + \dots + c_k)! \M(c_0,\dots,c_k) + \\
 & (c_0+\dots+c_k-1)! (\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k)).
 \end{align*}
-
-TODO(mikemeko) elaborate.
+The key fact we used here is that
+\begin{align*}
+\M(c_0, \dots, c_i - 1, \dots, c_k) & = \left|
+\begin{matrix}
+\ifact(c_0) & \cdots & \ifact(c_0+k) \\
+\vdots & \ddots & \vdots \\
+\ifact(c_i-i-1) & \cdots & \ifact(c_i+k-i-1) \\
+\vdots & \ddots & \vdots \\
+\ifact(c_k-k) & \cdots & \ifact(c_k) \\
+\end{matrix} \right| \\
+& = \left|
+\begin{matrix}
+\ifact(c_0) & \cdots & \ifact(c_0+k) \\
+\vdots & \ddots & \vdots \\
+(c_i - i) \ifact(c_i-i) & \cdots & (c_i+k-i) \ifact(c_i+k-i) \\
+\vdots & \ddots & \vdots \\
+\ifact(c_k-k) & \cdots & \ifact(c_k) \\
+\end{matrix} \right| \\
+& = c_i \M(c_0, \dots, c_i, \dots, c_k) + \N_i(c_0, \dots, c_i, \dots, c_k).
+\end{align*}
 
 Thus, all that remains to show now is that
 $$
 \N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k) = 0.
 $$
-Each of the terms in the sum is a determinant of a $(k+1)\times(k+1)$ matrix, which is a linear combination of $(k+1)!$ terms. Note that each of these terms is the same across the $k+1$ determinants, the only difference being in the leading constant coefficients. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote this term by $(\sigma_0, \sigma_1, \dots, \sigma_k)$, a permutation of $(0, 1, \dots, k)$, with $\sigma_i$ indicating the column number of the term from the $i^{th}$ row. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the final constant coefficient for the factor:
+Each of the terms in the sum is a determinant of a $(k+1)\times(k+1)$ matrix, which is a linear combination of $(k+1)!$ terms. Note that each of these terms is the same across the $k+1$ determinants, the only difference being in the leading constant coefficients. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote this term by $(\sigma_0, \sigma_1, \dots, \sigma_k)$, a permutation of $(0, 1, \dots, k)$, with $\sigma_i$ indicating the column number of the term from the $i^{th}$ row. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the final constant coefficient for the term:
 $$
 \sum_{i=0}^{k}{\sigma_i-i} = 0.
 $$
-Thus, we have that each factor contributes nothing to the sum of determinants, giving us the result we need.
+Thus, we have that each term contributes nothing to the sum of determinants, giving us the result we need.
 
 \end{proof}
 
