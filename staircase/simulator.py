@@ -82,7 +82,6 @@ def enumerate_staircases(num_blocks):
     print '%s: %.4f' % (deserialize_staircase(staircase_str),
         staircases[num_blocks - 1][staircase_str])
 
-
 def distribution_of_number_of_columns(num_blocks):
   staircases = [{} for k in range(num_blocks)]
   staircases[0][serialize_staircase(get_staircase(1))] = 1.0
@@ -111,6 +110,7 @@ def distribution_of_number_of_columns(num_blocks):
             index = deserialize_staircase(staircase_str).index(0)
             distribution[index] += staircases[num_blocks-1][staircase_str]
   return distribution
+
 memo = {}
 def num_constructions(staircase):
   """
@@ -132,6 +132,12 @@ def num_constructions(staircase):
       memo[serialized] += num_constructions(removed_staircase)
   return memo[serialized] 
 
+def f(n):
+  """
+  Clamped 1/n!.
+  """
+  return 0 if n < 0 else 1.0 / factorial(n)
+
 def num_constructions_2(staircase):
   """
   Finds the number of ways a given staircase can be constructed.
@@ -139,10 +145,17 @@ def num_constructions_2(staircase):
   """
   assert_valid_staircase(staircase)
   columns = [c for c in staircase if c > 0]
-  matrix_rows = [[1.0 / factorial(columns[i] - i + j)
+  matrix_rows = [[f(columns[i] - i + j)
     for j in xrange(len(columns))] for i in xrange(len(columns))]
   # round to guard against floating point error
   return int(round(factorial(sum(columns)) * det(matrix(matrix_rows))))
+
+def staircase_from_columns(columns):
+  """
+  Creates a well formed staircase given column heights.
+  """
+  assert_valid_columns(columns)
+  return columns + [0] * (sum(columns) - len(columns))
 
 def serialize_staircase(staircase):
   """
@@ -165,8 +178,15 @@ def assert_valid_staircase(staircase):
     assert staircase[i] >= staircase[i+1], 'decreasing at index %d' % (i + 1)
   assert staircase[-1] >= 0, 'values must be non-negative'
 
-if __name__ == '__main__':
-  staircase = [3,3,3,3,0,0,0,0,0,0,0,0]
-  #print '%d ways to construct %s' % (num_constructions(staircase), staircase)
-  print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
+def assert_valid_columns(columns):
+  """
+  Checks that column heights are all positive and decreasing.
+  """
+  assert all(c > 0 for c in columns), 'all column heights must be positive'
+  for i in xrange(len(columns) - 1):
+    assert columns[i] >= columns[i+1], 'decreasing at index %d' % (i + 1)
 
+if __name__ == '__main__':
+  staircase = staircase_from_columns([4,1,1,1,1,1,1,1])
+  print '%d ways to construct %s' % (num_constructions(staircase), staircase)
+  print '%d ways to construct %s' % (num_constructions_2(staircase), staircase)
