@@ -114,7 +114,7 @@ $$
 $$
 \end{definition}
 
-To motivate the definition of $\ifact$, consider the quantity $\binom{1}{-1}$. Intuitively, this quantity should be $0$ since there are $0$ ways to choose $-1$ items from a set containing $1$ item. By definition, we have that $\binom{1}{-1} = \frac{1}{(-1)!2!}$. Thus, $\frac{1}{(-1)!} = \ifact(-1)$ ought to be $0$.
+To motivate the definition of $\ifact$, consider the quantity $\binom{1}{-1}$. Intuitively, this quantity should be $0$ since there are $0$ ways to choose $-1$ items from a set containing $1$ item. By definition, we have that $\binom{1}{-1} = \frac{1}{(-1)!2!}$. Thus, $\frac{1!}{(-1)!} = \ifact(-1)$ ought to be $0$.
 
 \begin{definition}
 For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define
@@ -173,7 +173,7 @@ $$
 \begin{proof}
 We prove this by induction on $c_0, c_1, \dots, c_k$.
 
-TODO(mikemeko): is this base case good? say more about how we can compute any $T(c_0, c_1, \dots, c_k)$ starting with these.
+TODO(mikemeko, jven): is this base case good? say more about how we can compute any $T(c_0, c_1, \dots, c_k)$ starting with these.
 
 In the base case, we look at all cases in which $c_i \geq 0 \forall i = 0,1,\dots,k$ and $\sum_{i=0}^{k}{c_i} = 1$. First, we have that
 $$
@@ -227,7 +227,7 @@ Thus, all that remains to show now is that
 $$
 \N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k) = 0.
 $$
-Each of the terms in the sum is a determinant of a $(k+1)\times(k+1)$ matrix, which is a linear combination of $(k+1)!$ terms. Note that each of these terms is the same across the $k+1$ determinants, the only difference being in the leading constant coefficients. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote this term by $(\sigma_0, \sigma_1, \dots, \sigma_k)$, a permutation of $(0, 1, \dots, k)$, with $\sigma_i$ indicating the column number of the term from the $i^{th}$ row. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the final constant coefficient for the term:
+Each of the terms in the sum is a determinant of a $(k+1)\times(k+1)$ matrix, which is some linear combination of $(k+1)!$ terms. Note that each of these terms is the same across the $k+1$ determinants, the only difference being in the leading constant coefficients. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote this term by $(\sigma_0, \sigma_1, \dots, \sigma_k)$, some permutation of $(0, 1, \dots, k)$, with $\sigma_i$ indicating the column number of the term from the $i^{th}$ row. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the total constant coefficient for the term:
 $$
 \sum_{i=0}^{k}{\sigma_i-i} = 0.
 $$
