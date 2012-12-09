@@ -76,27 +76,14 @@ We will refer to a staircase as the monotonically decreasing finite sequence of 
 
 We are interested in constructing random staircases: beginning with no blocks, we consider all the locations $(i, j)$ at which a block can be validly placed, choose such a location uniformly at random, and place a block there. This raises various interesting questions regarding the distribution over the shape of the resulting staircase when $n$ blocks are dropped.
 
-TODO(jven, mikemeko): paper is slightly restructured
+The construction of random staircases in this manner can be likened to the process of erosion. Consider a rectangular piece of material and an eroding force acting from a fixed direction from one of its corners. If we wish to model how the shape of the material changes as a result of this force, it is reasonable to suppose that a ``piece'' of this material is not likely to be eroded unless it is exposed to the force, in the sense that it is on the surface of the material facing the direction from which the eroding force is acting. This corresponds to the process of constructing a staircase: the blocks represent the eroded pieces of material.
 
-To begin, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks. Finally, Section \ref{sec:twocolumn} will present exact results for the variant of the problem in which we restrict staircases to having at most $2$ columns.
+To begin our exposition, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:numconstructions} will investigate the number of ways in which a given staircase can be formed. Section \ref{sec:twcolumn} will relate the $2$-column staircase case to the Catalan numbers and derive a well-known identity using the formula from the preceding section. Finally, Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks.
 
 \newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
 Our investigation into the distribution over staircase shapes begins with determining how many staircase shapes exist using $n$ blocks.
 
-\begin{theorem}
-The number of staircases with $n$ blocks is equal to the number of partitions of $n$ (the number of ways to write $n$ as a sum of positive integers, irrespective of the order of the parts).
-\begin{proof}
-There is an obvious bijection $f$ between staircase with $n$ blocks and partitions of $n$. We map the staircase $(b_i)$ with $n$ blocks to the partition $n=\sum b_i$.
-
-$f$ is injective. If $(b_i)\neq (b_i')$ are two distinct staircases, then $n = \sum b_i = \sum b_i'$ are two partitions of $n$ such that with the parts written in monotonically decreasing order, we have some $b_i\neq b_i'$. It follows that the two partitions are distinct.
-
-$f$ is also surjective. Given a partition $n = \sum a_i$, we can sort $(a_i)$ in monotonically decreasing order, yielding $(b_i)$. $f$ clearly maps $(b_i)$ to the partition $\sum a_i$.
-
-The result follows.
-\end{proof}
-\end{theorem}
-
-For increasing $n$ beginning with $n = 0$, the numbers of partitions of $n$ are $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow exponentially with $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
+Recall that a partition of a positive integer $n$ is a sequence of monotonically decreasing positive integers whose sum is $n$.\footnote{Partition (MathWorld): http://mathworld.wolfram.com/Partition.html} Thus a staircase with $n$ blocks is equivalent to the number of partitions of $n$. For integers $n$ beginning with $n = 0$, the numbers of partitions of $n$ is $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow faster than any polynomial in $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
 
 TODO(jven, mikemeko): paper is slightly restructured
 
