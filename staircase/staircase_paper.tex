@@ -63,42 +63,27 @@ In this paper, we consider the random process of forming staircases by dropping 
 More concretely, consider partitioning the first quadrant of $\R^2$ into axis-aligned columns of width $1$, as in Figure $\ref{fig:columns}$. We will index the columns starting at $0$.
 
 \newfigure{fig:columns}{Partitioning of the first quadrant into columns}{
-TODO
+\includegraphics[scale=0.4]{columns_fig.png}
 }
 
 Now consider iteratively placing unit squares (blocks) into these columns. We will say that a block is at location $(i, j)$ for non-negative integers $i, j$ if it is axis-aligned and its bottom-left vertex is at $(i, j)$. At each step, a block can be placed at $(i, j)$ if and only if (1) $i = 0$ or there is a block at $(i - 1, j)$ and (2) $j = 0$ or there is a block at $(i, j - 1)$. Figure $\ref{fig:dropblocks}$ shows an example of a valid sequence of placing $5$ blocks. We will usually refer to such a sequence of placements a \textit{dropping of $5$ blocks}, for obvious reasons. We call a configuration of $n$ blocks in the first quadrant a \textit{staircase} if it can be obtained by dropping $n$ blocks.
 
 \newfigure{fig:dropblocks}{Example of dropping $5$ blocks}{
-TODO
+\includegraphics[scale=0.4]{dropblocks_fig.png}
 }
 
-We will refer to a staircase as the monotonically decreasing finite sequence of positive integers $(b_i)$, where $b_i$ is the number of blocks in column $i$. For example, the last staircase in Figure \ref{fig:dropblocks} can be written as $(hi,hi,hi,hi,hi)$. Note that we do not include columns that do not contain any blocks.
+We will refer to a staircase as the monotonically decreasing finite sequence of positive integers $(b_i)$, where $b_i$ is the number of blocks in column $i$. For example, the last staircase in Figure \ref{fig:dropblocks} can be written as $(2,2,1)$. Note that we do not include columns that do not contain any blocks.
 
 We are interested in constructing random staircases: beginning with no blocks, we consider all the locations $(i, j)$ at which a block can be validly placed, choose such a location uniformly at random, and place a block there. This raises various interesting questions regarding the distribution over the shape of the resulting staircase when $n$ blocks are dropped.
 
-TODO(jven, mikemeko): paper is slightly restructured
+The construction of random staircases in this manner can be likened to the process of erosion. Consider a rectangular piece of material and an eroding force acting from a fixed direction from one of its corners. If we wish to model how the shape of the material changes as a result of this force, it is reasonable to suppose that a ``piece'' of this material is not likely to be eroded unless it is exposed to the force, in the sense that it is on the surface of the material facing the direction from which the eroding force is acting. This corresponds to the process of constructing a staircase: the blocks represent the eroded pieces of material.
 
-To begin, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks. Finally, Section \ref{sec:twocolumn} will present exact results for the variant of the problem in which we restrict staircases to having at most $2$ columns.
+To begin our exposition, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:numconstructions} will investigate the number of ways in which a given staircase can be formed. Section \ref{sec:twcolumn} will relate the $2$-column staircase case to the Catalan numbers and derive a well-known identity using the formula from the preceding section. Finally, Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks.
 
 \newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
 Our investigation into the distribution over staircase shapes begins with determining how many staircase shapes exist using $n$ blocks.
 
-\begin{theorem}
-The number of staircases with $n$ blocks is equal to the number of partitions of $n$ (the number of ways to write $n$ as a sum of positive integers, irrespective of the order of the parts).
-\begin{proof}
-There is an obvious bijection $f$ between staircase with $n$ blocks and partitions of $n$. We map the staircase $(b_i)$ with $n$ blocks to the partition $n=\sum b_i$.
-
-$f$ is injective. If $(b_i)\neq (b_i')$ are two distinct staircases, then $n = \sum b_i = \sum b_i'$ are two partitions of $n$ such that with the parts written in monotonically decreasing order, we have some $b_i\neq b_i'$. It follows that the two partitions are distinct.
-
-$f$ is also surjective. Given a partition $n = \sum a_i$, we can sort $(a_i)$ in monotonically decreasing order, yielding $(b_i)$. $f$ clearly maps $(b_i)$ to the partition $\sum a_i$.
-
-The result follows.
-\end{proof}
-\end{theorem}
-
-For increasing $n$ beginning with $n = 0$, the numbers of partitions of $n$ are $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow exponentially with $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are exponentially many objects to which a probability is to be assigned. For this reason, we instead consider the distribution over the number of columns in the next section, the number of which is clearly linear in $n$.
-
-TODO(jven, mikemeko): paper is slightly restructured
+Recall that a partition of a positive integer $n$ is a sequence of monotonically decreasing positive integers whose sum is $n$.\footnote{Partition (MathWorld): http://mathworld.wolfram.com/Partition.html} Thus a staircase with $n$ blocks is equivalent to the number of partitions of $n$. For integers $n$ beginning with $n = 0$, the numbers of partitions of $n$ is $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow faster than any polynomial in $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are more than polynomially many objects to which a probability is to be assigned.
 
 \newsection{Number of ways to construct a staircase}{sec:numconstructions}
 Let us now focus on the number of ways to construct a particular staircase $(c_0, c_1, \dots, c_k)$. For instance, there are $2$ ways to construct the $(2,1)$ staircase. We begin with a few formalizing definitions, and then we proceed to developing a closed form expression for the quantity we are studying.
@@ -107,7 +92,11 @@ Let us now focus on the number of ways to construct a particular staircase $(c_0
 Let $T(c_0, c_1, \dots, c_k)$ denote the number of ways to construct the $(c_0, c_1, \dots, c_k)$ staircase, where we assume that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$. For all other choices of $c_0, \dots, c_k$, we define $T(c_0, \dots, c_k)$ to be $0$.
 \end{definition}
 
-TODO(mikemeko, jven, dgrazian): should the last inequality be $> 0$ or $\geq 0$??
+% TODO(mikemeko, jven, dgrazian): should the last inequality be $> 0$ or $\geq 0$??
+
+% Should be strict but maybe just say "For staircase (c_i), let T(c_i) be the number of ways the staircase can be constructed. Let T(c_i) = 0 for sequences that are not staircases" so we use our definition of staircase.} -jven
+
+% TODO(mikemeko, jven): Put the recurrence here?
 
 \begin{definition}
 For any integer $i$, we define
@@ -135,6 +124,8 @@ $$
 $$
 \end{definition}
 
+% TODO(jven, mikemeko): Minor nitpick, maybe M_i? Seems really related to M
+
 \begin{definition}
 For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$ and an integer $i \in \{0,1,\dots,k\}$, we define $\N_i(c_0,c_1,\dots,c_k)$ to be the same as $\M(c_0, c_1, \dots, c_k)$, but with the $i^{th}$ row changed as follows:
 \begin{multline*}
@@ -153,13 +144,16 @@ For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \
 \vspace{0.75cm}
 
 Equipped with these definitions, we start by writing a recurrence relation for $T(c_0, c_1, \dots, c_k)$, and then we will write a closed form expression for it.
+
+% TODO(mikemeko, jven): This doesn't use M, N_i, maybe move this up where we define T?
+
 \begin{lemma}
-\begin{align*}
-T(c_0, c_1, \dots, c_k) = & T(c_0-1, c_1, \dots, c_k) + \\
-&  T(c_0, c_1-1, \dots, c_k) + \\
-& \dots \\
-& T(c_0, c_1, \dots, c_k-1)
-\end{align*}
+$$\begin{array}{ccl}
+T(c_0, c_1, \dots, c_k) & = & T(c_0-1, c_1, \dots, c_k) \\
+& & +\ T(c_0, c_1-1, \dots, c_k) \\
+& & +\ \dots \\
+& & +\ T(c_0, c_1, \dots, c_k-1)
+\end{array}$$
 \label{lem:recurrence}
 \end{lemma}
 
@@ -171,7 +165,7 @@ Now we proceed to our main result.
 
 \begin{theorem}
 $$
-T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \M(c_0, c_1, \dots, c_k).
+T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \cdot \M(c_0, c_1, \dots, c_k).
 $$
 \label{thm:closedform}
 \end{theorem}
@@ -179,7 +173,9 @@ $$
 \begin{proof}
 We prove this by induction on $c_0, c_1, \dots, c_k$.
 
-TODO(mikemeko, jven, dgrazian): is this base case good? say more about how we can compute any $T(c_0, c_1, \dots, c_k)$ starting with these.
+% TODO(mikemeko, jven, dgrazian): is this base case good? say more about how we can compute any T(c_0, c_1, \dots, c_k) starting with these.
+
+% This sentence below seems a bit confusing... is i doing 2 different things here? And to make it a bit clearer, can we say we're inducting on \sum c_i? And can we just have our base case be (0, 0, ..., 0), in which case the main diagonal is still ones? And then we get all the (1, 0, ..., 0), (0, 1, ..., 0) guys from there. -jven
 
 In the base case, we look at all cases in which $c_i \geq 0 \forall i \in \{0,1,\dots,k\}$ and $\sum_{i=0}^{k}{c_i} = 1$. First, we have that
 $$
@@ -192,25 +188,29 @@ T(1,0,\dots,0) = \M(1,0,\dots,0)=\left|
 0 & 0 & 0 & \cdots & 1 \\
 \end{matrix} \right| = 1,
 $$
-as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix with diagonal terms that are all $1$. Next, consider setting $c_i = 1, i > 0$ and all other columns $0$. In this case, the $(i-1)^{st}$ and $i^{th}$ rows in the matrix become identical, and, therefore, the determinant equals $0$, as desired.
+as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix with diagonal terms that are all $1$.
+
+Next, consider setting $c_i = 1, i > 0$ and all other columns $0$. In this case, the $(i-1)^{st}$ and $i^{th}$ rows in the matrix become identical, and, therefore, the determinant equals $0$, as desired.
 
 In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. Here we use the recurrence in Lemma \ref{lem:recurrence}.
 
-\begin{align*}
-T(c_0, \dots, c_k) = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
-= & (c_0 + \dots + c_k-1)! \\
-& ( \M(c_0-1, \dots, c_k) + \dots + \M(c_0, \dots, c_k-1)) \\
-= & (c_0 + \dots + c_k-1)! \\
-& ( c_0 \M(c_0, \dots, c_k) + \N_0(c_0, c_1, \dots, c_k) + \\
-& c_1 \M(c_0, \dots, c_k) + \N_1(c_0, c_1, \dots, c_k) + \\
-& \dots + \\
-& c_k \M(c_0, \dots, c_k) + \N_k(c_0, c_1, \dots, c_k) ) \\
-= & (c_0 + \dots + c_k)! \M(c_0,\dots,c_k) + \\
-& (c_0+\dots+c_k-1)! (\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k)).
-\end{align*}
+$$\begin{array}{ccl}
+T(c_0, \dots, c_k) & = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
+& = & (c_0 + \dots + c_k-1)! \\
+& & \cdot\ ( \M(c_0-1, \dots, c_k) + \dots + \M(c_0, \dots, c_k-1)) \\
+& = & (c_0 + \dots + c_k-1)! \\
+& & \cdot\ ( c_0 \M(c_0, \dots, c_k) + \N_0(c_0, c_1, \dots, c_k) \\
+& & \ +\ c_1 \M(c_0, \dots, c_k) + \N_1(c_0, c_1, \dots, c_k) \\
+& & \ +\ \dots \\
+& & \ +\ c_k \M(c_0, \dots, c_k) + \N_k(c_0, c_1, \dots, c_k) ) \\
+& = & (c_0 + \dots + c_k)! \cdot \M(c_0,\dots,c_k) \\
+& & +\ (c_0+\dots+c_k-1)! \cdot (\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k)).
+\end{array}$$
+
 The key fact we used here is that
-\begin{align*}
-\M(c_0, \dots, c_i - 1, \dots, c_k) & = \left|
+
+$$\begin{array}{ccl}
+\M(c_0, \dots, c_i - 1, \dots, c_k) & = & \left|
 \begin{matrix}
 \ifact(c_0) & \cdots & \ifact(c_0+k) \\
 \vdots & \ddots & \vdots \\
@@ -218,7 +218,7 @@ The key fact we used here is that
 \vdots & \ddots & \vdots \\
 \ifact(c_k-k) & \cdots & \ifact(c_k) \\
 \end{matrix} \right| \\
-& = \left|
+& = & \left|
 \begin{matrix}
 \ifact(c_0) & \cdots & \ifact(c_0+k) \\
 \vdots & \ddots & \vdots \\
@@ -226,8 +226,8 @@ The key fact we used here is that
 \vdots & \ddots & \vdots \\
 \ifact(c_k-k) & \cdots & \ifact(c_k) \\
 \end{matrix} \right| \\
-& = c_i \M(c_0, \dots, c_i, \dots, c_k) + \N_i(c_0, \dots, c_i, \dots, c_k).
-\end{align*}
+& = & c_i \M(c_0, \dots, c_i, \dots, c_k) + \N_i(c_0, \dots, c_i, \dots, c_k).
+\end{array}$$
 
 Thus, all that remains to show now is that
 \begin{equation}
