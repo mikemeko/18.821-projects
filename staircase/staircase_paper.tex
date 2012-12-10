@@ -29,8 +29,6 @@
 \newcommand{\ifact}{\mu}
 % Determinant of our special matrix
 \newcommand{\M}{M}
-% Determinant of our special matrix with a row changed
-\newcommand{\N}{N}
 % Real numbers
 \newcommand{\R}{\mathbb{R}}
 % Figures: \newfigure{label}{caption}{content}
@@ -50,10 +48,6 @@
 \date{December 10, 2012}
 
 \begin{document}
-
-\begin{abstract}
-TODO(dgrazian, jven, mikemeko)
-\end{abstract}
 
 \maketitle
 
@@ -78,7 +72,7 @@ We are interested in constructing random staircases: beginning with no blocks, w
 
 The construction of random staircases in this manner can be likened to the process of erosion. Consider a rectangular piece of material and an eroding force acting from a fixed direction from one of its corners. If we wish to model how the shape of the material changes as a result of this force, it is reasonable to suppose that a ``piece'' of this material is not likely to be eroded unless it is exposed to the force, in the sense that it is on the surface of the material facing the direction from which the eroding force is acting. This corresponds to the process of constructing a staircase: the blocks represent the eroded pieces of material.
 
-To begin our exposition, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:numconstructions} will investigate the number of ways in which a given staircase can be formed. Section \ref{sec:twcolumn} will relate the $2$-column staircase case to the Catalan numbers and derive a well-known identity using the formula from the preceding section. Finally, Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks.
+To begin our exposition, Section \ref{sec:numstaircases} will address the question of how many staircases exist with $n$ blocks. Section \ref{sec:numconstructions} will investigate the number of ways in which a given staircase can be formed. Section \ref{sec:twocolumn} will relate the $2$-column staircase case to the Catalan numbers and derive a well-known identity using the formula from the preceding section. Finally, Section \ref{sec:expectedcolumns} will present numerical results for the expected number of columns for a staircase with $n$ blocks.
 
 \newsection{Number of Staircases with $n$ Blocks}{sec:numstaircases}
 Our investigation into the distribution over staircase shapes begins with determining how many staircase shapes exist using $n$ blocks.
@@ -86,66 +80,13 @@ Our investigation into the distribution over staircase shapes begins with determ
 Recall that a partition of a positive integer $n$ is a sequence of monotonically decreasing positive integers whose sum is $n$.\footnote{Partition (MathWorld): http://mathworld.wolfram.com/Partition.html} Thus a staircase with $n$ blocks is equivalent to the number of partitions of $n$. For integers $n$ beginning with $n = 0$, the numbers of partitions of $n$ is $1, 1, 2, 3, 5, 7, 11, \ldots$. Unfortunately, this sequence is known to grow faster than any polynomial in $n$: for $n = 100$, there are $190,569,292$ partitions. This appears to make our original goal of finding a distribution over staircase shapes difficult as there are more than polynomially many objects to which a probability is to be assigned.
 
 \newsection{Number of ways to construct a staircase}{sec:numconstructions}
-Let us now focus on the number of ways to construct a particular staircase $(c_0, c_1, \dots, c_k)$. For instance, there are $2$ ways to construct the $(2,1)$ staircase. We begin with a few formalizing definitions, and then we proceed to developing a closed form expression for the quantity we are studying.
+Let us now focus on the number of ways to construct a particular staircase $(c_0, c_1, \dots, c_k)$. For instance, there are $2$ ways to construct the $(2,1)$ staircase. We begin with a few formalizing definitions, and then we proceed to developing a closed form expression for the quantity we are studying. In this section, and only in this section, we relax our formal definition of staircases by allowing $0s$ in the sequence $c_0, c_1, \dots, c_k$ to make our analysis simpler.
 
 \begin{definition}
-Let $T(c_0, c_1, \dots, c_k)$ denote the number of ways to construct the $(c_0, c_1, \dots, c_k)$ staircase, where we assume that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$. For all other choices of $c_0, \dots, c_k$, we define $T(c_0, \dots, c_k)$ to be $0$.
+For a staircase $(c_0, c_1, \dots, c_k)$, let $T(c_0, c_1, \dots, c_k)$ denote the number of ways the staircase can be constructed. Let $T(c_0, \dots, c_k) = 0$ for sequences that are not staircases.
 \end{definition}
 
-% TODO(mikemeko, jven, dgrazian): should the last inequality be $> 0$ or $\geq 0$??
-
-% Should be strict but maybe just say "For staircase (c_i), let T(c_i) be the number of ways the staircase can be constructed. Let T(c_i) = 0 for sequences that are not staircases" so we use our definition of staircase.} -jven
-
-% TODO(mikemeko, jven): Put the recurrence here?
-
-\begin{definition}
-For any integer $i$, we define
-$$
-\ifact(i) = 
-\begin{cases}
-\frac{1}{i!} & \text{if } i \geq 0, \\
-0 & \text{otherwise.}
-\end{cases}
-$$
-\end{definition}
-
-To motivate the definition of $\ifact(i)$ for $i < 0$, consider the quantity $\binom{1}{-1}$. Intuitively, this quantity should be $0$ since there are $0$ ways to choose $-1$ items from a set containing $1$ item. By definition, we have that $\binom{1}{-1} = \frac{1!}{(-1)!2!}$. Thus, $\frac{1}{(-1)!} = \ifact(-1)$ ought to be $0$.
-
-\begin{definition}
-For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$, we define $\M(c_0, c_1, \dots, c_k)$ to be the following determinant:
-$$
-\M(c_0, c_1, \dots, c_k) = \left|
-\begin{matrix}
-\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
-\ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-1) \\
-\vdots & \vdots & \ddots & \vdots \\
-\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
-\end{matrix} \right|
-$$
-\end{definition}
-
-% TODO(jven, mikemeko): Minor nitpick, maybe M_i? Seems really related to M
-
-\begin{definition}
-For a sequence of integers $c_0, c_1, \dots, c_k$ such that $c_0 \geq c_1 \geq \dots \geq c_k \geq 0$ and an integer $i \in \{0,1,\dots,k\}$, we define $\N_i(c_0,c_1,\dots,c_k)$ to be the same as $\M(c_0, c_1, \dots, c_k)$, but with the $i^{th}$ row changed as follows:
-\begin{multline*}
-\N_i(c_0, c_1, \dots, c_k) = \\
-\left|
-\begin{matrix}
-\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
-\vdots & \vdots & \ddots & \vdots \\
--i\ifact(c_i-i) & (1-i)\ifact(c_i + 1 - i) & \cdots & (k-i) \ifact(c_i+k-i) \\
-\vdots & \vdots & \ddots & \vdots \\
-\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
-\end{matrix} \right|
-\end{multline*}
-\end{definition}
-
-\vspace{0.75cm}
-
-Equipped with these definitions, we start by writing a recurrence relation for $T(c_0, c_1, \dots, c_k)$, and then we will write a closed form expression for it.
-
-% TODO(mikemeko, jven): This doesn't use M, N_i, maybe move this up where we define T?
+We have a simple recurrence relation on $T$ that shall be useful later.
 
 \begin{lemma}
 $$\begin{array}{ccl}
@@ -161,56 +102,74 @@ T(c_0, c_1, \dots, c_k) & = & T(c_0-1, c_1, \dots, c_k) \\
 The $(c_0, c_1, \dots, c_k)$ staircase can be built in one of $k$ different ways: build the $(c_0-1, c_1, \dots, c_k)$ staircase (if possible) and then add a block to the $0^{th}$ column, or build the $(c_0, c_1-1, \dots, c_k)$ staircase (if possible) and then add a block to the $1^{st}$ column, etc. The recurrence captures exactly this idea. 
 \end{proof}
 
-Now we proceed to our main result.
+\begin{definition}
+For any integer $i$, we define
+$$
+\ifact(i) = 
+\begin{cases}
+\frac{1}{i!} & \text{if } i \geq 0, \\
+0 & \text{otherwise.}
+\end{cases}
+$$
+\end{definition}
 
-\begin{theorem}
+To motivate the definition of $\ifact(i)$ for $i < 0$, consider the quantity $\binom{1}{-1}$. Intuitively, this quantity should be $0$ since there are $0$ ways to choose $-1$ items from a set containing $1$ item. By definition, we have that $\binom{1}{-1} = \frac{1!}{(-1)!2!}$. Thus, $\frac{1}{(-1)!} = \ifact(-1)$ ought to be $0$.
+
+\begin{definition}
+For a sequence of integers $c_0, c_1, \dots, c_k$, we define $\M(c_0, c_1, \dots, c_k)$ to be the following determinant:
 $$
-T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \cdot \M(c_0, c_1, \dots, c_k).
+\M(c_0, c_1, \dots, c_k) = \left|
+\begin{matrix}
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
+\ifact(c_1-1) & \ifact(c_1) & \cdots & \ifact(c_1+k-1) \\
+\vdots & \vdots & \ddots & \vdots \\
+\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
+\end{matrix} \right|
 $$
-\label{thm:closedform}
-\end{theorem}
+\end{definition}
+
+Here we prove a useful identity that will be useful to prove our main result.
+
+\begin{lemma}
+For a sequence of integers $c_0, c_1, \dots, c_k$, if there exists an integer $i \in \{1, 2, \dots, k\}$ such that $c_{i - 1} = c_{i} - 1$, then
+$$
+\M(c_0, c_1, \dots, c_k) = 0.
+$$
+\label{lem:mcornercase}
+\end{lemma}
 
 \begin{proof}
-We prove this by induction on $c_0, c_1, \dots, c_k$.
+This result follows directly from the fact that the $(i-1)^{st}$ and $i^{th}$ rows in the determinant $\M(c_0, c_1, \dots, c_k)$ are identical.
+\end{proof}
 
-% TODO(mikemeko, jven, dgrazian): is this base case good? say more about how we can compute any T(c_0, c_1, \dots, c_k) starting with these.
-
-% This sentence below seems a bit confusing... is i doing 2 different things here? And to make it a bit clearer, can we say we're inducting on \sum c_i? And can we just have our base case be (0, 0, ..., 0), in which case the main diagonal is still ones? And then we get all the (1, 0, ..., 0), (0, 1, ..., 0) guys from there. -jven
-
-In the base case, we look at all cases in which $c_i \geq 0 \forall i \in \{0,1,\dots,k\}$ and $\sum_{i=0}^{k}{c_i} = 1$. First, we have that
-$$
-T(1,0,\dots,0) = \M(1,0,\dots,0)=\left|
+\begin{definition}
+For a sequence of integers $c_0, c_1, \dots, c_k$ and an integer $i \in \{0,1,\dots,k\}$, we define $\M_i(c_0,c_1,\dots,c_k)$ to be the same as $\M(c_0, c_1, \dots, c_k)$, but with the $i^{th}$ row changed as follows:
+\begin{multline*}
+\M_i(c_0, c_1, \dots, c_k) = \\
+\left|
 \begin{matrix}
-1 & \ifact(2) & \ifact(3) & \cdots & \ifact(k+1) \\
-0 & 1 & \ifact(1) & \cdots & \ifact(k-1) \\
-0 & 0 & 1 & \cdots & \ifact(k-2) \\
-\vdots & \vdots & \vdots & \ddots & \vdots \\
-0 & 0 & 0 & \cdots & 1 \\
-\end{matrix} \right| = 1,
+\ifact(c_0) & \ifact(c_0+1) & \cdots & \ifact(c_0+k) \\
+\vdots & \vdots & \ddots & \vdots \\
+-i\ifact(c_i-i) & (1-i)\ifact(c_i + 1 - i) & \cdots & (k-i) \ifact(c_i+k-i) \\
+\vdots & \vdots & \ddots & \vdots \\
+\ifact(c_k-k) & \ifact(c_k-k+1) & \cdots & \ifact(c_k) \\
+\end{matrix} \right|
+\end{multline*}
+\end{definition}
+
+Once again, we will prove a useful identity that will be useful to prove our main result.
+
+\begin{lemma}
+For a sequence of integer $c_0, c_1, \dots, c_k$, we have
 $$
-as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix with diagonal terms that are all $1$.
+\M(c_0, c_1, \dots, c_i - 1, \dots, c_k) = c_i \M(c_0, c_1, \dots, c_k) + \M_i(c_0, c_1, \dots, c_k).
+$$
+\label{lem:mimidentity}
+\end{lemma}
 
-Next, consider setting $c_i = 1, i > 0$ and all other columns $0$. In this case, the $(i-1)^{st}$ and $i^{th}$ rows in the matrix become identical, and, therefore, the determinant equals $0$, as desired.
-
-In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. Here we use the recurrence in Lemma \ref{lem:recurrence}.
-
+\begin{proof}
 $$\begin{array}{ccl}
-T(c_0, \dots, c_k) & = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
-& = & (c_0 + \dots + c_k-1)! \\
-& & \cdot\ ( \M(c_0-1, \dots, c_k) + \dots + \M(c_0, \dots, c_k-1)) \\
-& = & (c_0 + \dots + c_k-1)! \\
-& & \cdot\ ( c_0 \M(c_0, \dots, c_k) + \N_0(c_0, c_1, \dots, c_k) \\
-& & \ +\ c_1 \M(c_0, \dots, c_k) + \N_1(c_0, c_1, \dots, c_k) \\
-& & \ +\ \dots \\
-& & \ +\ c_k \M(c_0, \dots, c_k) + \N_k(c_0, c_1, \dots, c_k) ) \\
-& = & (c_0 + \dots + c_k)! \cdot \M(c_0,\dots,c_k) \\
-& & +\ (c_0+\dots+c_k-1)! \cdot (\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k)).
-\end{array}$$
-
-The key fact we used here is that
-
-$$\begin{array}{ccl}
-\M(c_0, \dots, c_i - 1, \dots, c_k) & = & \left|
+ \M(c_0, \dots, c_i - 1, \dots, c_k) & = & \left|
 \begin{matrix}
 \ifact(c_0) & \cdots & \ifact(c_0+k) \\
 \vdots & \ddots & \vdots \\
@@ -226,29 +185,74 @@ $$\begin{array}{ccl}
 \vdots & \ddots & \vdots \\
 \ifact(c_k-k) & \cdots & \ifact(c_k) \\
 \end{matrix} \right| \\
-& = & c_i \M(c_0, \dots, c_i, \dots, c_k) + \N_i(c_0, \dots, c_i, \dots, c_k).
+& = & c_i \M(c_0, \dots, c_i, \dots, c_k) + \M_i(c_0, \dots, c_i, \dots, c_k).
 \end{array}$$
+\end{proof}
+
+\vspace{0.75cm}
+
+
+
+Equipped with these definitions and results, we now proceed to our main result.
+
+\begin{theorem}
+For a sequence of integers $c_0 \geq c_1 \geq \dots \geq 0$, we have
+$$
+T(c_0, c_1, \dots, c_k) = (c_0 + c_1 + \dots + c_k)! \cdot \M(c_0, c_1, \dots, c_k).
+$$
+\label{thm:closedform}
+\end{theorem}
+
+\begin{proof}
+We prove this by induction on $\sum_{i=0}^{k}{c_i}$.
+
+In the base case, we look at $\sum_{i=0}^{k}{c_i} = 0$, where we have $c_0 = c_1 = \dots = c_k = 0$:
+$$
+T(0,0,\dots,0) = \M(0,0,\dots,0)=\left|
+\begin{matrix}
+1 & \ifact(1) & \ifact(2) & \cdots & \ifact(k) \\
+0 & 1 & \ifact(1) & \cdots & \ifact(k-1) \\
+0 & 0 & 1 & \cdots & \ifact(k-2) \\
+\vdots & \vdots & \vdots & \ddots & \vdots \\
+0 & 0 & 0 & \cdots & 1 \\
+\end{matrix} \right| = 1,
+$$
+as desired. We get the last equality by observing that the determinant is of an upper-triangular matrix with diagonal terms that are all $1$.
+
+In the inductive step, we assume that the theorem holds for $T(c_0-1,c_1,...,c_k)$, $T(c_0,c_1-1,...,c_k)$, $\dots$, $T(c_0,c_1,...,c_k-1)$, and show that it also holds for $T(c_0,c_1,...,c_k)$. We have to take care here since some of these cases might not respect the condition expressed in the theorem. However, any of these sequences that violates the Theorem's condition satisfies the condition in Lemma \ref{lem:mcornercase}. Thus, it is still safe to assume that the theorem holds for these sequences.
+
+$$\begin{array}{ccl}
+T(c_0, \dots, c_k) & = & T(c_0-1, \dots, c_k) + \dots + T(c_0, \dots, c_k-1) \\
+& = & (c_0 + \dots + c_k-1)! \\
+& & \cdot\ ( \M(c_0-1, \dots, c_k) + \dots + \M(c_0, \dots, c_k-1)) \\
+& = & (c_0 + \dots + c_k-1)! \\
+& & \cdot\ ( c_0 \M(c_0, \dots, c_k) + \M_0(c_0, c_1, \dots, c_k) \\
+& & \ +\ c_1 \M(c_0, \dots, c_k) + \M_1(c_0, c_1, \dots, c_k) \\
+& & \ +\ \dots \\
+& & \ +\ c_k \M(c_0, \dots, c_k) + \M_k(c_0, c_1, \dots, c_k) ) \\
+& = & (c_0 + \dots + c_k)! \cdot \M(c_0,\dots,c_k) \\
+& & +\ (c_0+\dots+c_k-1)! \cdot (\M_0(c_0,\dots,c_k) + \dots + \M_k(c_0,\dots,c_k)).
+\end{array}$$
+Here we used our results from Lemmas \ref{lem:recurrence} and \ref{lem:mimidentity}.
 
 Thus, all that remains to show now is that
 \begin{equation}
-\N_0(c_0,\dots,c_k) + \dots + \N_k(c_0,\dots,c_k) = 0.
+\M_0(c_0,\dots,c_k) + \dots + \M_k(c_0,\dots,c_k) = 0.
 \label{eqn:sumto0}
 \end{equation}
 Each of the summands in Equation \ref{eqn:sumto0} is a determinant of a $(k+1)\times(k+1)$ matrix, which is some linear combination of $(k+1)!$ terms. For a given permutation $(\sigma_0, \sigma_1, \dots, \sigma_k)$ of $(0,1,\dots,k)$, where $\sigma_i$ indicates the column number of the element from the $i^{th}$ row of a given matrix, each determinant contains a term of the form:
 $$
 C \prod_{i=0}^{k}{\mu(c_i+\sigma_i-i)},
 $$
-for some constant $C$. Since there are $(k+1)!$ permutations of $(0,1,\dots,k)$, there are $(k+1)!$ such terms for each determinant. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote the permutation of $(0,1,\dots,k)$ that this term corresponds to by $(\sigma_0, \sigma_1, \dots, \sigma_k)$. Note that the constant coefficient for this term from the determinant $\N_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\N_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the total constant coefficient for the term:
+for some constant $C$. Since there are $(k+1)!$ permutations of $(0,1,\dots,k)$, there are $(k+1)!$ such terms for each determinant. Let us look at the $k+1$ constant coefficients accompanying a particular term. Let us denote the permutation of $(0,1,\dots,k)$ that this term corresponds to by $(\sigma_0, \sigma_1, \dots, \sigma_k)$. Note that the constant coefficient for this term from the determinant $\M_i(c_0,\dots,c_k)$ is $\sigma_i - i$. This follows directly from the structure of $\M_i(c_0,\dots,c_k)$. Now, we can add up all the contributions from the $k+1$ determinants to get the total constant coefficient for the term:
 $$
 \sum_{i=0}^{k}{\sigma_i-i} = 0.
 $$
-Thus, we have that each term contributes nothing to the sum of determinants, giving us the result we need.
-
-TODO(mikemeko, jven, dgrazian): was that clear?
+Thus, we have that each term contributes nothing to the sum of determinants, giving us the result we need. Note that we have ignored the signs for these terms in the determinant computations, but this is not a problem since the signs are the same across all $k+1$ determinants, and the coefficient for each term is $0$.
 \end{proof}
 
 \newsection{2-Column Staircases}{sec:twocolumn}
-Now we restrict ourselves to staircases of the form $(c_0,c_1)$ that have at most $2$ columns. Using Theorem \ref{thm:closedform}, we have that
+Now we restrict ourselves to staircases of the form $(c_0,c_1)$ that have exactly $2$ columns. Using Theorem \ref{thm:closedform}, we have that
 \begin{align*}
 T(c_0,c_1) & = (c_0 + c_1)! \left|
 \begin{matrix}
